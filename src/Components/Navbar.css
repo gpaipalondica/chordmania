@@ -77,6 +77,10 @@
     cursor: pointer;
  }
 
+ .nav-ext.disabled svg{
+    color: gray;
+ }
+
  .nav-ext svg{
     color: white;
     width: 30px;
