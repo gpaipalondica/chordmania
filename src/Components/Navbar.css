@@ -54,6 +54,10 @@
     font-size: 18px;
 }
 
+.nav-group.disabled .nav-icon, .nav-group.disabled .nav-text{
+    color: gray;
+}
+
 .nav-group.active{
     background-color: white;
     border-radius: 10px;

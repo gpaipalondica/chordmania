@@ -5,21 +5,27 @@ import { useEffect } from 'react';
 
 function Chords() {
 
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  })
+
   console.log('CL',Chordlist);
 
   let [cat, setCat] = useState('guitar')
 
   useEffect(() => {
+
       document.getElementById('guitar').classList.add('active')
 
       let allChordsList = document.querySelectorAll('.grid-item')
       allChordsList.forEach(ch => {
         let chName = ch.querySelector('.chord-name')        
-        if(chName.innerHTML == 'NA'){
+        if(chName.innerHTML === 'NA'){
           ch.style.display = 'none'
         }
       })
   },[])
+
 
   function showCat(x){
       document.querySelectorAll('.chord-btn').forEach(y => {
@@ -57,12 +63,11 @@ function Chords() {
         const isVis = chName.textContent.toLowerCase().includes(target)
         chName.parentNode.classList.toggle('hide',!isVis)
         
-        if(chName.innerHTML == 'NA'){
+        if(chName.innerHTML === 'NA'){
           ch.style.display = 'none'
         }
       })
   }
-
 
   function cancelInput(){
     document.querySelector('.search-bar input').value = ''
@@ -71,6 +76,7 @@ function Chords() {
     })
     document.querySelector('.searchresult').style.display='none';
   }
+
 
   return (
     <div className='chords'>
