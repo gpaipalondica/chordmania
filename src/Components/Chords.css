@@ -21,6 +21,7 @@
     font-size: 15px;
     transition: .3s ease;
     background-color: white;
+    color: black;
 }
 
 .chord-btn:hover, .chord-btn.active{
@@ -52,6 +53,7 @@
     border-radius: 10px;
     cursor: pointer;
     background-color: #ccc;
+    color: black;
 }
 
 .searchresult{
