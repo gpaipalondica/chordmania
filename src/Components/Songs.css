@@ -1,0 +1,119 @@
+.songs{
+    height: max-content;
+    margin: 20px;
+    margin-left: 320px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.songs h3{
+    margin-top: 30px;
+}
+
+.songs-search-bar{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    display: none;
+}
+
+.songs-search-bar input{
+    width: 100%;
+    /* max-width: 400px; */
+    height: 40px;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    padding: 0 10px;
+    font-size: 16px;
+}
+
+.songs-search-bar button{
+    width: 90px;
+    min-width: 90px;
+    height: auto;
+    font-size: 14px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: rgb(58, 58, 226);
+    color: white;
+}
+
+
+.songs-list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.song-tab{
+    width:auto;
+    height: 50px;
+    background-color: white;
+    padding: 10px 30px;
+    border-radius: 20px;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    /* transition: .5s ease; */
+}
+
+.song-title{
+    white-space: nowrap;
+}
+
+.artist-name{
+    color: darkgray;
+    white-space: nowrap;
+}
+
+.song-tab:hover{
+    background-color: rgb(127, 255, 202);
+}
+
+@media (max-width: 1024px){
+    .songs{
+        margin-left: 270px;
+    }
+}
+
+@media (max-width:768px) {
+    .songs{
+        margin-left: 120px;
+    }
+    .songs-list{
+        flex-direction: column;
+    }
+    .song-tab{
+        flex-direction: column;
+        gap: 0;
+        height: auto;
+    }
+}
+
+@media (max-width:480px) {
+    .songs{
+        padding: 20px 0;
+        margin-left: 100px;
+    }
+
+    .songs h3{
+        text-align: center;
+    }
+    .songs-search-bar{
+        flex-direction: column;
+        width: 100%;
+        align-items: flex-end;
+    }
+    .songs-search-bar button{
+        height: 30px;
+        font-size: 14px;
+    }
+
+}

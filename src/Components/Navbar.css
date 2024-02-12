@@ -1,0 +1,119 @@
+.navbar{
+    min-height: 100vh;
+    width: 300px;
+    padding: 0 15px;
+    background-color: #11101D;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+    gap: 40px;
+    z-index: 10;
+    transition: .2s ease;
+}
+
+.navbar h1{
+    margin-top: 20px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    font-size: 25px;
+    white-space: nowrap;
+    color: white;
+}
+
+#shortform{
+    display: none;
+}
+
+.nav-content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.nav-group{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.nav-icon{
+    width: 30px;
+    height: 30px;
+    color: white;
+    pointer-events: none;
+}
+
+.nav-text{
+    pointer-events: none;
+    color: white;
+    font-size: 18px;
+}
+
+.nav-group.active{
+    background-color: white;
+    border-radius: 10px;
+}
+ .nav-group.active .nav-icon, .nav-group.active .nav-text {
+    color: #11101D;
+    font-weight: 600;
+ }
+
+ .nav-ext{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+ }
+
+ .nav-ext svg{
+    color: white;
+    width: 30px;
+    height: 30px;
+    pointer-events: none;
+ }
+
+ @media (max-width: 1024px){
+    .navbar{
+        width: 250px;
+    }
+ }
+
+ @media (max-width:768px) {
+    .navbar{
+        width: 100px;
+    }
+    .navbar h1{
+        display: none;
+    }
+    #shortform{
+        display: flex;
+        justify-content: center;
+    }
+    .nav-ext{
+        display: flex;
+        top: 600px;
+    }
+    .nav-group{
+        justify-content: center;
+        align-items: center;
+    }
+    .nav-text{
+        display: none;
+    }
+    
+ }
+
+ @media (max-width: 480px) {
+    .navbar{
+        width: 80px;
+        
+    }
+ }

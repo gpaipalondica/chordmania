@@ -1,0 +1,221 @@
+.song-item{
+    /* width: 100%; */
+    margin: 20px;
+    margin-left: 320px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.autoScroll{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: white;
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: .5s ease;
+    z-index: 10;
+    border: 1px solid gray;
+}
+
+.autoScroll svg{
+    margin-left: 5px;
+}
+
+.play{
+    color: white;
+    background-color: red;
+}
+
+.chord-btn2{
+    width: 80px;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: .3s ease;
+    background-color: white;
+}
+
+.chord-btn2:hover, 
+.chord-btn2.active{
+    color: white;
+    background-color: #11101D;
+}
+
+.chords-word{
+    font-size: 18px;
+}
+
+.allChords{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-top: -20px;
+}
+
+.chord-group{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 70px;
+    align-items: center;
+}
+
+.chord-group p{
+    font-size: 18px;
+}
+
+.chord-group img{
+    width: 100%;
+}
+
+.lyrics{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.para{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.line{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 10px;
+    position: relative;
+    width: fit-content;
+    margin-top: 20px;
+}
+
+.word{
+    position: relative;
+    /* background-color: yellow; */
+}
+
+.chordClick{
+    position: absolute;
+    left: 0;
+    z-index: 2;
+    bottom: 25px;
+    height: 20px;
+    text-align: center;
+    width: 20px;
+    background-color: #eee;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: .5s ease;
+    color: #11101D;
+}
+
+.smChord{
+    display: none;
+    width: 80%;
+}
+
+.chordClickEnd{
+    position: absolute;
+    right: -20px;
+    z-index: 2;
+    border: none;
+    bottom: 25px;
+    text-align: center;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    color: #11101D;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: .5s ease;
+}
+
+.chordClick:focus, .chordClickEnd:focus{
+    width: 80px;
+    /* transform-origin: bottom left ; */
+    height: 110px;
+    padding: 5px;
+    z-index: 3;
+    border-radius: 10px 10px 10px 0;
+    pointer-events: none;
+}
+
+.chordClickEnd:focus{
+    right: -85px;
+}
+
+
+.chordClick:focus .smChord, .chordClickEnd:focus .smChord{
+    display: flex;
+}
+
+
+
+@media (max-width:1024px) {
+    .song-item{
+        margin-left: 270px;
+    }
+    
+}
+
+@media (max-width:768px) {
+    .song-item{
+        margin-left: 120px;
+    }
+
+    .allChords{
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width:480px) {
+    .song-item{
+        margin-left: 100px;
+        padding: 0;
+        gap: 30px;
+        /* background-color: red; */
+    }  
+
+    .autoScroll{
+        right: 15px;
+        top: 15px;
+    }
+
+    .song-info{
+        text-align: center;
+        padding-top: 40px;
+    }
+
+    .chords-word{
+        text-align: center;
+    }
+
+    .allChords{
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .chord-group{
+        max-width: 50px;
+    }
+
+}

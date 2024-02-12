@@ -1,0 +1,187 @@
+.chords{
+    margin: 20px;
+    padding: 20px;
+    margin-left: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.chord-category{
+    display: flex;
+    gap: 20px;
+}
+
+.chord-btn{
+    width: 150px;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: .3s ease;
+    background-color: white;
+}
+
+.chord-btn:hover, .chord-btn.active{
+    color: white;
+    background-color: #11101D;
+}
+
+.search-bar{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    /* padding: 0 10px; */
+}
+
+.search-bar input{
+    width: 100%;
+    max-width: 400px;
+    height: 40px;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    padding: 0 10px;
+}
+
+.search-bar button{
+    width: 100px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #ccc;
+}
+
+.searchresult{
+    padding: 0 10px;
+    margin-bottom: -30px;
+    font-weight: 600;
+    display: none;
+}
+
+.colorChart{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px 40px;
+    flex-wrap: wrap;
+    margin-bottom: -30px;
+}
+
+.colorGroup{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.dot{
+    width: 12px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+}
+
+.red{
+    background-color: red;
+}
+.green{
+    background-color: #009100;
+}
+.blue{
+    background-color: blue;
+}
+.purple{
+    background-color: #8A00DF;
+}
+
+
+.chord-grid{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 10px;
+}
+
+.grid-item{
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    padding: 20px 10px;
+    border-radius: 15px;
+    max-width: 115px;
+}
+.chord-name{
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.chord-image{
+    width: 85%;
+}
+
+.hide{
+    display: none;
+}
+
+
+@media (max-width:1024px) {
+    .chords{
+        margin-left: 270px;
+    }
+    
+}
+
+@media (max-width:768px) {
+    .chords{
+        margin-left: 120px;
+    }
+    .chord-grid{
+        justify-content: center;
+    }
+    .searchresult{
+        text-align: center;
+    }
+    .colorChart{
+        gap: 10px;
+    }
+}
+
+@media (max-width:480px) {
+    .chords{
+        margin-left: 100px;
+        padding: 20px 0;
+    }
+    .title{
+        text-align: center;
+    }
+    .chord-category{
+        justify-content: center;
+    }
+    .chord-btn{
+        width: auto;
+        padding:0 20px;
+    }
+    .search-bar{
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    .search-bar button{
+        height: 30px;
+    }
+
+    .colorChart{
+        gap: 10px;
+        justify-content: center;
+    }
+    .colorGroup{
+        gap: 5px;
+    }
+    .chord-grid{
+        gap: 20px;
+    }
+}
