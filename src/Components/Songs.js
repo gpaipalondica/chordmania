@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate} from 'react-router-dom';
 import './Songs.css'
 import { Songlist } from '../Helper/Songlist';
 
 function Songs() {
+  
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  })
 
- 
   function searchInput(){
     
   }

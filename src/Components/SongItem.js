@@ -7,12 +7,15 @@ import { useEffect } from 'react'
 
 function SongItem() {
 
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  })
+
   let {songtitle} = useParams()
 
   let selectedSong = Songlist.find(element => element.name === songtitle)
 
   let lyrics = selectedSong.lyrics
-
 
   // console.log(lyrics);
   // console.log(Chordlist);
@@ -23,8 +26,6 @@ function SongItem() {
     // console.log("all",word);
   
     // console.log(word[1][1][0])
-
-      
 
     //setChords
     // console.log(selectedSong.chords);
@@ -48,8 +49,7 @@ function SongItem() {
   }
 
   useEffect(()=>{
-    document.getElementById('guitar').classList.add('active')    
-
+    document.getElementById('guitar').classList.add('active')
   },[])
     
     useEffect(() => {
@@ -158,8 +158,21 @@ function SongItem() {
       let checked = document.querySelector('.autoScroll').classList.toggle('play')
       if(checked){
         startScroll()
+        console.log(document.querySelector('.navbar'));
+        document.querySelector('.navbar').style.pointerEvents = 'none'
+        document.querySelectorAll('.nav-group').forEach(x =>{
+          x.classList.remove('active')
+          x.classList.add('disabled')
+        })
+        document.querySelector('.nav-ext').style.display='none'
       }else{
         stopScroll()
+        document.querySelector('.navbar').style.pointerEvents = 'all'
+        document.querySelectorAll('.nav-group').forEach(x =>{
+          x.classList.remove('disabled')
+        })
+        document.getElementById('songs').classList.add('active')
+        document.querySelector('.nav-ext').style.display='flex'
       }
     }
       function startScroll(){
