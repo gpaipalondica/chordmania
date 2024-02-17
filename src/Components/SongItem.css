@@ -37,6 +37,31 @@
     font-weight: 600;
 }
 
+.speed{
+    position: fixed;
+    top: 35px;
+    right: 40px;
+    border-radius: 50%;
+    width: 10px;
+    aspect-ratio: 1 / 1;
+    font-size: 12px;
+    -webkit-appearance: none;
+    appearance: none;
+    text-align: center;
+    text-align-last: center;
+    color: black;
+    box-shadow: 2px 2px 2px gray;
+    transition: .5s ease;
+    z-index: 9;
+}
+
+.speed.show{
+    right: 30px;
+    top: 100px;
+    width: 35px;
+    cursor: pointer;
+}
+
 .chord-btn2{
     width: 80px;
     height: 30px;
@@ -201,7 +226,6 @@
         margin-left: 100px;
         padding: 0;
         gap: 30px;
-        /* background-color: red; */
     }  
 
     .autoScroll{
@@ -209,9 +233,23 @@
         top: 15px;
     }
 
+    .speed{
+        top: 20px;
+        right: 20px;
+    }
+    
+    .speed.show{
+        top: 80px;
+        right: 20px;
+    }
+
+    .speed option{
+        background-color: green;
+    }
+
     .song-info{
         text-align: center;
-        padding-top: 40px;
+        padding-top: 50px;
     }
 
     .chords-word{
