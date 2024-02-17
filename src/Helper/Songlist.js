@@ -2,6 +2,7 @@ export const Songlist = [
 {
 name: "Husn",
 artist: "Anuv Jain",
+capo: 5,
 lyrics:`[Intro]
 Haan, haan
 
@@ -154,12 +155,12 @@ chords:[
     {pos:'p7-l5-w0', chord:'C'},
     {pos:'p7-l6-w0', chord:'E7'},
     {pos:'p7-l6-w4', chord:'Am'},
-],
-capo: 5
+]
 },
 {
 name: "Tune Kaha",
 artist: "Prateek Kuhad",
+capo:1,
 lyrics:`[Verse 1]
 Tere hawale hai ye zindagi meri
 Tere ujaale se sab raahe hain yaha
@@ -328,8 +329,7 @@ chords:[
     {pos:'p7-l4-w1', chord:'G'},
     {pos:'p7-l4-w2', chord:'A'},
     {pos:'p7-l4-w4', chord:'D'},
-],
-capo:1
+]
 },
 {
 name: "Satranga",
@@ -502,8 +502,135 @@ chords:[
     {pos:'p5-l11-w0', chord:'G'},
     {pos:'p5-l11-w3', chord:'Am'},
     {pos:'p5-l12-w2', chord:'C'},
+]
+},
+{
+name: "Pehle Bhi Main",
+artist: "Vishal Mishra",
+capo: 1,
+lyrics:`[Intro]
+[Piano Music]  x2
 
-    
+[Verse 1]
+Pehle Bhi Main Tumse Mila Hoon
+Pehli Dafa Hi Milke Laga
+Toone Chhua Zakhmon Ko Mere
+Marham Marham Dil Pe Laga
+
+[Pre-Chorus]
+Paagal Paagal Hain Thode
+Baadal Baadal Hain Dono
+Khul Ke Barse Bheege Aa Zara
+
+[Chorus]
+Pehle Bhi Main Tumse Mila Hoon
+Pehli Dafa Hi Milke Laga
+Toone Chhua Zakhmon Ko Mere
+Marham Marham Dil Pe Laga
+
+[Interlude]
+Ho ho ho ho
+
+[Bridge]
+Ghalat Kya Sahi Kya
+Mujhe Na Pata Hai
+Tumhein Agar Pata Ho
+Bata Dena
+Main Arse Se Khud Se
+Zara Laapata Hoon
+Tumhein Agar Milun Toh
+Pata Dena
+Kho Na Jaana Mujhe
+Dekhte Dekhte
+
+[Verse 2]
+Tu Hi Zariya
+Tu Hi Manzil Hai
+Ya Ke Dil Hai
+Itna Bata
+Toone Chhua Zakhmon Ko Mere
+Marham Marham Dil Pe Laga
+
+[Pre-Chorus]
+Paagal Paagal Hain Thode
+Baadal Baadal Hain Bheege
+Barse Barse Bheege Aa Zara
+
+[Chorus]
+Pehle Bhi Main Tumse Mila Hoon
+Pehli Dafa Hi Milke Laga
+Toone Chhua Zakhmon Ko Mere
+Marham Marham Dil Pe Laga
+
+[Outro]
+ho ho ho ho
+
+[--END--]`,
+chords:[
+    {pos:'p0-l0-w0', chord:'Am'}, 
+    {pos:'p0-l0-w0E', chord:'G'}, 
+    {pos:'p0-l1-w0', chord:'Dm'}, 
+    {pos:'p0-l1-w0E', chord:'Em'},
+    {pos:'p1-l1-w2', chord:'Am'},
+    {pos:'p1-l1-w4', chord:'G'},
+    {pos:'p1-l2-w1', chord:'Dm'},
+    {pos:'p1-l2-w4', chord:'Em'},
+    {pos:'p1-l3-w1', chord:'Am'},
+    {pos:'p1-l3-w4', chord:'G'},
+    {pos:'p1-l4-w1', chord:'Dm'},
+    {pos:'p1-l4-w4', chord:'Em'},
+    {pos:'p2-l1-w0', chord:'F'},
+    {pos:'p2-l2-w0', chord:'Am'},
+    {pos:'p2-l3-w0', chord:'F'},
+    {pos:'p2-l3-w5', chord:'Em'},
+    {pos:'p3-l1-w2', chord:'Am'},
+    {pos:'p3-l1-w4', chord:'G'},
+    {pos:'p3-l2-w1', chord:'Dm'},
+    {pos:'p3-l2-w4', chord:'Em'},
+    {pos:'p3-l3-w1', chord:'Am'},
+    {pos:'p3-l3-w4', chord:'G'},
+    {pos:'p3-l4-w1', chord:'Dm'},
+    {pos:'p3-l4-w4', chord:'Em'},
+    {pos:'p4-l1-w0', chord:'Am'},
+    {pos:'p4-l1-w1', chord:'G'},
+    {pos:'p4-l1-w2', chord:'Dm'},
+    {pos:'p4-l1-w3', chord:'Em'},
+    {pos:'p5-l1-w0', chord:'Am'},
+    {pos:'p5-l2-w0', chord:'G'},
+    {pos:'p5-l3-w0', chord:'Dm'},
+    {pos:'p5-l4-w0', chord:'Em'},
+    {pos:'p5-l5-w0', chord:'C'},
+    {pos:'p5-l6-w0', chord:'G'},
+    {pos:'p5-l7-w0', chord:'Dm'},
+    {pos:'p5-l8-w0', chord:'G'},
+    {pos:'p5-l9-w0', chord:'Dm'},
+    {pos:'p5-l10-w0', chord:'Em'},
+    {pos:'p6-l1-w2', chord:'Am'},
+    {pos:'p6-l2-w2', chord:'G'},
+    {pos:'p6-l3-w2', chord:'Dm'},
+    {pos:'p6-l4-w1', chord:'Em'},
+    {pos:'p6-l5-w1', chord:'Am'},
+    {pos:'p6-l5-w4', chord:'G'},
+    {pos:'p6-l6-w1', chord:'Dm'},
+    {pos:'p6-l6-w4', chord:'Em'},
+    {pos:'p7-l1-w0', chord:'Am'},
+    {pos:'p7-l2-w0', chord:'G'},
+    {pos:'p7-l3-w0', chord:'F'},
+    {pos:'p7-l3-w4', chord:'Em'},
+    {pos:'p8-l1-w2', chord:'Am'},
+    {pos:'p8-l1-w4', chord:'G'},
+    {pos:'p8-l2-w1', chord:'Dm'},
+    {pos:'p8-l2-w4', chord:'Em'},
+    {pos:'p8-l3-w1', chord:'Am'},
+    {pos:'p8-l3-w4', chord:'G'},
+    {pos:'p8-l4-w1', chord:'Dm'},
+    {pos:'p8-l4-w4', chord:'Em'},
+    {pos:'p9-l1-w0', chord:'Am'},
+    {pos:'p9-l1-w1', chord:'G'},
+    {pos:'p9-l1-w2', chord:'Dm'},
+    {pos:'p9-l1-w3', chord:'Em'},
+
+
 ]
 }
 

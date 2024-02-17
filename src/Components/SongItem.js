@@ -155,7 +155,11 @@ function SongItem() {
     var playBtn;
 
     function autoScroll(){
+
       let checked = document.querySelector('.autoScroll').classList.toggle('play')
+      
+      document.querySelector('.speed').classList.toggle('show')
+
       if(checked){
         startScroll()
         document.querySelector('.autoScroll').innerText='End Autoscroll'
@@ -194,16 +198,17 @@ function SongItem() {
       }
 
       function scrollMe(){
-
+        let speed = document.querySelector('.speed').value
+        console.log(speed);
         if(window.innerWidth<480){
           window.scrollBy({
-            top: 5,
+            top: 5*speed,
             behavior: 'smooth',
           });
         }
         else{
           window.scrollBy({
-            top: 2,
+            top: 2*speed,
             behavior: 'smooth',
           });
         }
@@ -217,6 +222,14 @@ function SongItem() {
       <div className="autoScroll" onClick={autoScroll}>
         Start Autoscroll
       </div>
+      <select name="speed" className="speed" id='speed' onChange={scrollMe} defaultValue={1}>
+        <option value={0.5}>0.5x</option>
+        <option value={0.8}>0.8x</option>
+        <option value={1}>1x</option>
+        <option value={1.5}>1.5x</option>
+        <option value={2}>2x</option>
+      </select>
+      
 
       <div className="song-info">
         <h1>{selectedSong.name}</h1>
