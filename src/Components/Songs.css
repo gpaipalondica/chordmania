@@ -61,7 +61,7 @@
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
-    /* transition: .5s ease; */
+    transition: .5s ease;
 }
 
 .song-title{
@@ -74,7 +74,11 @@
 }
 
 .song-tab:hover{
-    background-color: rgb(127, 255, 202);
+    background-color: #11101D
+}
+
+.song-tab:hover .song-title{
+    color: white;
 }
 
 @media (max-width: 1024px){
