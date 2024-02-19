@@ -175,7 +175,7 @@ function SongItem() {
       if(checked){
         startScroll()
         document.querySelector('.autoScroll').innerText='End Autoscroll'
-        console.log(document.querySelector('.navbar'));
+        // console.log(document.querySelector('.navbar'));
         document.querySelector('.navbar').style.pointerEvents = 'none'
         document.querySelectorAll('.nav-group').forEach(x =>{
           x.classList.remove('active')
@@ -222,7 +222,7 @@ function SongItem() {
 
       function scrollMe(){
         let speed = document.querySelector('.speed').value
-        console.log(speed);
+        // console.log(speed);
         if(window.innerWidth<480){
           window.scrollBy({
             top: 5*speed,
@@ -255,13 +255,13 @@ function SongItem() {
         document.getElementById('trans-value').value = val
 
         if(val === 12){
-          document.getElementById('addTrans').disabled = true
+          document.getElementById('addTrans').classList.add('disabled')
         }else if(val === -12){
-          document.getElementById('subTrans').disabled = true
+          document.getElementById('subTrans').classList.add('disabled')
         }
         else{
-          document.getElementById('addTrans').disabled = false
-          document.getElementById('subTrans').disabled = false
+          document.getElementById('addTrans').classList.remove('disabled')
+          document.getElementById('subTrans').classList.remove('disabled')
         }
       }
 

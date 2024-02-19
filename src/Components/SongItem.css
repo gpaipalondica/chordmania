@@ -19,7 +19,7 @@
     top: 30px;
     right: 30px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 13px;
     transition: .5s ease;
     z-index: 10;
     border: 1px solid gray;
@@ -207,7 +207,7 @@
     bottom: 30px;
     right: 30px;
     display: flex;
-    gap:2px;
+    /* gap:2px; */
     align-items: center;
     padding: 5px 10px;
     background-color: white;
@@ -224,16 +224,28 @@
     align-items: center;
     height: 100%;
     padding-right: 10px;
-    font-size: 12px;
+    font-size: 13px;
 }
 
 .transposeContainer button{
-    width: 30px;
+    width: 35px;
     height: 100%;
     cursor: pointer;
     color: black;
     border: none;
-    border-radius: 20%;
+    background-color: #e1e1e1 ;
+}
+
+#addTrans{
+    border-radius: 0 20% 20% 0;
+}
+#subTrans{
+    border-radius: 20% 0 0 20%;
+}
+
+.transposeContainer button.disabled{
+    background-color: gray;
+    pointer-events: none;
 }
 
 .transposeContainer input{
