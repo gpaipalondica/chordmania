@@ -20,10 +20,26 @@
     font-size: 25px;
     white-space: nowrap;
     color: white;
+    display: flex;
+    align-items: center;
+}
+
+.navbar h1 span{
+    display: flex;
+}
+
+.navbar h1 span img{
+    width: 46px;
+    margin: -5px;
 }
 
 #shortform{
     display: none;
+}
+
+#shortform span img{
+    width: 40px;
+    margin: -5px;
 }
 
 .nav-content{

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Navbar.css'
+import M from '../Assets/M.png'
 
 function Navbar() {
   let nav = useNavigate()
@@ -43,7 +44,7 @@ function Navbar() {
       document.querySelectorAll('.nav-text').forEach(y =>{
         y.style.display = 'flex'
       })
-      document.querySelector('.navbar h1').style.display='block'
+      document.querySelector('.navbar h1').style.display='flex'
       document.querySelector('#shortform').style.display ='none'
       document.querySelectorAll('.nav-group').forEach(x=>{
         x.style.justifyContent = 'left'
@@ -72,8 +73,8 @@ function Navbar() {
 
   return (
     <div className='navbar'>
-        <h1>Chord Mania</h1>
-        <h1 id='shortform'>CM</h1>
+        <h1>Chord <span><img className='letM' src={M} alt="" /></span> ania</h1>
+        <h1 id='shortform'>C<span><img src={M} alt="" /></span></h1>
 
         <div className='nav-content'>
             <div id='songs' className="nav-group" onClick={() => takeMeHere('songs')}>
