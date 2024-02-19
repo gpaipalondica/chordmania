@@ -9,11 +9,19 @@ function SongItem() {
 
   useEffect(()=>{
     window.scrollTo(0,0)
-  })
+    document.getElementById('guitar').classList.add('active')
+  },[])
+
+
+  let majorArray=['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', "G", "G#", "A", "A#", "B"]
+  let minorArray=['Cm', 'C#m', 'Dm', 'D#m', 'Em', 'Fm', 'F#m', "Gm", "G#m", "Am", "A#m", "Bm"]
+  let seventhArray=['C7', 'C#7', 'D7', 'D#7', 'E7', 'F7', 'F#7', "G7", "G#7", "A7", "A#7", "B7"]
+
 
   let {songtitle} = useParams()
 
   let selectedSong = Songlist.find(element => element.name === songtitle)
+
 
   let lyrics = selectedSong.lyrics
 
@@ -48,14 +56,17 @@ function SongItem() {
       document.getElementById(x).classList.add('active')
   }
 
-  useEffect(()=>{
-    document.getElementById('guitar').classList.add('active')
-  },[])
-    
-    useEffect(() => {
-      
-      if(selectedSong.chords.length > 0){
-        selectedSong.chords.forEach((x)=>{
+  let [chordSet, setChordSet] = useState(selectedSong.chords)
+  let [transVal, setTransVal] = useState(0)
+
+  
+  // console.log("CHORD SET",chordSet);
+  
+  useEffect(() => {
+
+
+      if(chordSet.length > 0){
+        chordSet.forEach((x)=>{
           // console.log("X",x);
           let post = x.pos
           if(post.charAt(post.length-1) !=='E'){
@@ -124,21 +135,22 @@ function SongItem() {
         document.querySelector('.lyrics').style.marginTop = '15px'
       }
 
-    },[selectedSong, cat])
+    },[selectedSong, cat, transVal, chordSet])
     
    
     let all_chords = []
-    let all_chords_filtered = []
+    // let all_chords_filtered = []
 
-    if(selectedSong.chords){
-      selectedSong.chords.forEach(item => {
+    if(chordSet){
+      chordSet.forEach(item => {
         all_chords.push(item.chord)
       })
     }
 
-    all_chords_filtered = all_chords.filter((item,index) => all_chords.indexOf(item) === index);
+    let [allChordsFiltered, setAllChordsFiltered] = useState(all_chords.filter((item,index) => all_chords.indexOf(item) === index))
+    // all_chords_filtered = all_chords.filter((item,index) => all_chords.indexOf(item) === index);
     
-    // console.log(all_chords_filtered);
+    // console.log(allChordsFiltered);
   
 
     function getMe(x,c){
@@ -175,6 +187,12 @@ function SongItem() {
         }else if(cat === 'piano'){
           document.querySelectorAll('.chord-btn2')[0].classList.add('disabled')
         }
+        // document.querySelectorAll('.transposeContainer > button').forEach(x => {
+        //   x.disabled = true
+        //   x.style.pointerEvents = 'none'
+        // })
+        document.querySelector('.transposeContainer').style.display = 'none'
+        
       }else{
         stopScroll()
         document.querySelector('.autoScroll').innerText='Start Autoscroll'
@@ -187,7 +205,12 @@ function SongItem() {
         document.querySelectorAll('.chord-btn2').forEach(y=>{
           y.classList.remove('disabled')
         })
-      }
+        // document.querySelectorAll('.transposeContainer > button').forEach(x => {
+          //   x.disabled = false
+          //   x.style.pointerEvents = 'all'
+          // })
+          document.querySelector('.transposeContainer').style.display = 'flex'
+        }
     }
       function startScroll(){
           playBtn = setInterval(scrollMe, 100);
@@ -214,6 +237,136 @@ function SongItem() {
         }
         
       }
+
+      
+
+      function trans(x){
+        console.log(x);
+        let val = transVal
+  
+        if(x === 1){
+          val = val+1;
+          changeChords(1)
+        }else{
+          val = val-1;
+          changeChords(-1)
+        }
+        setTransVal(val)
+        document.getElementById('trans-value').value = val
+
+        if(val === 12){
+          document.getElementById('addTrans').disabled = true
+        }else if(val === -12){
+          document.getElementById('subTrans').disabled = true
+        }
+        else{
+          document.getElementById('addTrans').disabled = false
+          document.getElementById('subTrans').disabled = false
+        }
+      }
+
+
+
+    function changeChords(v){
+        console.log('V', v);
+
+        let newArray=[]
+        let newShowChord = []
+       
+        if(v === 1){
+        // console.log("CS",chordSet);
+        let groupedChords = []
+
+        chordSet.forEach((chordInfo, index) => {
+          const { chord, pos } = chordInfo;
+      
+          if (!groupedChords[chord]) {
+              groupedChords[chord] = [];
+          }
+      
+          groupedChords[chord].push({ pos, chord });
+      });
+
+      for (const chord in groupedChords) {
+          
+          if(majorArray.includes(chord)){
+            // console.log("YESS DUDE", groupedChords[chord]);
+            newShowChord.push(majorArray[(majorArray.indexOf(chord)+1)%12])
+            groupedChords[chord].forEach(x =>{
+              x.chord = majorArray[(majorArray.indexOf(chord)+1)%12]
+              newArray.push(x)
+            })
+            
+          }
+          else if(minorArray.includes(chord)){
+            newShowChord.push(minorArray[(minorArray.indexOf(chord)+1)%12])
+            groupedChords[chord].forEach(y =>{
+              y.chord = minorArray[(minorArray.indexOf(chord)+1)%12]
+              newArray.push(y)
+            })
+          }
+          else if(seventhArray.includes(chord)){
+            newShowChord.push(seventhArray[(seventhArray.indexOf(chord)+1)%12])
+            groupedChords[chord].forEach(z =>{
+              z.chord = seventhArray[(seventhArray.indexOf(chord)+1)%12]
+              newArray.push(z)
+            })
+          }
+        }
+        
+        // console.log("New", newArray);
+        // console.log("NewShowChord", newShowChord);
+        }
+        else if(v === -1){
+          // console.log("CS",chordSet);
+          let groupedChords = []
+          let majorArray2 = majorArray.reverse()
+          let minorArray2 = minorArray.reverse()
+          let seventhArray2 = seventhArray.reverse()
+
+          
+          chordSet.forEach((chordInfo, index) => {
+            const { chord, pos } = chordInfo;
+        
+            if (!groupedChords[chord]) {
+                groupedChords[chord] = [];
+            }
+        
+            groupedChords[chord].push({ pos, chord });
+           });
+
+          for (const chord in groupedChords) {
+            
+            if(majorArray2.includes(chord)){
+              // console.log("YESS DUDE", groupedChords[chord]);
+              newShowChord.push(majorArray2[(majorArray2.indexOf(chord)+1)%12])
+              groupedChords[chord].forEach(x =>{
+                x.chord = majorArray2[(majorArray2.indexOf(chord)+1)%12]
+                newArray.push(x)
+              })
+              
+            }
+            else if(minorArray2.includes(chord)){
+              newShowChord.push(minorArray2[(minorArray2.indexOf(chord)+1)%12])
+              groupedChords[chord].forEach(y =>{
+                y.chord = minorArray2[(minorArray2.indexOf(chord)+1)%12]
+                newArray.push(y)
+              })
+            }
+            else if(seventhArray2.includes(chord)){
+              newShowChord.push(seventhArray2[(seventhArray2.indexOf(chord)+1)%12])
+              groupedChords[chord].forEach(z =>{
+                z.chord = seventhArray2[(seventhArray2.indexOf(chord)+1)%12]
+                newArray.push(z)
+              })
+            }
+          }   
+          // console.log("New", newArray);
+          // console.log("NewShowChord", newShowChord);
+        }
+        setChordSet(newArray)
+        setAllChordsFiltered(newShowChord)
+    }
 
   
   return (
@@ -243,11 +396,11 @@ function SongItem() {
       </div>
 
 
-      {all_chords_filtered.length>0 &&
+      {allChordsFiltered.length>0 &&
       <>
         <p className='chords-word'>Chords {selectedSong.capo && cat === 'guitar' && <span>(Capo: {selectedSong.capo})</span>}</p>
         <div className="allChords">
-        {all_chords_filtered.map((x,key)=>{
+        {allChordsFiltered.map((x,key)=>{
           return(
             <div key={key} className="chord-group">
             <p>{x}</p>
@@ -309,6 +462,15 @@ function SongItem() {
           )
         })}
       </div>
+
+
+      <div className="transposeContainer">
+        <p>Transpose: </p>
+        <button id='subTrans' onClick={() => trans(-1)}>-</button>
+        <input type="text" readOnly id='trans-value' defaultValue={transVal}/>
+        <button id='addTrans' onClick={() => trans(1)}>+</button>
+      </div>
+
     </div>
   )
 }

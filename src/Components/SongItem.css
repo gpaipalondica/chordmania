@@ -147,7 +147,7 @@
     bottom: 25px;
     height: 20px;
     text-align: center;
-    width: 20px;
+    width: 35px;
     background-color: #eee;
     cursor: pointer;
     border: none;
@@ -166,13 +166,13 @@
 
 .chordClickEnd{
     position: absolute;
-    right: -20px;
+    right: -35px;
     z-index: 2;
     border: none;
     bottom: 25px;
     text-align: center;
     height: 20px;
-    width: 20px;
+    width: 35px;
     background-color: #eee;
     color: #11101D;
     cursor: pointer;
@@ -202,6 +202,47 @@
     display: flex;
 }
 
+.transposeContainer{
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    gap:2px;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 40px;
+    box-shadow: 2px 2px 2px gray;
+    z-index: 9;
+    transform-origin: bottom right;
+
+}
+.transposeContainer p{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-right: 10px;
+    font-size: 12px;
+}
+
+.transposeContainer button{
+    width: 30px;
+    height: 100%;
+    cursor: pointer;
+    color: black;
+    border: none;
+    border-radius: 20%;
+}
+
+.transposeContainer input{
+    width: 30px;
+    height: 100%;
+    text-align: center;
+    pointer-events: none;
+}
+
 
 
 @media (max-width:1024px) {
@@ -229,13 +270,13 @@
     }  
 
     .autoScroll{
-        right: 15px;
-        top: 15px;
+        right: 20px;
+        top: 20px;
     }
 
     .speed{
-        top: 20px;
-        right: 20px;
+        top: 25px;
+        right: 25px;
     }
     
     .speed.show{
@@ -263,6 +304,11 @@
 
     .chord-group{
         max-width: 50px;
+    }
+
+    .transposeContainer{
+        bottom: 20px;
+        right: 20px;
     }
 
 }
