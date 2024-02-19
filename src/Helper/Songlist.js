@@ -335,7 +335,7 @@ chords:[
 name: "Satranga",
 artist: "Arijit Singh",
 lyrics:`[Intro]
-Ho... O... Ho...
+Ho... O..... Ho...
 
 [Verse 1]
 Aadha tera ishq aadha mera
@@ -509,7 +509,7 @@ name: "Pehle Bhi Main",
 artist: "Vishal Mishra",
 capo: 1,
 lyrics:`[Intro]
-[Piano Music]  x2
+[Piano Music ]  x2
 
 [Verse 1]
 Pehle Bhi Main Tumse Mila Hoon
