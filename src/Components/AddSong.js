@@ -162,7 +162,7 @@ if(document.querySelector('.wordDisp')){
         .then(response => response.json())
         .then(res => {
           console.log(res);
-          newList(res)
+          newList('refresh')
           nav3('/songs')
         })
         .catch(error => {
