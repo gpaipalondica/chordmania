@@ -94,13 +94,22 @@
     color: darkgray;
     white-space: nowrap;
 }
-
-.song-tab:hover{
+.song-tab:active{
     background-color: #11101D
 }
 
-.song-tab:hover .song-title{
+.song-tab:active .song-title{
     color: white;
+}
+
+@media (min-width:1025px) {
+    .song-tab:hover{
+        background-color: #11101D
+    }
+    
+    .song-tab:hover .song-title{
+        color: white;
+    }
 }
 
 @media (max-width: 1024px){
