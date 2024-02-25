@@ -24,7 +24,7 @@
     color: black;
 }
 
-.chord-btn:hover, .chord-btn.active{
+.chord-btn.active{
     color: white;
     background-color: #11101D;
 }

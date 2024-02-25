@@ -1,16 +1,51 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useNavigate} from 'react-router-dom';
 import './Songs.css'
-import { Songlist } from '../Helper/Songlist';
+import Loader from '../Helper/Loader';
+import { useEffect } from 'react';
 
-function Songs() {
-  
+function Songs({list}) {
+
   useEffect(()=>{
     window.scrollTo(0,0)
-  })
+  },[])
 
-  function searchInput(){
-    
+  let listingSongs = list
+
+  function searchInput(e){
+
+    let target = e.target.value.toLowerCase();
+
+    if(target === ''){
+      document.querySelector('.songSearchResult').style.display = 'none'
+      document.querySelector('.songSearchResult').innerHTML = '';
+    }else{
+      document.querySelector('.songSearchResult').style.display = 'flex'
+      document.querySelector('.songSearchResult').innerHTML = `Search result for `+e.target.value;
+    }
+
+    let allSongsList = document.querySelectorAll('.song-tab')
+
+    allSongsList.forEach(sn => {
+        let snName = sn.querySelector('.song-title')
+        const isVis = snName.textContent.toLowerCase().includes(target)
+        snName.parentNode.classList.toggle('hide',!isVis)
+        
+        if(snName.innerHTML === 'NA'){
+          sn.style.display = 'none'
+        }
+      })
+  }
+
+  function clearInput(){
+    document.querySelector('.searchSong').value = ''
+
+    document.querySelectorAll('.song-tab').forEach(x => {
+      x.classList.remove('hide')
+    })
+
+    document.querySelector('.songSearchResult').style.display = 'none'
+      document.querySelector('.songSearchResult').innerHTML = '';
   }
 
   let nav = useNavigate()
@@ -22,23 +57,36 @@ function Songs() {
     nav(`/songs/${songName}`)
   }
 
+  function addSongPage(){
+    nav('/addSong')
+  }
+
   return (
     <div className="songs">
+     
+
+        <button onClick={addSongPage} className='addSong'><span>+</span>Add Song</button>
+
+
+      <h3>All songs</h3>
+
       <div className="songs-search-bar">
-          <input type="text" placeholder='Search...'/>
-          <button onClick={searchInput}>Search</button>
+          <input className='searchSong' type="text" placeholder='Search...' onChange={searchInput}/>
+          <button onClick={clearInput}>Clear</button>
       </div>
 
-      <h3>Popular songs</h3>
+      <p className="songSearchResult"></p>
 
       <div className="songs-list">
-        {Songlist.map((sl,i) =>{
+        {listingSongs ? listingSongs.map((sl,i) =>{
           return( 
           <div key={i} className="song-tab" onClick={viewSong}>
-            <h4 className="song-title">{sl.name}</h4>
-            <p className="artist-name">{sl.artist}</p>
-        </div>
-        )})}
+            <h4 className="song-title">{sl.songname}</h4>
+            <p className="artist-name">{sl.artistname}</p>
+          </div>
+        )})
+        : <Loader />
+        }
       </div>
 
     </div>

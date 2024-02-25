@@ -78,8 +78,7 @@
     pointer-events: none;
     background-color: gray;
 }
-
-.chord-btn2:hover, 
+ 
 .chord-btn2.active{
     color: white;
     background-color: #11101D;
