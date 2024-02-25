@@ -16,12 +16,11 @@
     width: 100%;
     display: flex;
     gap: 20px;
-    display: none;
 }
 
 .songs-search-bar input{
     width: 100%;
-    /* max-width: 400px; */
+    max-width: 400px;
     height: 40px;
     border-radius: 20px;
     outline: none;
@@ -39,8 +38,14 @@
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    background-color: rgb(58, 58, 226);
-    color: white;
+    background-color: #ccc;
+    color: black;
+}
+
+
+.songSearchResult{
+    display: none;
+    font-weight: 600;
 }
 
 .addSong{
@@ -129,6 +134,9 @@
         flex-direction: column;
         gap: 0;
         height: auto;
+    }
+    .songSearchResult{
+        text-align: center;
     }
 }
 
