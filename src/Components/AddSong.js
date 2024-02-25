@@ -21,6 +21,8 @@ function AddSong({newList}) {
     setFormProps({"songname": formDetails.songName, "artistname": formDetails.artistName, "capo":formDetails.capo, "lyrics": formDetails.lyrics, "ownername": formDetails.ownerName})
 
     document.getElementById('myform1').style.display = 'none'
+
+    window.scrollTo(0,0)
     document.querySelector('.part2').style.display = 'flex'
 
 
@@ -171,6 +173,14 @@ if(document.querySelector('.wordDisp')){
         });
   }
 
+  let [infoFocus, setInfoFocus] = useState(false)
+
+  function showLyricsInfo(){
+    setInfoFocus(true)
+  }
+  function hideLyricsInfo() {
+    setInfoFocus(false)
+  }
  
   return (
     <div className='create-song'>
@@ -190,7 +200,15 @@ if(document.querySelector('.wordDisp')){
             <input type="number" min="0" max="12" defaultValue={0} name="capo"/>
         </div>
         <div className="form-group">
-            <label htmlFor="lyrics">Lyrics: </label>
+            <label htmlFor="lyrics"> <p>Lyrics: </p><button type='button' onFocus={showLyricsInfo} onBlur={hideLyricsInfo} className='lyricsinfo'><svg style={{pointerEvents:'none'}} stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path><path d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"></path></svg></button>
+            {infoFocus && 
+            <p className='lyricInfoDisp'>How to add lyrics for best results? <br/><br/>
+            Keep each paragraph of lyrics separated by pressing Enter twice. <br/><br/>
+            Keep each line of the lyrics separated by pressing Enter  once. <br/><br/>
+            Words in each line should be separated by one Space.
+            </p>
+            }
+            </label>
             <textarea required type="text" name="lyrics" ></textarea>
         </div>
 
@@ -207,7 +225,7 @@ if(document.querySelector('.wordDisp')){
 
       <div className="part2">
         
-        <p>Click on a word to assign/replace chord</p>
+        <p>Click on a word to assign/replace chord. Scroll down and Add song</p>
         
         <div className="lyrics-container">
           <div className="displayLyrics">
