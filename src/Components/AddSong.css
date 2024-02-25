@@ -1,0 +1,250 @@
+.create-song{
+    height: max-content;
+    margin: 20px;
+    margin-left: 320px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#myform1{
+    /* background-color: red; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.form-group{
+    display: flex;
+    width: 100%;
+}
+
+.form-group label{
+    width: 150px;
+}
+
+.form-group input[type='text']{
+    width: 100%;
+    max-width: 250px;
+    padding: 0 5px;
+}
+
+.form-group input[type='number']{
+    width: 60px;
+    padding: 0 5px;
+}
+
+input[type=number]::-webkit-inner-spin-button{  
+   opacity: 1;
+}
+
+.form-group textarea[type='text']{
+    width: 100%;
+    height: 330px;
+    max-width: calc(100% - 150px);
+    padding: 5px;
+}
+
+.formButtons{
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    gap: 30px;
+    padding-left: 150px;
+}
+
+.formButtons button{
+    padding: 5px;
+    width: 100px;
+    border-radius: 7px;
+    cursor: pointer;
+    border: 1px solid black;
+    color: black;
+}
+
+#next{
+    background-color: #3223d3;
+    color: white;
+}
+
+.part2{
+    margin-top: 20px;
+    display: none;
+    flex-direction: column;
+}
+
+.lyrics-container{
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    position: relative;
+    /* background-color: red; */
+}
+
+.displayLyrics{
+    background-color: white;
+    width: 60%;
+    height: 500px;
+    overflow: scroll;
+    border: 1px solid black;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.right{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px ;
+}
+
+.paraDisp{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.lineDisp{
+    display: flex;
+    gap: 10px;
+}
+
+.wordDisp{
+    padding: 0 5px;
+}
+
+.chordSetter{
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative
+}
+
+.smDiv{
+   display: flex;
+    height: 30px;
+    gap: 5px;
+    position: absolute;
+    width: 100%;
+}
+
+.smDiv input{
+    width: 50%;
+    padding: 0 10px;
+}
+
+.smDiv button{
+    width: 80px;
+    color: black;
+    background-color: white;
+}
+
+.chordList{
+    height: calc(500px - 160px);
+    margin-top: -10px;
+    background-color: white;
+    padding: 10px;
+    overflow: scroll;
+    border: 1px solid black;
+}
+
+.songadded{
+    margin-top: 20px;
+    display: flex;
+    width: fit-content;
+    font-size: 16px;
+    padding: 8px 15px;
+    place-self: center;
+    cursor: pointer;
+    background-color: #3223d3;
+    color: white;
+}
+
+
+
+@media (max-width: 1024px){
+    .create-song{
+        margin-left: 270px;
+    }
+}
+
+@media (max-width:768px) {
+    .create-song{
+        margin-left: 120px;
+    }
+}
+
+@media (max-width:480px) {
+    .create-song{
+        padding: 20px 0;
+        margin-left: 100px;
+    }
+
+    .create-song h3{
+        text-align: center;
+    }
+
+    .form-group{
+        flex-direction: column;
+    }
+
+    .form-group input[type='text']{
+        max-width: 100%;
+        height: 30px;
+    }
+
+    .form-group input[type='number']{
+        max-width: 100%;
+        height: 30px;
+        font-size: 15px;
+    }
+
+    .form-group textarea[type='text']{
+        max-width: 100%;
+        margin-top: 15px;
+    }
+
+    .part2 p{
+        text-align: center;
+    }
+
+    .lyrics-container{
+        flex-direction: column;
+        gap: 20px;
+    }
+    .displayLyrics{
+        width: 100%;
+    }
+
+    .formButtons{
+        padding-left: 0;
+    }
+    .right{
+        width: 100%;
+        align-items: center;
+        /* background-color: red; */
+    }
+    .right h3{
+        margin-top: -20px;
+    }
+    .chordSetter{
+        width: 100%;
+        height: 50px;
+        margin-bottom: 40px;
+    }
+    .smDiv{
+        width: 100%;
+        justify-content: center;
+    }
+    .chordList{
+        width: 100%;
+    }
+}

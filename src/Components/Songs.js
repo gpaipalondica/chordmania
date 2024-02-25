@@ -1,13 +1,30 @@
 import React, { useEffect } from 'react'
 import { useNavigate} from 'react-router-dom';
 import './Songs.css'
-import { Songlist } from '../Helper/Songlist';
+import Loader from '../Helper/Loader';
+import { useState } from 'react';
+// import { Songlist } from '../Helper/Songlist';
 
-function Songs() {
-  
-  useEffect(()=>{
-    window.scrollTo(0,0)
-  })
+function Songs({list}) {
+
+  let [listing, setListing] = useState(null)
+
+  useEffect(() => {  
+    let data2 
+    fetch('https://firstnodejstest.azurewebsites.net/getList', 
+      {method:'GET'
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+            data2 = data
+            setListing(data2)
+        })
+        .catch(error => {
+          console.log('Error in GET function', error);
+          return error
+        });
+  },[])
 
   function searchInput(){
     
@@ -22,6 +39,10 @@ function Songs() {
     nav(`/songs/${songName}`)
   }
 
+  function addSongPage(){
+    nav('/addSong')
+  }
+
   return (
     <div className="songs">
       <div className="songs-search-bar">
@@ -29,16 +50,21 @@ function Songs() {
           <button onClick={searchInput}>Search</button>
       </div>
 
-      <h3>Popular songs</h3>
+        <button onClick={addSongPage} className='addSong'><span>+</span>Add Song</button>
+
+
+      <h3>All songs</h3>
 
       <div className="songs-list">
-        {Songlist.map((sl,i) =>{
+        {listing ? listing.map((sl,i) =>{
           return( 
           <div key={i} className="song-tab" onClick={viewSong}>
-            <h4 className="song-title">{sl.name}</h4>
-            <p className="artist-name">{sl.artist}</p>
+            <h4 className="song-title">{sl.songname}</h4>
+            <p className="artist-name">{sl.artistname}</p>
         </div>
-        )})}
+        )})
+        : <Loader />
+        }
       </div>
 
     </div>
