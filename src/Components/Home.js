@@ -17,7 +17,7 @@ function Home({ goPage }) {
   return (
     <div className='home'>
         <p className="about">
-            Chord Mania is specifically for music enthusiasts who are interested to learn and play chords in a fun, entertaining and interactive manner!
+            Chord Mania is for music enthusiasts who are interested to learn and play chords in a fun, entertaining and interactive manner!
             Whether you are just a beginner or have been playing guitar and piano for years, Chord Mania is just the platform for you.
         </p>
 
