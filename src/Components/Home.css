@@ -14,7 +14,6 @@
     position: relative;
     padding: 20px;
     margin-top: 20px;
-    
 }
 
 .homeGrid{
@@ -102,11 +101,15 @@
     .home{
         padding: 20px 0;
         margin-left: 100px;
+        margin-top: 0;
+        gap: 10px;
     }
     .about{
-        text-align: center;
-        font-size: 18px;
+        font-size: 15px;
         margin-top: 0;
+    }
+    .gridText{
+        font-size: 15px;
     }
 
     .card{

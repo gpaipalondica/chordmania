@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Loader from '../Helper/Loader';
 import './AddSong.css'
 
 function AddSong({newList}) {
@@ -154,6 +155,9 @@ if(document.querySelector('.wordDisp')){
       }
       console.log("DATA",data);
 
+      document.querySelector('.songadded').style.backgroundColor = '#237bd3'
+      document.querySelector('.songadded').innerHTML = 'Adding..'
+
       fetch('https://firstnodejstest.azurewebsites.net/createSong',{
         method: 'POST',
           headers: {
@@ -181,6 +185,10 @@ if(document.querySelector('.wordDisp')){
   function hideLyricsInfo() {
     setInfoFocus(false)
   }
+
+  function closeInfo(){
+    setInfoFocus(false)
+  }
  
   return (
     <div className='create-song'>
@@ -200,9 +208,9 @@ if(document.querySelector('.wordDisp')){
             <input type="number" min="0" max="12" defaultValue={0} name="capo"/>
         </div>
         <div className="form-group">
-            <label htmlFor="lyrics"> <p>Lyrics: </p><button type='button' onFocus={showLyricsInfo} onBlur={hideLyricsInfo} className='lyricsinfo'><svg style={{pointerEvents:'none'}} stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path><path d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"></path></svg></button>
+            <label className='lyricswordrow' htmlFor="lyrics"> <p>Lyrics: </p><button type='button' tabIndex={0} onFocus={showLyricsInfo} onBlur={hideLyricsInfo} className='lyricsinfo'><svg style={{pointerEvents:'none'}} stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path><path d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"></path></svg></button>
             {infoFocus && 
-            <p className='lyricInfoDisp'>How to add lyrics for best results? <br/><br/>
+            <p className='lyricInfoDisp'> <button type="button" className='cancelInfo' onClick={closeInfo}><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 1024 1024" height="1.4em" width="1.4em" xmlns="http://www.w3.org/2000/svg"><path d="M354 671h58.9c4.7 0 9.2-2.1 12.3-5.7L512 561.8l86.8 103.5c3 3.6 7.5 5.7 12.3 5.7H670c6.8 0 10.5-7.9 6.1-13.1L553.8 512l122.4-145.9c4.4-5.2.7-13.1-6.1-13.1h-58.9c-4.7 0-9.2 2.1-12.3 5.7L512 462.2l-86.8-103.5c-3-3.6-7.5-5.7-12.3-5.7H354c-6.8 0-10.5 7.9-6.1 13.1L470.2 512 347.9 657.9A7.95 7.95 0 0 0 354 671z"></path><path d="M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zm-40 728H184V184h656v656z"></path></svg></button> How to add lyrics for best results? <br/><br/>
             Keep each paragraph of lyrics separated by pressing Enter twice. <br/><br/>
             Keep each line of the lyrics separated by pressing Enter  once. <br/><br/>
             Words in each line should be separated by one Space.

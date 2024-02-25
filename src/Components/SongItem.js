@@ -394,7 +394,7 @@ function SongItem({list}) {
       
 
       <div className="song-info">
-        <p style={{fontStyle:'italic'}}>Posted by: <span style={{fontWeight:600}}>{selectedSong.ownername}</span></p>
+        <p style={{fontStyle:'italic', textAlign:'left'}}>Posted by: <span style={{fontWeight:600}}>{selectedSong.ownername}</span></p>
         <hr style={{border:'.5px solid black'}} />
         <br />
         <h1>{selectedSong.songname}</h1>
