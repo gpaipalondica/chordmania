@@ -29,12 +29,14 @@ function SongItem({list}) {
   let [cat, setCat] = useState('guitar')
 
   useEffect(() => {
+    let d3 = list
+    console.log("d3",d3);
       setListing(list)
     },[list])
     
     useEffect(() => {
       if(listing!==null){
-        let ss = listing.find(element => element.songname === songtitle)
+        let ss = listing.find(element => element.songname.includes(songtitle))
         setSelectedSong(ss)   
       }
   },[listing,songtitle])
@@ -321,9 +323,6 @@ function SongItem({list}) {
           })
         }
       }
-      
-      // console.log("New", newArray);
-      // console.log("NewShowChord", newShowChord);
       }
       else if(v === -1){
         // console.log("CS",chordSet);
@@ -369,8 +368,6 @@ function SongItem({list}) {
             })
           }
         }   
-        // console.log("New", newArray);
-        // console.log("NewShowChord", newShowChord);
       }
       setChordSet(newArray)
       setAllChordsFiltered(newShowChord)

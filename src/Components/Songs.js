@@ -7,8 +7,40 @@ function Songs({list}) {
 
   let listingSongs = list
 
-  function searchInput(){
-    
+  function searchInput(e){
+
+    let target = e.target.value.toLowerCase();
+
+    if(target === ''){
+      document.querySelector('.songSearchResult').style.display = 'none'
+      document.querySelector('.songSearchResult').innerHTML = '';
+    }else{
+      document.querySelector('.songSearchResult').style.display = 'flex'
+      document.querySelector('.songSearchResult').innerHTML = `Search result for `+e.target.value;
+    }
+
+    let allSongsList = document.querySelectorAll('.song-tab')
+
+    allSongsList.forEach(sn => {
+        let snName = sn.querySelector('.song-title')
+        const isVis = snName.textContent.toLowerCase().includes(target)
+        snName.parentNode.classList.toggle('hide',!isVis)
+        
+        if(snName.innerHTML === 'NA'){
+          sn.style.display = 'none'
+        }
+      })
+  }
+
+  function clearInput(){
+    document.querySelector('.searchSong').value = ''
+
+    document.querySelectorAll('.song-tab').forEach(x => {
+      x.classList.remove('hide')
+    })
+
+    document.querySelector('.songSearchResult').style.display = 'none'
+      document.querySelector('.songSearchResult').innerHTML = '';
   }
 
   let nav = useNavigate()
@@ -26,15 +58,19 @@ function Songs({list}) {
 
   return (
     <div className="songs">
-      <div className="songs-search-bar">
-          <input type="text" placeholder='Search...'/>
-          <button onClick={searchInput}>Search</button>
-      </div>
+     
 
         <button onClick={addSongPage} className='addSong'><span>+</span>Add Song</button>
 
 
       <h3>All songs</h3>
+
+      <div className="songs-search-bar">
+          <input className='searchSong' type="text" placeholder='Search...' onChange={searchInput}/>
+          <button onClick={clearInput}>Clear</button>
+      </div>
+
+      <p className="songSearchResult"></p>
 
       <div className="songs-list">
         {listingSongs ? listingSongs.map((sl,i) =>{
