@@ -8,6 +8,18 @@ function Navbar() {
   let nav = useNavigate()
 
   useEffect(() => {
+    const handleTouchMove = (e) => {
+      e.preventDefault();
+    };
+  
+    document.querySelector('.navbar').addEventListener('touchmove', handleTouchMove, { passive: false });
+  
+    return () => {
+      document.querySelector('.navbar').removeEventListener('touchmove', handleTouchMove);
+    };
+  }, []);
+
+  useEffect(() => {
     const pathname = window.location.pathname.split('/')[1]
     if (pathname === '') {
       document.getElementById('home').classList.add('active')

@@ -5,7 +5,6 @@ import Loader from '../Helper/Loader';
 
 function Songs({list}) {
 
-  
   let listingSongs = list
 
   function searchInput(){
@@ -43,7 +42,7 @@ function Songs({list}) {
           <div key={i} className="song-tab" onClick={viewSong}>
             <h4 className="song-title">{sl.songname}</h4>
             <p className="artist-name">{sl.artistname}</p>
-        </div>
+          </div>
         )})
         : <Loader />
         }
