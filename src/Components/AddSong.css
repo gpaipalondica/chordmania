@@ -89,6 +89,23 @@ input[type=number]::-webkit-inner-spin-button{
     /* background-color: red; */
 }
 
+.lyricsinfo{
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    display: flex;
+}
+
+.lyricInfoDisp{
+    background-color: #ccc;
+    font-size: 12px;
+    padding: 15px;
+    position: absolute;
+    width: 220px;
+    border: 1px solid gray;
+}
+
 .displayLyrics{
     background-color: white;
     width: 60%;
@@ -226,6 +243,7 @@ input[type=number]::-webkit-inner-spin-button{
     }
     .displayLyrics{
         width: 100%;
+        height: 420px;
     }
 
     .formButtons{
