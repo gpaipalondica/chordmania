@@ -2,8 +2,13 @@ import React from 'react'
 import { useNavigate} from 'react-router-dom';
 import './Songs.css'
 import Loader from '../Helper/Loader';
+import { useEffect } from 'react';
 
 function Songs({list}) {
+
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  },[])
 
   let listingSongs = list
 

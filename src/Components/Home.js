@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Home.css'
 
 function Home({ goPage }) {
+
+    useEffect(()=>{
+        window.scrollTo(0,0)
+      },[])
 
     let nav2 = useNavigate()
     function moveHere(x){

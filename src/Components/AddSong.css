@@ -106,6 +106,15 @@ input[type=number]::-webkit-inner-spin-button{
     border: 1px solid gray;
 }
 
+.cancelInfo{
+    float: right;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: black;
+
+}
+
 .displayLyrics{
     background-color: white;
     width: 60%;
@@ -180,13 +189,14 @@ input[type=number]::-webkit-inner-spin-button{
 .songadded{
     margin-top: 20px;
     display: flex;
-    width: fit-content;
+    width: 200px;
     font-size: 16px;
     padding: 8px 15px;
     place-self: center;
     cursor: pointer;
     background-color: #3223d3;
     color: white;
+    justify-content: center;
 }
 
 
@@ -215,6 +225,11 @@ input[type=number]::-webkit-inner-spin-button{
 
     .form-group{
         flex-direction: column;
+        position: relative;
+    }
+
+    .form-group label{
+        width: 100%;
     }
 
     .form-group input[type='text']{
@@ -240,6 +255,16 @@ input[type=number]::-webkit-inner-spin-button{
     .lyrics-container{
         flex-direction: column;
         gap: 20px;
+    }
+    .lyricswordrow{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .lyricInfoDisp{
+        position: absolute;
+        top: 20px;
     }
     .displayLyrics{
         width: 100%;
