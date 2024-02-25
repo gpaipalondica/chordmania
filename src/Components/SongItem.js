@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import {Chordlist} from '../Helper/Chordlist'
-// import { Songlist } from '../Helper/Songlist'
 import Loader from '../Helper/Loader'
 import './SongItem.css'
 

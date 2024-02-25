@@ -17,6 +17,11 @@ function App() {
 
 
   useEffect(() => {  
+    refreshDb()
+  },[])
+
+
+  function refreshDb(){
     let data2 
     fetch('https://firstnodejstest.azurewebsites.net/getList', 
       {method:'GET'
@@ -31,7 +36,7 @@ function App() {
           console.log('Error in GET function', error);
           return error
         });
-  },[])
+  }
 
   useEffect(() => {
     const runAnimation = () => {
@@ -77,20 +82,7 @@ function App() {
   }
 
   function updateList(){
-    let data3
-    fetch('https://firstnodejstest.azurewebsites.net/getList', 
-      {method:'GET'
-      })
-        .then(response => response.json())
-        .then(data => {
-          console.log(data);
-            data3 = data
-            setSongListing(data3)
-        })
-        .catch(error => {
-          console.log('Error in GET function', error);
-          return error
-        });
+    refreshDb()
   }
 
 

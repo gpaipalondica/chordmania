@@ -1,30 +1,12 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useNavigate} from 'react-router-dom';
 import './Songs.css'
 import Loader from '../Helper/Loader';
-import { useState } from 'react';
-// import { Songlist } from '../Helper/Songlist';
 
 function Songs({list}) {
 
-  let [listing, setListing] = useState(null)
-
-  useEffect(() => {  
-    let data2 
-    fetch('https://firstnodejstest.azurewebsites.net/getList', 
-      {method:'GET'
-      })
-        .then(response => response.json())
-        .then(data => {
-          console.log(data);
-            data2 = data
-            setListing(data2)
-        })
-        .catch(error => {
-          console.log('Error in GET function', error);
-          return error
-        });
-  },[])
+  
+  let listingSongs = list
 
   function searchInput(){
     
@@ -56,7 +38,7 @@ function Songs({list}) {
       <h3>All songs</h3>
 
       <div className="songs-list">
-        {listing ? listing.map((sl,i) =>{
+        {listingSongs ? listingSongs.map((sl,i) =>{
           return( 
           <div key={i} className="song-tab" onClick={viewSong}>
             <h4 className="song-title">{sl.songname}</h4>
