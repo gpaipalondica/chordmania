@@ -3,21 +3,39 @@
     height: 380px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 3px;
     justify-content: center;
     align-items: center;
 }
 
-.loadcontent{
+.load-outer{
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    border: 5px solid white;
-    border-top: 5px solid #11101D;
+    border: 3px solid #11101D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.loadcontent{
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    border: 4px solid transparent;
+    border-top: 4px solid #11101D;
     animation: spin 1s linear infinite;
 }
 .loadercontainer p{
     font-size: 12px;
+}
+
+.load-music{
+    position: absolute;
+    width: 40px;
+    top: -15px;
+    left: 0px;
 }
 
 @keyframes spin {

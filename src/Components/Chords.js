@@ -90,7 +90,7 @@ function Chords() {
 
       <div className="search-bar">
         <input type="text" placeholder='Search...' onChange={searchMe}/>
-        <button onClick={cancelInput}>Cancel</button>
+        <button onClick={cancelInput}>Clear</button>
       </div>
 
       <p className='searchresult'></p>
