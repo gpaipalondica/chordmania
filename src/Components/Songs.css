@@ -27,7 +27,7 @@
     border: none;
     border-radius: 10px;
     padding: 0 10px;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .songs-search-bar button{
@@ -55,27 +55,25 @@
     padding: 5px 13px;
     border-radius: 10px;
     border: none;
-    background-color: #3223d3;
+    background-color: #11101D;
     font-size: 15px;
     display: flex;
     gap: 5px;
     align-items: center;
     cursor: pointer;
     color: white;
+    border: 1px solid white;
 }
 
 .addSong span{
     font-size: 25px;
 }
 
-
-
-
 .songs-list{
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
 }
 
 .song-tab{
@@ -159,10 +157,23 @@
         height: 30px;
         font-size: 14px;
     }
+
     .addSong{
-        top: auto;
-        bottom: 30px;
+        border-radius: 50%;
+        top: 25px;
         right: 30px;
+        width: 45px;
+        height: 45px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
+    .addSong span{
+        font-size: 25px;
+    }
+
+    .addSong p{
+        display: none;
+    }
 }
