@@ -65,7 +65,7 @@ function Songs({list}) {
     <div className="songs">
      
 
-        <button onClick={addSongPage} className='addSong'><span>+</span>Add Song</button>
+        <button onClick={addSongPage} className='addSong'><span>+</span><p>Add Song</p></button>
 
 
       <h3>All songs</h3>
@@ -78,7 +78,7 @@ function Songs({list}) {
       <p className="songSearchResult"></p>
 
       <div className="songs-list">
-        {listingSongs ? listingSongs.map((sl,i) =>{
+        {listingSongs ? listingSongs.slice().sort((a, b) => a.songname.localeCompare(b.songname)).map((sl,i) =>{
           return( 
           <div key={i} className="song-tab" onClick={viewSong}>
             <h4 className="song-title">{sl.songname}</h4>

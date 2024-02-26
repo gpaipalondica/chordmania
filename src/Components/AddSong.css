@@ -30,11 +30,13 @@
     width: 100%;
     max-width: 250px;
     padding: 0 5px;
+    font-size: 13px;
 }
 
 .form-group input[type='number']{
     width: 60px;
     padding: 0 5px;
+    font-size: 13px;
 }
 
 input[type=number]::-webkit-inner-spin-button{  
@@ -46,6 +48,7 @@ input[type=number]::-webkit-inner-spin-button{
     height: 330px;
     max-width: calc(100% - 150px);
     padding: 5px;
+    font-size: 13px;
 }
 
 .formButtons{
@@ -63,10 +66,11 @@ input[type=number]::-webkit-inner-spin-button{
     cursor: pointer;
     border: none;
     color: black;
+    font-size: 13px;
 }
 
 #next{
-    background-color: #3223d3;
+    background-color: #0c0550;
     color: white;
 }
 #clear{
