@@ -60,17 +60,21 @@ input[type=number]::-webkit-inner-spin-button{
 }
 
 .formButtons button{
-    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center ;
     width: 100px;
-    border-radius: 7px;
+    border-radius: 10px;
     cursor: pointer;
     border: none;
     color: black;
-    font-size: 13px;
+    font-size: 15px;
+    height: 30px;
+    width: 80px;
 }
 
 #next{
-    background-color: #0c0550;
+    background-color: #11101D;
     color: white;
 }
 #clear{
@@ -151,10 +155,23 @@ input[type=number]::-webkit-inner-spin-button{
 
 .wordDisp{
     padding: 0 5px;
+    border: 1px solid gray;
+    font-size: 14px;
+    background-color: #eee;
+}
+/* .wordDisp:focus{
+    background-color: yellow;
+} */
+
+.wordDisp.active{
+    background-color: yellow;
+}
+.wordDisp.selected{
+    background-color: #58fc58;
 }
 
 .chordSetter{
-    height: 100px;
+    height: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -163,7 +180,7 @@ input[type=number]::-webkit-inner-spin-button{
 }
 
 .smDiv{
-   display: flex;
+    display: flex;
     height: 30px;
     gap: 5px;
     position: absolute;
@@ -173,6 +190,7 @@ input[type=number]::-webkit-inner-spin-button{
 .smDiv input{
     width: 50%;
     padding: 0 10px;
+    font-size: 14px;
 }
 
 .smDiv button{
@@ -182,12 +200,13 @@ input[type=number]::-webkit-inner-spin-button{
 }
 
 .chordList{
-    height: calc(500px - 160px);
+    height: calc(500px - 90px);
     margin-top: -10px;
     background-color: white;
     padding: 10px;
     overflow: scroll;
     border: 1px solid black;
+    font-size: 14px;
 }
 
 .songadded{
@@ -198,11 +217,21 @@ input[type=number]::-webkit-inner-spin-button{
     padding: 8px 15px;
     place-self: center;
     cursor: pointer;
-    background-color: #3223d3;
+    background-color: #11101D;
+    border-radius: 10px;
     color: white;
+    border: 1px solid black;
     justify-content: center;
+    transition: .5s ease;
 }
 
+.cItem{
+    padding: 10px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
 
 @media (max-width: 1024px){

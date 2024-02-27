@@ -4,7 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import Loader from '../Helper/Loader';
 import './AddSong.css'
 
-function AddSong({newList}) {
+function AddSong({allSongs, newList}) {
+
+  let allSongsList = allSongs
 
   let nav3= useNavigate()
 
@@ -17,19 +19,29 @@ function AddSong({newList}) {
     let formData = new FormData(form)
     let formDetails = Object.fromEntries(formData);
 
-    console.log(formDetails);
+    console.log("FDT",formDetails.songName);
 
-    setFormProps({"songname": formDetails.songName, "artistname": formDetails.artistName, "capo":formDetails.capo, "lyrics": formDetails.lyrics, "ownername": formDetails.ownerName})
+    console.log("ASL",allSongsList);
 
-    document.getElementById('myform1').style.display = 'none'
+    let titlesong = allSongsList.some(x => x.songname.toLowerCase() === formDetails.songName.toLowerCase());
 
-    window.scrollTo(0,0)
-    document.querySelector('.part2').style.display = 'flex'
+    console.log("TIT", titlesong);
+    if(titlesong){
+      alert("This song is already in the list")
+    }else{
+      setFormProps({"songname": formDetails.songName, "artistname": formDetails.artistName, "capo":formDetails.capo, "lyrics": formDetails.lyrics, "ownername": formDetails.ownerName})
+  
+      document.getElementById('myform1').style.display = 'none'
+  
+      window.scrollTo(0,0)
+      document.querySelector('.part2').style.display = 'flex'
+  
+  
+      let lyrics = formDetails.lyrics
+  
+      getChordsFunction(lyrics)
+    }
 
-
-    let lyrics = formDetails.lyrics
-
-    getChordsFunction(lyrics)
 
   }
   console.log("FP",formProps);
@@ -71,9 +83,16 @@ if(document.querySelector('.wordDisp')){
     
     x.addEventListener('click', (e) => {
   
+      document.querySelectorAll('.wordDisp').forEach(x => {
+        x.classList.remove('active')
+      })
+
         console.log(e.currentTarget);
+        let targ = e.currentTarget
 
         let pos = e.currentTarget.id
+        targ.classList.add('active')
+
   
         let smDiv = document.createElement('div')
         smDiv.setAttribute('class','smDiv')
@@ -83,11 +102,15 @@ if(document.querySelector('.wordDisp')){
         smInput.setAttribute('name', 'chordName')
         smInput.setAttribute('placeholder', 'Enter Chord Name')
         smInput.setAttribute('type','text')
-  
+
+        
         let enter = document.createElement('button')
         enter.setAttribute('class', 'chordBtn')
         enter.addEventListener('click', (() => {
-          chordArrItem(pos, smInput.value, smDiv)}) )
+          let chordMod = smInput.value.charAt(0).toUpperCase()+smInput.value.slice(1).toLowerCase()
+          console.log("CM",chordMod);
+          chordArrItem(pos, chordMod, smDiv)
+        }) )
         enter.innerHTML='Set'
   
         smDiv.appendChild(smInput)
@@ -114,6 +137,9 @@ if(document.querySelector('.wordDisp')){
       let position = x;
       let chord = y
 
+      // document.getElementById(`${position}`).style.backgroundColor = '#58fc58'
+      document.getElementById(`${position}`).classList.add('selected')
+
       console.log("Hi",position,chord,z);
 
       let existingChord = chordsArray.find(item => item.pos === position);
@@ -131,15 +157,36 @@ if(document.querySelector('.wordDisp')){
       console.log("ChArr",chordsArray);
 
       chordsArray.forEach(item => {
-          let chordItem = document.createElement('p')
+          let chordItem = document.createElement('div')
           chordItem.setAttribute('class','cItem')
+          chordItem.setAttribute('id','pos_'+item.pos)
           let para = parseInt(item.pos.split('-')[0].split('p')[1])+1
           let line = parseInt(item.pos.split('-')[1].split('l')[1])+1
           let word = parseInt(item.pos.split('-')[2].split('w')[1])+1
           chordItem.innerHTML = 'Para '+para+', Line '+line+', Word '+word +':  '+item.chord;
+          let delbtn = document.createElement('button')
+          delbtn.addEventListener('click', ((e) => {
+            deleteNode(e.currentTarget.parentNode)
+          }))
+          delbtn.innerHTML = 'X'
+          delbtn.style.cssText="width:25px; background-color:salmon; cursor:pointer; border:1px solid gray"
+
+          chordItem.appendChild(delbtn)
+          
           document.querySelector('.chordList').appendChild(chordItem)
       })
 
+  }
+
+  function deleteNode(x){
+    console.log(x);
+    let pos = x.id.split('_')[1]
+    // document.getElementById(pos).style.backgroundColor='#eee'
+    document.getElementById(pos).classList.remove('active')
+    document.getElementById(pos).classList.remove('selected')
+
+    x.remove()
+    chordsArray = chordsArray.filter(chordObj => chordObj.pos !== pos);
   }
 
 
@@ -155,7 +202,7 @@ if(document.querySelector('.wordDisp')){
       }
       console.log("DATA",data);
 
-      document.querySelector('.songadded').style.backgroundColor = '#237bd3'
+      document.querySelector('.songadded').style.backgroundColor = '#0d7dc2'
       document.querySelector('.songadded').innerHTML = 'Adding..'
 
       fetch('https://firstnodejstest.azurewebsites.net/createSong',{
@@ -222,7 +269,7 @@ if(document.querySelector('.wordDisp')){
 
         <div className="form-group">
             <label htmlFor="ownerName">Your name: </label>
-            <input type="text" name="ownerName"/>
+            <input required type="text" name="ownerName"/>
         </div>
         <div className="formButtons">
           <button id='clear' type="reset">Clear</button>
@@ -233,7 +280,7 @@ if(document.querySelector('.wordDisp')){
 
       <div className="part2">
         
-        <p>Click on a word to assign/replace chord. Scroll down and Add song</p>
+        <p>Click on a word to assign/replace chord. Scroll down to add song</p>
         
         <div className="lyrics-container">
           <div className="displayLyrics">

@@ -110,7 +110,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home goPage={goPage} />} ></Route>
         <Route path='/songs' element={<Songs list={songListing} />} ></Route>
-        <Route path='/addSong' element={<AddSong newList={updateList}/>}></Route>
+        <Route path='/addSong' element={<AddSong allSongs={songListing}  newList={updateList}/>}></Route>
         <Route path='/songs/:songtitle' element={<SongItem list={songListing}/>}></Route>
         <Route path='/chords' Component={Chords}></Route>
       </Routes>

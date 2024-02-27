@@ -29,14 +29,13 @@ function SongItem({list}) {
   let [cat, setCat] = useState('guitar')
 
   useEffect(() => {
-    let d3 = list
-    console.log("d3",d3);
       setListing(list)
     },[list])
     
     useEffect(() => {
       if(listing!==null){
-        let ss = listing.find(element => element.songname.includes(songtitle))
+        let ss = listing.find(element => element.songname.toLowerCase().includes(songtitle.toLowerCase()))
+        console.log("SS",ss);
         setSelectedSong(ss)   
       }
   },[listing,songtitle])
@@ -62,7 +61,7 @@ function SongItem({list}) {
 
   useEffect(() => {
 
-    console.log("CS", typeof(chordSet), chordSet);
+    // console.log("CS", typeof(chordSet), chordSet);
     if(chordSet!==null){
       if(chordSet.length > 0){
           chordSet.forEach((x)=>{
@@ -397,8 +396,8 @@ function SongItem({list}) {
         <p style={{fontStyle:'italic', textAlign:'left'}}>Posted by: <span style={{fontWeight:600}}>{selectedSong.ownername}</span></p>
         <hr style={{border:'.5px solid black'}} />
         <br />
-        <h1>{selectedSong.songname}</h1>
-        <p>~ {selectedSong.artistname}</p>
+        <h1>{selectedSong.songname.split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}</h1>
+        <p>~ {selectedSong.artistname.toUpperCase()}</p>
       </div>
 
         
