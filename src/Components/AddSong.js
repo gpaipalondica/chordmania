@@ -1,7 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Loader from '../Helper/Loader';
 import './AddSong.css'
 
 function AddSong({allSongs, newList}) {
@@ -19,13 +18,12 @@ function AddSong({allSongs, newList}) {
     let formData = new FormData(form)
     let formDetails = Object.fromEntries(formData);
 
-    console.log("FDT",formDetails.songName);
+    // console.log("FDT",formDetails.songName);
 
-    console.log("ASL",allSongsList);
+    // console.log("ASL",allSongsList);
 
     let titlesong = allSongsList.some(x => x.songname.toLowerCase() === formDetails.songName.toLowerCase());
 
-    console.log("TIT", titlesong);
     if(titlesong){
       alert("This song is already in the list")
     }else{
@@ -44,7 +42,7 @@ function AddSong({allSongs, newList}) {
 
 
   }
-  console.log("FP",formProps);
+  // console.log("FP",formProps);
 
   function getChordsFunction(passedLyrics){
     
@@ -87,7 +85,7 @@ if(document.querySelector('.wordDisp')){
         x.classList.remove('active')
       })
 
-        console.log(e.currentTarget);
+        // console.log(e.currentTarget);
         let targ = e.currentTarget
 
         let pos = e.currentTarget.id
@@ -100,7 +98,7 @@ if(document.querySelector('.wordDisp')){
         let smInput = document.createElement('input')
         smInput.setAttribute('class', 'chordName')
         smInput.setAttribute('name', 'chordName')
-        smInput.setAttribute('placeholder', 'Enter Chord Name')
+        smInput.setAttribute('placeholder', 'Enter Chord')
         smInput.setAttribute('type','text')
 
         
@@ -108,7 +106,7 @@ if(document.querySelector('.wordDisp')){
         enter.setAttribute('class', 'chordBtn')
         enter.addEventListener('click', (() => {
           let chordMod = smInput.value.charAt(0).toUpperCase()+smInput.value.slice(1).toLowerCase()
-          console.log("CM",chordMod);
+          // console.log("CM",chordMod);
           chordArrItem(pos, chordMod, smDiv)
         }) )
         enter.innerHTML='Set'
@@ -140,7 +138,7 @@ if(document.querySelector('.wordDisp')){
       // document.getElementById(`${position}`).style.backgroundColor = '#58fc58'
       document.getElementById(`${position}`).classList.add('selected')
 
-      console.log("Hi",position,chord,z);
+      // console.log("Hi",position,chord,z);
 
       let existingChord = chordsArray.find(item => item.pos === position);
 
@@ -154,7 +152,7 @@ if(document.querySelector('.wordDisp')){
           alert("Enter Chord Value")
       }
 
-      console.log("ChArr",chordsArray);
+      // console.log("ChArr",chordsArray);
 
       chordsArray.forEach(item => {
           let chordItem = document.createElement('div')
@@ -169,7 +167,7 @@ if(document.querySelector('.wordDisp')){
             deleteNode(e.currentTarget.parentNode)
           }))
           delbtn.innerHTML = 'X'
-          delbtn.style.cssText="width:25px; background-color:salmon; cursor:pointer; border:1px solid gray"
+          // delbtn.style.cssText=""
 
           chordItem.appendChild(delbtn)
           
@@ -179,7 +177,7 @@ if(document.querySelector('.wordDisp')){
   }
 
   function deleteNode(x){
-    console.log(x);
+    // console.log(x);
     let pos = x.id.split('_')[1]
     // document.getElementById(pos).style.backgroundColor='#eee'
     document.getElementById(pos).classList.remove('active')
@@ -200,7 +198,7 @@ if(document.querySelector('.wordDisp')){
           "ownername": `${formProps.ownername}`,
           "capo":`${formProps.capo}`
       }
-      console.log("DATA",data);
+      // console.log("DATA",data);
 
       document.querySelector('.songadded').style.backgroundColor = '#0d7dc2'
       document.querySelector('.songadded').innerHTML = 'Adding..'
@@ -214,7 +212,7 @@ if(document.querySelector('.wordDisp')){
       })
         .then(response => response.json())
         .then(res => {
-          console.log(res);
+          // console.log(res);
           newList('refresh')
           nav3('/songs')
         })
@@ -235,6 +233,28 @@ if(document.querySelector('.wordDisp')){
 
   function closeInfo(){
     setInfoFocus(false)
+  }
+
+  function goBack(){
+    let yes = window.confirm('Going back will reset all chords')
+
+    if(yes){
+      document.getElementById('myform1').style.display = 'flex'
+      document.querySelector('.part2').style.display = 'none'
+      document.querySelector('.displayLyrics').innerHTML = ''
+      document.querySelectorAll('.cItem').forEach(x => {
+        x.remove()
+      })
+      window.scrollTo({
+        top:0,
+        behavior:'smooth'
+      })
+    }
+  }
+
+  function goToAllSongs(){
+    document.getElementById('myform1').reset();
+    nav3('/songs')
   }
  
   return (
@@ -272,7 +292,7 @@ if(document.querySelector('.wordDisp')){
             <input required type="text" name="ownerName"/>
         </div>
         <div className="formButtons">
-          <button id='clear' type="reset">Clear</button>
+          <button id='toAllSongs' type="button" onClick={goToAllSongs}>Back</button>
           <button id='next' type="submit">Next</button>
         </div>
     </form>
@@ -293,7 +313,11 @@ if(document.querySelector('.wordDisp')){
           </div>
 
         </div>
+        <div className="part2btn">
+          <button className='goback' onClick={goBack}>Back</button>
           <button className='songadded' onClick={showJsonData}>Add to Chord Mania</button>
+
+        </div>
       </div>
     
     </div>

@@ -53,7 +53,7 @@ function Songs({list}) {
   
   function viewSong(e){
     let songName = e.currentTarget.querySelector('.song-title').innerText
-    console.log(songName);
+    // console.log(songName);
 
     nav(`/songs/${songName}`)
   }

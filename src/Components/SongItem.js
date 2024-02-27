@@ -35,7 +35,7 @@ function SongItem({list}) {
     useEffect(() => {
       if(listing!==null){
         let ss = listing.find(element => element.songname.toLowerCase().includes(songtitle.toLowerCase()))
-        console.log("SS",ss);
+        //console.log("SS",ss);
         setSelectedSong(ss)   
       }
   },[listing,songtitle])
@@ -54,7 +54,7 @@ function SongItem({list}) {
 
   },[selectedSong])
 
-  console.log("SS",selectedSong);
+  //console.log("SS",selectedSong);
 
   let [allChordsFiltered, setAllChordsFiltered] = useState(null)
   let all_chords = []
@@ -125,7 +125,7 @@ function SongItem({list}) {
             }
           })
         }else{
-          console.log('No chords in DB');
+          //console.log('No chords in DB');
         }
         
         let len = document.getElementById('p0-l0-w0').children.length
@@ -148,7 +148,7 @@ function SongItem({list}) {
  
 
 
-  console.log("ACF",allChordsFiltered);
+  //console.log("ACF",allChordsFiltered);
   
 
     function showCat2(x){
@@ -251,7 +251,7 @@ function SongItem({list}) {
 
 
     function trans(x){
-      console.log(x);
+      //console.log(x);
       let val = transVal
 
       if(x === 1){
@@ -277,7 +277,7 @@ function SongItem({list}) {
 
 
     function changeChords(v){
-      console.log('V', v);
+      //console.log('V', v);
 
       let newArray=[]
       let newShowChord = []

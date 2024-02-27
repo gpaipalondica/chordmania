@@ -28,7 +28,7 @@ function App() {
       })
         .then(response => response.json())
         .then(data => {
-          console.log(data);
+          //console.log(data);
             data2 = data
             setSongListing(data2)
         })
