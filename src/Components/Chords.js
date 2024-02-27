@@ -9,7 +9,7 @@ function Chords() {
     window.scrollTo(0,0)
   },[])
 
-  console.log('CL',Chordlist);
+  //console.log('CL',Chordlist);
 
   let [cat, setCat] = useState('guitar')
 
@@ -44,7 +44,7 @@ function Chords() {
     
 
   function searchMe(e){
-      console.log(e.target.value);
+      //console.log(e.target.value);
       let target = e.target.value.toLowerCase();
 
 

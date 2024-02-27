@@ -32,7 +32,7 @@ function Navbar() {
   },[])
 
   function takeMeHere(x){
-      console.log(x);
+      // console.log(x);
 
       document.querySelectorAll('.nav-group').forEach((x)=>{
         x.classList.remove('active')
@@ -53,7 +53,7 @@ function Navbar() {
     let extNav = e.target
     let togg = extNav.classList.toggle('extend')
 
-    console.log(togg);
+    // console.log(togg);
   
 
     if(togg){
