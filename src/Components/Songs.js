@@ -28,7 +28,8 @@ function Songs({list}) {
 
     allSongsList.forEach(sn => {
         let snName = sn.querySelector('.song-title')
-        const isVis = snName.textContent.toLowerCase().includes(target)
+        let arName = sn.querySelector('.artist-name')
+        const isVis = snName.textContent.toLowerCase().includes(target) || arName.textContent.toLowerCase().includes(target)
         snName.parentNode.classList.toggle('hide',!isVis)
         
         if(snName.innerHTML === 'NA'){
@@ -71,7 +72,7 @@ function Songs({list}) {
       <h3>All songs</h3>
 
       <div className="songs-search-bar">
-          <input className='searchSong' type="text" placeholder='Search...' onChange={searchInput}/>
+          <input className='searchSong' type="text" placeholder='Search by Song or Artist' onChange={searchInput}/>
           <button onClick={clearInput}>Clear</button>
       </div>
 
@@ -81,8 +82,8 @@ function Songs({list}) {
         {listingSongs ? listingSongs.slice().sort((a, b) => a.songname.localeCompare(b.songname)).map((sl,i) =>{
           return( 
           <div key={i} className="song-tab" onClick={viewSong}>
-            <h4 className="song-title">{sl.songname}</h4>
-            <p className="artist-name">{sl.artistname}</p>
+            <h4 className="song-title">{sl.songname.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}</h4>
+            <p className="artist-name">{sl.artistname.toUpperCase()}</p>
           </div>
         )})
         : <Loader />
