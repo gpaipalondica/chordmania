@@ -4,42 +4,46 @@ import { useNavigate } from 'react-router-dom'
 import Loader from '../Helper/Loader'
 import './Mysongs.css'
 
-function Mysongs({newList}) {
+function Mysongs({list, newList}) {
 
   const [loading, setLoading] = useState(false)
 
-  const [myList, setMyList] = useState()
-  const [user, setUser] = useState()
+  const [myList, setMyList] = useState(null)
   
-  const url = 'https://firstnodejstest.azurewebsites.net'
+  const [user, setUser] = useState(null)
+  
+  // const url = 'https://firstnodejstest.azurewebsites.net'
   // const url = 'http://localhost:8080'
   
   
-  useEffect(() => {
-    if(sessionStorage.getItem('user')){
-      let x = JSON.parse(sessionStorage.getItem('user')).username;
-      console.log(x);
-      setUser(x)
-      fetchData(x)
+  useEffect(()=>{
+    setMyList(list)
+  },[list])
+
+  useEffect(()=>{
+    let user2 = JSON.parse(sessionStorage.getItem('user')).username
+    if(user2){
+      setUser(user2)
     }
   },[])
 
-  function fetchData(z){
-    let x2 = z
-    fetch(url+'/list/'+x2, 
-      {method:'GET'
-      })
-        .then(response => response.json())
-        .then(data => {
-          //console.log(data);
-            setMyList(data)
-            setLoading(false)
-        })
-        .catch(error => {
-          console.log('Error in GET function', error);
-          return error
-        });
-  }
+
+  // function fetchData(z){
+  //   let x2 = z
+  //   fetch(url+'/list/'+x2, 
+  //     {method:'GET'
+  //     })
+  //       .then(response => response.json())
+  //       .then(data => {
+  //         //console.log(data);
+  //           setMyList(data)
+  //           setLoading(false)
+  //       })
+  //       .catch(error => {
+  //         console.log('Error in GET function', error);
+  //         return error
+  //       });
+  // }
 
   let nav = useNavigate()
   function addSongPage(){
@@ -123,7 +127,7 @@ function Mysongs({newList}) {
         <h3>My songs</h3>
 
         <div className="mysongs-list">
-        {myList ? myList.slice().sort((a, b) => a.songname.localeCompare(b.songname)).map((sl,i) =>{
+        {myList ? myList.slice().filter(item => item.ownername===user).sort((a, b) => a.songname.localeCompare(b.songname)).map((sl,i) =>{
           return( 
           <div key={i} id={sl._id} className="mysong-tab" >
             <div className='mysong-details' onClick={viewSong}>
