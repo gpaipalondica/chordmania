@@ -240,8 +240,8 @@ const Login = (props) => {
 
         props.setAuthToken(token)
         props.setUserData(JSON.stringify(data))
-        setLoading(false)
         sessionStorage.setItem('currentPage', 'songs')
+        setLoading(false)
         navigate('/songs')
       
       })
