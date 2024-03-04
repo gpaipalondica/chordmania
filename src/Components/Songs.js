@@ -3,14 +3,35 @@ import { useNavigate} from 'react-router-dom';
 import './Songs.css'
 import Loader from '../Helper/Loader';
 import { useEffect } from 'react';
+import { useState } from 'react';
 
-function Songs({list}) {
+function Songs() {
+
+  const [loading, setLoading] =useState(false)
+
+  // console.log('LIST',list);
+  let [listingSongs,setListingSongs] = useState(null)
 
   useEffect(()=>{
     window.scrollTo(0,0)
+    setLoading(true)
+    fetch('https://firstnodejstest.azurewebsites.net/getList', 
+    {method:'GET'
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+      let data2 = data
+      setListingSongs(data2)
+      setLoading(false)
+    })
+    .catch(error => {
+      console.log('Error in GET function', error);
+      return error
+    });
+
   },[])
 
-  let listingSongs = list
 
   function searchInput(e){
 
@@ -62,11 +83,22 @@ function Songs({list}) {
     nav('/addSong')
   }
 
+  const [isSignedIn, setIsSignedIn] = useState(false)
+
+  useEffect(() => {
+    if(sessionStorage){
+      if(sessionStorage.getItem('user')!==null){
+        setIsSignedIn(true)
+      }
+    }
+  },[])
+
   return (
     <div className="songs">
-     
-
+        {loading && <Loader/>}
+        {isSignedIn && 
         <button onClick={addSongPage} className='addSong'><span>+</span><p>Add Song</p></button>
+        }
 
 
       <h3>All songs</h3>
@@ -79,14 +111,13 @@ function Songs({list}) {
       <p className="songSearchResult"></p>
 
       <div className="songs-list">
-        {listingSongs ? listingSongs.slice().sort((a, b) => a.songname.localeCompare(b.songname)).map((sl,i) =>{
+        {listingSongs && listingSongs.slice().sort((a, b) => a.songname.localeCompare(b.songname)).map((sl,i) =>{
           return( 
           <div key={i} className="song-tab" onClick={viewSong}>
             <h4 className="song-title">{sl.songname.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}</h4>
             <p className="artist-name">{sl.artistname.toUpperCase()}</p>
           </div>
         )})
-        : <Loader />
         }
       </div>
 

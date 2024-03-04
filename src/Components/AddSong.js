@@ -1,4 +1,5 @@
 import React from 'react'
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AddSong.css'
@@ -195,7 +196,7 @@ if(document.querySelector('.wordDisp')){
           "artistname": `${formProps.artistname}`,
           "lyrics": `${formProps.lyrics}`,
           "chords": chordsArray,
-          "ownername": `${formProps.ownername}`,
+          "ownername": document.getElementsByName('ownerName')[0].value,
           "capo":`${formProps.capo}`
       }
       // console.log("DATA",data);
@@ -215,6 +216,7 @@ if(document.querySelector('.wordDisp')){
           // console.log(res);
           newList('refresh')
           nav3('/songs')
+          sessionStorage.setItem('currentPage', 'songs')
         })
         .catch(error => {
           console.log('Error in POST function', error);
@@ -256,6 +258,18 @@ if(document.querySelector('.wordDisp')){
     document.getElementById('myform1').reset();
     nav3('/songs')
   }
+
+  let [owner, setOwner] = useState()
+
+  useEffect(() => {
+    if(sessionStorage){
+      if(sessionStorage.getItem('user')!==null){
+        let x = JSON.parse(sessionStorage.getItem('user')).username
+        // console.log(x);
+        setOwner(x)
+      }
+    }
+  },[])
  
   return (
     <div className='create-song'>
@@ -287,9 +301,9 @@ if(document.querySelector('.wordDisp')){
             <textarea required type="text" name="lyrics" ></textarea>
         </div>
 
-        <div className="form-group">
+        <div className="form-group" style={{display:'none'}}>
             <label htmlFor="ownerName">Your name: </label>
-            <input required type="text" name="ownerName"/>
+            <input defaultValue={owner} disabled type="text" name="ownerName"/>
         </div>
         <div className="formButtons">
           <button id='toAllSongs' type="button" onClick={goToAllSongs}>Back</button>
