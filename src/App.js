@@ -29,7 +29,7 @@ function App() {
       }
 
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       setSongListing(data);
     } catch (error) {
       console.log('Error in GET function', error);
@@ -134,7 +134,7 @@ function App() {
         <Route path='/addSong' element={<AddSong allSongs={songListing} newList={updateList}/>}></Route>
         <Route path='/songs/:songtitle' element={<SongItem list={songListing}/>}></Route>
         <Route path='/chords' Component={Chords}></Route>
-        <Route path='/mysongs' element={<Mysongs newList={updateList}/>}></Route>
+        <Route path='/mysongs' element={<Mysongs list={songListing} newList={updateList}/>}></Route>
         <Route path='/login' element={<Login setAuthToken={setAuthToken} setUserData={setUserData} />}></Route>
       </Routes>
      </Router>
