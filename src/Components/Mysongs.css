@@ -1,4 +1,4 @@
-.songs{
+.mysongs{
     height: max-content;
     margin: 20px;
     margin-left: 320px;
@@ -8,17 +8,17 @@
     gap: 40px;
 }
 
-.songs h3{
+.mysongs h3{
     margin-top: 30px;
 }
 
-.songs-search-bar{
+/* 
+.mysongs-search-bar{
     width: 100%;
     display: flex;
     gap: 20px;
 }
-
-.songs-search-bar input{
+.mysongs-search-bar input{
     width: 100%;
     max-width: 400px;
     height: 40px;
@@ -30,7 +30,7 @@
     font-size: 14px;
 }
 
-.songs-search-bar button{
+.mysongs-search-bar button{
     width: 90px;
     min-width: 90px;
     height: auto;
@@ -40,48 +40,29 @@
     cursor: pointer;
     background-color: #ccc;
     color: black;
-}
+} 
 
 
 .songSearchResult{
     display: none;
     font-weight: 600;
 }
+*/
 
-.addSong{
-    position: fixed;
-    top: 50px;
-    right: 50px;
-    padding: 5px 13px;
-    border-radius: 10px;
-    border: none;
-    background-color: #11101D;
-    font-size: 15px;
+
+.mysongs-list{
     display: flex;
-    gap: 5px;
-    align-items: center;
-    cursor: pointer;
-    color: white;
-    border: 1px solid white;
-    z-index: 20;
-}
-
-.addSong span{
-    font-size: 25px;
-}
-
-.songs-list{
-    display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 30px;
     margin-bottom: 30px;
+    width: 80%;
 }
 
-.song-tab{
-    width:auto;
-    height: 50px;
+.mysong-tab{
+    width:100%;
+    height: 80px;
     background-color: white;
-    padding: 10px 30px;
+    padding: 0px 40px;
     border-radius: 20px;
     display: flex;
     gap: 40px;
@@ -89,13 +70,69 @@
     justify-content: space-between;
     cursor: pointer;
     transition: .5s ease;
+    position: relative;
 }
 
-.song-title{
+.mysong-details{
+    display: flex;
+    gap: 0 20px;
+    flex-wrap: wrap;
+    width: 90%;
+    /* background-color: red; */
+    /* height: 100%; */
+    padding:  20px 0;
+    align-items: center;
+}
+
+.mysong-options{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 30px;
+    cursor: pointer;
+    background-color: #11101D;
+
+}
+
+.changesvg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+.changesvg svg{
+    font-size: 22px;
+    color: white;
+    border: none;
+}
+
+
+.showOptions{
+    position: absolute;
+    top: 33px;
+    left: -108px;
+    display: none;
+    flex-direction: column;
+    z-index: 14;
+}
+
+.showOptions button{
+    width: 140px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 15;
+    border: none;
+    color: white;
+    font-size: 13px;
+    background-color: #11101D;
+}
+
+.mysong-title{
     white-space: nowrap;
 }
 
-.artist-name{
+.myartist-name{
     color: darkgray;
     white-space: nowrap;
 }
@@ -107,27 +144,21 @@
     color: white;
 }
 
-@media (min-width:1025px) {
-    .song-tab:hover{
-        background-color: #11101D
-    }
-    
-    .song-tab:hover .song-title{
-        color: white;
-    }
-}
 
 @media (max-width: 1024px){
-    .songs{
+    .mysongs{
         margin-left: 270px;
+    }
+    .mysongs-list{
+        width: 100%;
     }
 }
 
 @media (max-width:768px) {
-    .songs{
+    .mysongs{
         margin-left: 120px;
     }
-    .songs-list{
+    .mysongs-list{
         flex-direction: column;
     }
     .song-tab{
@@ -141,20 +172,23 @@
 }
 
 @media (max-width:480px) {
-    .songs{
+    .mysongs{
         padding: 20px 0;
         margin-left: 100px;
     }
+    .mysong-title{
+        white-space: unset;
+    }
 
-    .songs h3{
+    .mysongs h3{
         text-align: center;
     }
-    .songs-search-bar{
+    .mysongs-search-bar{
         flex-direction: column;
         width: 100%;
         align-items: flex-end;
     }
-    .songs-search-bar button{
+    .mysongs-search-bar button{
         height: 30px;
         font-size: 14px;
     }
@@ -176,5 +210,9 @@
 
     .addSong p{
         display: none;
+    }
+
+    .mysong-details{
+        width: 80%;
     }
 }

@@ -34,7 +34,7 @@ function SongItem({list}) {
     
     useEffect(() => {
       if(listing!==null){
-        let ss = listing.find(element => element.songname.toLowerCase().includes(songtitle.toLowerCase()))
+        let ss = listing.find(element => element.songname.toLowerCase() === songtitle.toLowerCase())
         //console.log("SS",ss);
         setSelectedSong(ss)   
       }
@@ -57,9 +57,9 @@ function SongItem({list}) {
   //console.log("SS",selectedSong);
 
   let [allChordsFiltered, setAllChordsFiltered] = useState(null)
-  let all_chords = []
-
+  
   useEffect(() => {
+    let all_chords = []
 
     // console.log("CS", typeof(chordSet), chordSet);
     if(chordSet!==null){
@@ -409,7 +409,7 @@ function SongItem({list}) {
 
       {allChordsFiltered.length>0 &&
       <>
-        <p className='chords-word'>Chords {selectedSong.capo && cat === 'guitar' && <span>(Capo: {selectedSong.capo})</span>}</p>
+        <p className='chords-word'>Chords {selectedSong.capo>0 && cat === 'guitar' && <span>(Capo: {selectedSong.capo})</span>}</p>
         <div className="allChords">
         {allChordsFiltered.map((x,key)=>{
           return(

@@ -10,6 +10,8 @@ import { useEffect } from 'react';
 import M from './Assets/M.png'
 // import { Songlist } from './Helper/Songlist';
 import { useState } from 'react';
+import Login from './Components/Login';
+import Mysongs from './Components/Mysongs';
 
 function App() {
 
@@ -17,25 +19,38 @@ function App() {
 
 
   useEffect(() => {  
+    if(!sessionStorage.getItem('currentPage')){
+      sessionStorage.setItem('currentPage','home')
+    }
+
     refreshDb()
   },[])
-
-
+  
+  let data2
   function refreshDb(){
-    let data2 
-    fetch('https://firstnodejstest.azurewebsites.net/getList', 
+    try{
+      fetch('https://firstnodejstest.azurewebsites.net/getList', 
       {method:'GET'
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json(); // This method reads the body and automatically closes the stream
+    })
+    .then(data => {
+      console.log(data);
+          data2 = data
+          setSongListing(data2)
       })
-        .then(response => response.json())
-        .then(data => {
-          //console.log(data);
-            data2 = data
-            setSongListing(data2)
-        })
-        .catch(error => {
-          console.log('Error in GET function', error);
-          return error
-        });
+      .catch(error => {
+        console.log('Error in GET function', error);
+        return error
+      });
+    }
+    catch (err){
+      console.log("DB Error");
+    }
   }
 
   useEffect(() => {
@@ -82,8 +97,22 @@ function App() {
   }
 
   function updateList(){
+    console.log("UPDATING");
     refreshDb()
   }
+
+  const [authToken, setAuthToken] = useState('')
+  const [userData, setUserData] = useState({})
+
+  useEffect(() => {
+    const token = sessionStorage.getItem('token')
+    setAuthToken(token)
+    
+    const data = sessionStorage.getItem('data')
+    if (data){
+      setUserData({...JSON.parse(data)})
+      }
+    } , [])
 
 
   return (
@@ -106,13 +135,15 @@ function App() {
     </div>
     <div className="App">
      <Router>
-      <Navbar/>
+      <Navbar userData={userData} authToken={authToken} setAuthToken={setAuthToken} setUserData={setUserData} />
       <Routes>
         <Route path='/' element={<Home goPage={goPage} />} ></Route>
-        <Route path='/songs' element={<Songs list={songListing} />} ></Route>
-        <Route path='/addSong' element={<AddSong allSongs={songListing}  newList={updateList}/>}></Route>
+        <Route path='/songs' element={<Songs />} ></Route>
+        <Route path='/addSong' element={<AddSong allSongs={songListing} newList={updateList}/>}></Route>
         <Route path='/songs/:songtitle' element={<SongItem list={songListing}/>}></Route>
         <Route path='/chords' Component={Chords}></Route>
+        <Route path='/mysongs' element={<Mysongs/>}></Route>
+        <Route path='/login' element={<Login setAuthToken={setAuthToken} setUserData={setUserData} />}></Route>
       </Routes>
      </Router>
     </div>

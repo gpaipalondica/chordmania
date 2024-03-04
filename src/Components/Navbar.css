@@ -43,6 +43,13 @@
     margin: -5px;
 }
 
+.nav-container{
+    display: flex;
+    flex-direction: column;
+    height: 430px;
+    justify-content: space-between;
+}
+
 .nav-content{
     width: 100%;
     display: flex;
