@@ -5,31 +5,19 @@ import Loader from '../Helper/Loader';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-function Songs() {
+function Songs({list}) {
 
-  const [loading, setLoading] =useState(false)
+  // const [loading, setLoading] =useState(false)
 
   // console.log('LIST',list);
   let [listingSongs,setListingSongs] = useState(null)
 
+  useEffect(() => {
+    setListingSongs(list)
+  },[list])
+
   useEffect(()=>{
     window.scrollTo(0,0)
-    setLoading(true)
-    fetch('https://firstnodejstest.azurewebsites.net/getList', 
-    {method:'GET'
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-      let data2 = data
-      setListingSongs(data2)
-      setLoading(false)
-    })
-    .catch(error => {
-      console.log('Error in GET function', error);
-      return error
-    });
-
   },[])
 
 
@@ -95,7 +83,8 @@ function Songs() {
 
   return (
     <div className="songs">
-        {loading && <Loader/>}
+        {/* {loading && <Loader/>} */}
+
         {isSignedIn && 
         <button onClick={addSongPage} className='addSong'><span>+</span><p>Add Song</p></button>
         }
@@ -111,13 +100,15 @@ function Songs() {
       <p className="songSearchResult"></p>
 
       <div className="songs-list">
-        {listingSongs && listingSongs.slice().sort((a, b) => a.songname.localeCompare(b.songname)).map((sl,i) =>{
+        {listingSongs ? listingSongs.slice().sort((a, b) => a.songname.localeCompare(b.songname)).map((sl,i) =>{
           return( 
           <div key={i} className="song-tab" onClick={viewSong}>
             <h4 className="song-title">{sl.songname.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}</h4>
             <p className="artist-name">{sl.artistname.toUpperCase()}</p>
           </div>
         )})
+        :
+        <Loader/>
         }
       </div>
 

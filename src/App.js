@@ -6,7 +6,7 @@ import Songs from './Components/Songs';
 import Chords from './Components/Chords';
 import SongItem from './Components/SongItem';
 import AddSong from './Components/AddSong';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import M from './Assets/M.png'
 // import { Songlist } from './Helper/Songlist';
 import { useState } from 'react';
@@ -17,41 +17,33 @@ function App() {
 
   let [songListing, setSongListing] = useState(null)
 
-
-  useEffect(() => {  
-    if(!sessionStorage.getItem('currentPage')){
-      sessionStorage.setItem('currentPage','home')
-    }
-
-    refreshDb()
-  },[])
   
-  let data2
-  function refreshDb(){
-    try{
-      fetch('https://firstnodejstest.azurewebsites.net/getList', 
-      {method:'GET'
-    })
-    .then(response => {
+  const url = 'https://firstnodejstest.azurewebsites.net'
+  
+  const refreshDb = useCallback(async () => {
+    try {
+      const response = await fetch(url + '/getList', { method: 'GET' });
+
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-      return response.json(); // This method reads the body and automatically closes the stream
-    })
-    .then(data => {
+
+      const data = await response.json();
       console.log(data);
-          data2 = data
-          setSongListing(data2)
-      })
-      .catch(error => {
-        console.log('Error in GET function', error);
-        return error
-      });
+      setSongListing(data);
+    } catch (error) {
+      console.log('Error in GET function', error);
     }
-    catch (err){
-      console.log("DB Error");
+  }, [setSongListing]);
+
+  useEffect(() => {
+    if (!sessionStorage.getItem('currentPage')) {
+      sessionStorage.setItem('currentPage', 'home');
     }
-  }
+    refreshDb();
+  }, [refreshDb]);
+
+
 
   useEffect(() => {
     const runAnimation = () => {
@@ -138,11 +130,11 @@ function App() {
       <Navbar userData={userData} authToken={authToken} setAuthToken={setAuthToken} setUserData={setUserData} />
       <Routes>
         <Route path='/' element={<Home goPage={goPage} />} ></Route>
-        <Route path='/songs' element={<Songs />} ></Route>
+        <Route path='/songs' element={<Songs list={songListing}/>}></Route>
         <Route path='/addSong' element={<AddSong allSongs={songListing} newList={updateList}/>}></Route>
         <Route path='/songs/:songtitle' element={<SongItem list={songListing}/>}></Route>
         <Route path='/chords' Component={Chords}></Route>
-        <Route path='/mysongs' element={<Mysongs/>}></Route>
+        <Route path='/mysongs' element={<Mysongs newList={updateList}/>}></Route>
         <Route path='/login' element={<Login setAuthToken={setAuthToken} setUserData={setUserData} />}></Route>
       </Routes>
      </Router>
