@@ -123,9 +123,10 @@
     cursor: pointer;
     z-index: 15;
     border: none;
-    color: white;
+    color: #11101D;
     font-size: 13px;
-    background-color: #11101D;
+    background-color: #eee;
+    border: 1px solid #11101D;
 }
 
 .mysong-title{

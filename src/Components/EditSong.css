@@ -1,0 +1,350 @@
+.edit-song{
+    height: max-content;
+    margin: 20px;
+    margin-left: 320px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.part1{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-lyrics-container{
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    position: relative;
+    /* background-color: red; */
+}
+
+.edit-lyricsinfo{
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    display: flex;
+}
+
+
+.edit-displayLyrics{
+    background-color: white;
+    width: 60%;
+    height: 500px;
+    overflow: scroll;
+    border: 1px solid black;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.edit-right{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px ;
+}
+
+.edit-paraDisp{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.edit-lineDisp{
+    display: flex;
+    gap: 10px;
+}
+
+.edit-wordDisp{
+    padding: 0 5px;
+    border: 1px solid gray;
+    font-size: 14px;
+    background-color: #eee;
+    color: black;
+    cursor: pointer;
+}
+/* .wordDisp:focus{
+    background-color: yellow;
+} */
+
+.edit-wordDisp.active{
+    background-color: yellow;
+}
+.edit-wordDisp.selected{
+    background-color: #58fc58;
+}
+
+.edit-chordSetter{
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative
+}
+
+.edit-smDiv{
+    display: flex;
+    height: 30px;
+    gap: 5px;
+    position: absolute;
+    width: 100%;
+}
+
+.edit-smDiv input{
+    width: 50%;
+    padding: 0 10px;
+    font-size: 14px;
+}
+
+.edit-smDiv button{
+    width: 80px;
+    color: black;
+    background-color: white;
+    cursor: pointer;
+}
+
+.edit-chordList{
+    height: calc(500px - 90px);
+    margin-top: -10px;
+    background-color: white;
+    padding: 10px;
+    overflow: scroll;
+    border: 1px solid black;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.edit-part2btn{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.edit-part2btn button{
+    font-size: 15px;
+    cursor: pointer;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+}
+
+.edit-songadded{
+    background-color: #11101D;
+    color: white;
+    transition: .5s ease;
+    width: 180px;
+}
+.edit-goback{
+    background-color: white;
+    color: black;
+    width: 130px;
+}
+
+.edit-cItem{
+    padding: 10px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.edit-cItem button{
+    color: white;
+    cursor: pointer;
+    width:20px;
+    font-size: 12px; 
+    background-color:#9c1a1a; 
+    border: none;
+}
+
+#edit-myform1{
+    /* background-color: red; */
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.edit-form-group{
+    display: flex;
+    width: 100%;
+}
+
+.edit-form-group label{
+    width: 150px;
+}
+
+.edit-form-group input[type='text']{
+    width: 100%;
+    max-width: 250px;
+    padding: 0 5px;
+    font-size: 13px;
+}
+
+.edit-form-group input[type='number']{
+    width: 60px;
+    padding: 0 5px;
+    font-size: 13px;
+}
+
+input[type=number]::-webkit-inner-spin-button{  
+   opacity: 1;
+}
+
+.edit-form-group textarea[type='text']{
+    width: 100%;
+    height: 330px;
+    max-width: calc(100% - 150px);
+    padding: 5px;
+    font-size: 13px;
+}
+
+.edit-formButtons{
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    gap: 20px;
+    padding-left: 150px;
+}
+
+.edit-formButtons button{
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    color: black;
+    font-size: 15px;
+    height: 30px;
+    width: 80px;
+}
+
+#edit-next{
+    background-color: #11101D;
+    color: white;
+}
+#edit-clear{
+    background-color: #ccc;
+    color: black;
+}
+#edit-toAllSongs{
+    background-color: white;
+    color: black;
+}
+
+
+@media (max-width: 1024px){
+    .edit-song{
+        margin-left: 270px;
+    }
+}
+
+@media (max-width:768px) {
+    .edit-song{
+        margin-left: 120px;
+    }
+}
+
+@media (max-width:480px) {
+    .edit-song{
+        padding: 20px 0;
+        margin-left: 100px;
+    }
+
+    .edit-song h3{
+        text-align: center;
+    }
+
+    /* .edit-form-group{
+        flex-direction: column;
+        position: relative;
+    }
+
+    .edit-form-group label{
+        width: 100%;
+    }
+
+    .edit-form-group input[type='text']{
+        max-width: 100%;
+        height: 30px;
+    }
+
+    .edit-form-group input[type='number']{
+        max-width: 100%;
+        height: 30px;
+        font-size: 15px;
+    }
+
+    .edit-form-group textarea[type='text']{
+        max-width: 100%;
+        margin-top: 15px;
+    }
+
+    .part2 p{
+        text-align: center;
+    }
+
+    .lyrics-container{
+        flex-direction: column;
+        gap: 20px;
+    }
+    .lyricswordrow{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .lyricInfoDisp{
+        position: absolute;
+        top: 20px;
+    }
+    .displayLyrics{
+        width: 100%;
+        height: 450px;
+        margin-top: 30px;
+    }
+
+    .edit-formButtons{
+        padding-left: 0;
+    }
+    .right{
+        width: 100%;
+        align-items: center;
+    }
+    .right h3{
+        margin-top: -80px;
+    }
+    .chordSetter{
+        width: 100%;
+        height: 50px;
+        margin-bottom: 40px;
+    }
+    .smDiv{
+        width: 100%;
+        justify-content: center;
+        position: absolute;
+        top: -510px;
+        padding: 0 10px;
+    }
+    .smDiv input{
+        width: 90%;
+    }
+    .chordList{
+        width: 100%;
+    } */
+}
