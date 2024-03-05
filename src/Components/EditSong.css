@@ -270,7 +270,7 @@ input[type=number]::-webkit-inner-spin-button{
         text-align: center;
     }
 
-    /* .edit-form-group{
+    .edit-form-group{
         flex-direction: column;
         position: relative;
     }
@@ -295,25 +295,25 @@ input[type=number]::-webkit-inner-spin-button{
         margin-top: 15px;
     }
 
-    .part2 p{
+    .part1 p{
         text-align: center;
     }
 
-    .lyrics-container{
+    .edit-lyrics-container{
         flex-direction: column;
         gap: 20px;
     }
-    .lyricswordrow{
+    .edit-lyricswordrow{
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
-    .lyricInfoDisp{
+    .edit-lyricInfoDisp{
         position: absolute;
         top: 20px;
     }
-    .displayLyrics{
+    .edit-displayLyrics{
         width: 100%;
         height: 450px;
         margin-top: 30px;
@@ -322,29 +322,32 @@ input[type=number]::-webkit-inner-spin-button{
     .edit-formButtons{
         padding-left: 0;
     }
-    .right{
+    .edit-right{
         width: 100%;
         align-items: center;
     }
-    .right h3{
+    .edit-right h3{
         margin-top: -80px;
     }
-    .chordSetter{
+    .edit-chordSetter{
         width: 100%;
         height: 50px;
         margin-bottom: 40px;
     }
-    .smDiv{
+    .edit-smDiv{
         width: 100%;
         justify-content: center;
         position: absolute;
         top: -510px;
         padding: 0 10px;
     }
-    .smDiv input{
+    .edit-smDiv input{
         width: 90%;
     }
-    .chordList{
+    .edit-chordList{
         width: 100%;
-    } */
+    }
+    .edit-part2btn{
+        flex-direction: column;
+    }
 }
