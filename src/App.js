@@ -12,6 +12,7 @@ import M from './Assets/M.png'
 import { useState } from 'react';
 import Login from './Components/Login';
 import Mysongs from './Components/Mysongs';
+import EditSong from './Components/EditSong';
 
 function App() {
 
@@ -29,7 +30,7 @@ function App() {
       }
 
       const data = await response.json();
-      // console.log(data);
+      console.log(data);
       setSongListing(data);
     } catch (error) {
       console.log('Error in GET function', error);
@@ -106,6 +107,20 @@ function App() {
       }
     } , [])
 
+  let [editSong,setEditSong] = useState(null)
+
+  useEffect(()=>{
+      if(sessionStorage.getItem('editsong')){
+        setEditSong(JSON.parse(sessionStorage.getItem('editsong')))
+      }
+  },[])
+
+    function goToEdit(x){
+      // console.log("editSong",x);
+      setEditSong(x)
+      sessionStorage.setItem('editsong', JSON.stringify(x))
+    }
+
 
   return (
     <>
@@ -132,9 +147,10 @@ function App() {
         <Route path='/' element={<Home goPage={goPage} />} ></Route>
         <Route path='/songs' element={<Songs list={songListing}/>}></Route>
         <Route path='/addSong' element={<AddSong allSongs={songListing} newList={updateList}/>}></Route>
+        <Route path='/editSong' element={<EditSong allSongs={songListing} chosenSong={editSong} newList={updateList}/>}></Route>
         <Route path='/songs/:songtitle' element={<SongItem list={songListing}/>}></Route>
         <Route path='/chords' Component={Chords}></Route>
-        <Route path='/mysongs' element={<Mysongs list={songListing} newList={updateList}/>}></Route>
+        <Route path='/mysongs' element={<Mysongs list={songListing} newList={updateList} editDetails={goToEdit}/>}></Route>
         <Route path='/login' element={<Login setAuthToken={setAuthToken} setUserData={setUserData} />}></Route>
       </Routes>
      </Router>
