@@ -31,3 +31,9 @@
         align-items: center;
     }
 }
+
+@media (max-width:480px){
+    .usersong-details{
+        text-align: center;
+    }
+}
