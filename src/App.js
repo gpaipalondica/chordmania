@@ -13,6 +13,7 @@ import { useState } from 'react';
 import Login from './Components/Login';
 import Mysongs from './Components/Mysongs';
 import EditSong from './Components/EditSong';
+import Songby from './Components/Songby';
 
 function App() {
 
@@ -30,7 +31,7 @@ function App() {
       }
 
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       setSongListing(data);
     } catch (error) {
       console.log('Error in GET function', error);
@@ -152,6 +153,7 @@ function App() {
         <Route path='/chords' Component={Chords}></Route>
         <Route path='/mysongs' element={<Mysongs list={songListing} newList={updateList} editDetails={goToEdit}/>}></Route>
         <Route path='/login' element={<Login setAuthToken={setAuthToken} setUserData={setUserData} />}></Route>
+        <Route path='/songslist/:user' element={<Songby allSongs={songListing} />}></Route>
       </Routes>
      </Router>
     </div>
