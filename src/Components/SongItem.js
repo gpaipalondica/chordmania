@@ -375,6 +375,7 @@ function SongItem({list}) {
   let nav = useNavigate()
   function showSongsByUser(x){
     nav('/songslist/'+x)
+    sessionStorage.setItem('currentPage', 'songs')
   }
 
 
