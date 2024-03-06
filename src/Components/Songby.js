@@ -12,8 +12,10 @@ function Songby({allSongs}) {
 
 
     useEffect(() => {
+      if(allSongs){
         let filterSongs = allSongs.filter(song => song.ownername === user)
         setMyList(filterSongs)
+      }
     },[allSongs])
 
     let nav = useNavigate()
