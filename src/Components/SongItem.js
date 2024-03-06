@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import {Chordlist} from '../Helper/Chordlist'
 import Loader from '../Helper/Loader'
 import './SongItem.css'
@@ -372,6 +372,11 @@ function SongItem({list}) {
       setAllChordsFiltered(newShowChord)
   }
 
+  let nav = useNavigate()
+  function showSongsByUser(x){
+    nav('/songslist/'+x)
+  }
+
 
 
   return (<>
@@ -393,8 +398,8 @@ function SongItem({list}) {
       
 
       <div className="song-info">
-        <p style={{fontStyle:'italic', textAlign:'left'}}>Posted by: <span style={{fontWeight:600}}>{selectedSong.ownername}</span></p>
-        <hr style={{border:'.5px solid black'}} />
+        <p style={{fontStyle:'italic', textAlign:'left', fontWeight:600, cursor:'pointer'}}>Posted by: <span style={{textDecoration:'underline', color:'blue'}} onClick={() => showSongsByUser(selectedSong.ownername)}>{selectedSong.ownername}</span></p>
+        <hr style={{border:'.5px solid black', marginTop:'2px'}} />
         <br />
         <h1>{selectedSong.songname.split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}</h1>
         <p>~ {selectedSong.artistname.toUpperCase()}</p>

@@ -1,0 +1,33 @@
+
+.usersong-tab{
+    width: 80%;
+    height: 80px;
+    background-color: white;
+    padding: 0px 40px;
+    border-radius: 20px;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: .5s ease;
+    position: relative;
+}
+
+.usersong-details{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+@media (max-width:768px) {
+    .usersong-tab{
+        width: 100%;
+    }
+    .usersong-details{
+        flex-direction: column;
+        gap: 0;
+        align-items: center;
+    }
+}

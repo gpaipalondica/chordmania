@@ -162,6 +162,7 @@
     .mysongs-list{
         flex-direction: column;
     }
+
     .song-tab{
         flex-direction: column;
         gap: 0;
