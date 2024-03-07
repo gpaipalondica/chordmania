@@ -227,6 +227,15 @@ function EditSong({allSongs, chosenSong, newList}) {
 
     document.querySelector('.edit-chordSetter').appendChild(smDiv)
 
+    smInput.focus()
+        smDiv.addEventListener('keydown', ((event) => {
+          if (event.key === "Enter"){
+            let chordMod = smInput.value.charAt(0).toUpperCase()+smInput.value.slice(1).toLowerCase()
+            // console.log("CM",chordMod);
+            chordArrItem(post, chordMod, smDiv)
+          }
+        }))
+
   }
 
   function chordArrItem(x,y,z) {
