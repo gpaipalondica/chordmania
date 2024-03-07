@@ -110,12 +110,21 @@ if(document.querySelector('.wordDisp')){
           // console.log("CM",chordMod);
           chordArrItem(pos, chordMod, smDiv)
         }) )
-        enter.innerHTML='Set'
+        enter.innerHTML='Enter'
   
         smDiv.appendChild(smInput)
         smDiv.appendChild(enter)
   
         document.querySelector('.chordSetter').appendChild(smDiv)
+
+        smInput.focus()
+        smDiv.addEventListener('keydown', ((event) => {
+          if (event.key === "Enter"){
+            let chordMod = smInput.value.charAt(0).toUpperCase()+smInput.value.slice(1).toLowerCase()
+            // console.log("CM",chordMod);
+            chordArrItem(pos, chordMod, smDiv)
+          }
+        }))
   
     })
   })
