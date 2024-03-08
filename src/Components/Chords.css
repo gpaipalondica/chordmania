@@ -118,6 +118,34 @@
     border-radius: 15px;
     max-width: 115px;
 }
+
+.grid-top{
+    display: flex;
+    justify-content: space-between;
+    width: 100px;
+    padding: 0 8px;
+    align-items: center;
+}
+
+.grid-top button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1;
+    cursor: pointer;
+    padding: 2px;
+    border: 1px solid black;
+    color: black;
+    font-size: 16px;
+}
+
+.grid-top button:disabled{
+    border: none;
+    pointer-events: none;
+    background: transparent;
+    opacity: .4;
+}
+
 .chord-name{
     font-weight: 600;
     font-size: 20px;

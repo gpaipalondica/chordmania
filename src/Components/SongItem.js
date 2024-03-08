@@ -378,6 +378,54 @@ function SongItem({list}) {
     sessionStorage.setItem('currentPage', 'songs')
   }
 
+    let mediaQ1 = matchMedia('(min-width:1025px)')
+    let mediaQ2 = matchMedia('(max-width:1024px) and (min-width:769px)')
+    let mediaQ3 = matchMedia('(max-width:768px) and (min-width:481px)')
+    let mediaQ4 = matchMedia('(max-width:480px) and (min-width:0px)')
+
+
+  let [singlechord, setSingleChord] = useState(null)
+
+  function showSingleChord(x){
+    // console.log(x);
+
+    document.querySelector('.singlechordbackground').style.display = 'flex'
+
+    setSingleChord(x)
+
+    if(mediaQ1.matches){
+      document.querySelector('.singlechordbackground').style.paddingLeft = '320px'
+    }
+    else if(mediaQ2.matches){
+      document.querySelector('.singlechordbackground').style.paddingLeft = '270px'
+    }
+    else if(mediaQ3.matches){
+      document.querySelector('.singlechordbackground').style.paddingLeft = '120px'
+    }
+    else if(mediaQ4.matches){
+      document.querySelector('.singlechordbackground').style.paddingLeft = '80px'
+      document.querySelector('.singlechordcontainer').style.maxWidth = '280px'
+    }
+    
+  }
+
+
+  function playMe(x,y){
+    let whichChord = Chordlist.find(item => item.name === x)
+    if(whichChord){
+      if(y==='guitar'){
+        new Audio(whichChord.gsound).play();
+      }else if(y==='piano'){
+        new Audio(whichChord.psound).play();
+      }
+    }
+  }
+
+  function hidesingle(){
+    document.querySelector('.singlechordbackground').style.display = 'none'
+    setSingleChord(null)
+  }
+
 
 
   return (<>
@@ -412,6 +460,50 @@ function SongItem({list}) {
         <button id='piano' className='chord-btn2' onClick={() => showCat2('piano')}>Piano</button>
       </div>
 
+      <div className='singlechordbackground'>
+          <button className='hidesingle' onClick={hidesingle}>X</button>
+          
+          <div className="singlechordcontainer">
+            {singlechord && 
+            <>
+            {
+              Chordlist.find(item => item.name === singlechord && (cat==='guitar' && item.gsound)) 
+              &&
+              <div style={{display:'flex', width:'60%' ,justifyContent:'space-between', alignItems:'center'}}>
+                <h2 style={{fontSize:'25px'}}>{singlechord}</h2>
+                <button className='ssvg' onClick={() => playMe(singlechord,cat)}><svg stroke="currentColor" fill="currentColor" strokeWidth="0" height="1em" width="1em" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M12 8.02c0 1.09-.45 2.09-1.17 2.83l-.67-.67c.55-.56.89-1.31.89-2.16 0-.85-.34-1.61-.89-2.16l.67-.67A3.99 3.99 0 0 1 12 8.02zM7.72 2.28L4 6H2c-.55 0-1 .45-1 1v2c0 .55.45 1 1 1h2l3.72 3.72c.47.47 1.28.14 1.28-.53V2.81c0-.67-.81-1-1.28-.53zm5.94.08l-.67.67a6.996 6.996 0 0 1 2.06 4.98c0 1.94-.78 3.7-2.06 4.98l.67.67A7.973 7.973 0 0 0 16 8c0-2.22-.89-4.22-2.34-5.66v.02zm-1.41 1.41l-.69.67a5.05 5.05 0 0 1 1.48 3.58c0 1.39-.56 2.66-1.48 3.56l.69.67A5.971 5.971 0 0 0 14 8.02c0-1.65-.67-3.16-1.75-4.25z"></path></svg></button>
+              </div>
+            }
+            {
+              Chordlist.find(item => item.name === singlechord && (cat==='piano' && item.psound)) 
+              &&
+              <div style={{display:'flex', width:'60%' ,justifyContent:'space-between', alignItems:'center'}}>
+                <h2 style={{fontSize:'25px'}}>{singlechord}</h2>
+                <button className='ssvg' onClick={() => playMe(singlechord,cat)}><svg stroke="currentColor" fill="currentColor" strokeWidth="0" height="1em" width="1em" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M12 8.02c0 1.09-.45 2.09-1.17 2.83l-.67-.67c.55-.56.89-1.31.89-2.16 0-.85-.34-1.61-.89-2.16l.67-.67A3.99 3.99 0 0 1 12 8.02zM7.72 2.28L4 6H2c-.55 0-1 .45-1 1v2c0 .55.45 1 1 1h2l3.72 3.72c.47.47 1.28.14 1.28-.53V2.81c0-.67-.81-1-1.28-.53zm5.94.08l-.67.67a6.996 6.996 0 0 1 2.06 4.98c0 1.94-.78 3.7-2.06 4.98l.67.67A7.973 7.973 0 0 0 16 8c0-2.22-.89-4.22-2.34-5.66v.02zm-1.41 1.41l-.69.67a5.05 5.05 0 0 1 1.48 3.58c0 1.39-.56 2.66-1.48 3.56l.69.67A5.971 5.971 0 0 0 14 8.02c0-1.65-.67-3.16-1.75-4.25z"></path></svg></button>
+              </div>
+            }
+            {
+              Chordlist.find(item => item.name === singlechord && (cat==='guitar' && !item.gsound)) 
+              &&
+              <div style={{display:'flex', width:'60%' ,justifyContent:'space-between', alignItems:'center'}}>
+                <h2 style={{fontSize:'25px'}}>{singlechord}</h2>
+                <button className='ssvg'disabled><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="#000" strokeWidth="2" d="M1,8 L1,16 L6.09901951,16 L12,21 L12,3 L6,8 L1,8 Z M15,9 L21,15 M21,9 L15,15"></path></svg></button>
+              </div>
+            }
+            {
+              Chordlist.find(item => item.name === singlechord && (cat==='piano' && !item.psound)) 
+              &&
+              <div style={{display:'flex', width:'60%' ,justifyContent:'space-between', alignItems:'center'}}>
+                <h2 style={{fontSize:'25px'}}>{singlechord}</h2>
+                <button className='ssvg'disabled><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="#000" strokeWidth="2" d="M1,8 L1,16 L6.09901951,16 L12,21 L12,3 L6,8 L1,8 Z M15,9 L21,15 M21,9 L15,15"></path></svg></button>
+              </div>
+            }
+              <img className='schord' src={getMe(singlechord,cat)} alt="" />
+            </>
+            }
+          </div>
+      </div>
+
 
       {allChordsFiltered.length>0 &&
       <>
@@ -419,7 +511,7 @@ function SongItem({list}) {
         <div className="allChords">
         {allChordsFiltered.map((x,key)=>{
           return(
-            <div key={key} className="chord-group">
+            <div key={key} className="chord-group" onClick={()=>showSingleChord(x)} >
             <p>{x}</p>
             <img src={getMe(x,cat)} alt="NA" />
           </div>
@@ -428,6 +520,8 @@ function SongItem({list}) {
       </div>
       </>
       }
+
+      <p className='chord-extra' style={{fontSize:'14px'}}>(Click on a chord to see more information)</p>
       
 
       <div className="colorChart">

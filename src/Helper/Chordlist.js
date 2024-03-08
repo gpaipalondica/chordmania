@@ -74,43 +74,78 @@ import Gsh7piano from '../Assets/G#7_p.png'
 import NAguitar from '../Assets/NAguitar.png'
 import NApiano from '../Assets/NApiano.png'
 
+import Csound_g from '../Assets/sounds/Csound_g.mp3'
+import Cshsound_g from '../Assets/sounds/Cshsound_g.mp3'
+import Dsound_g from '../Assets/sounds/Dsound_g.mp3'
+import Dshsound_g from '../Assets/sounds/Dshsound_g.mp3'
+import Esound_g from '../Assets/sounds/Esound_g.mp3'
+import Fsound_g from '../Assets/sounds/Fsound_g.mp3'
+import Fshsound_g from '../Assets/sounds/Fshsound_g.mp3'
+import Gsound_g from '../Assets/sounds/Gsound_g.mp3'
+import Gshsound_g from '../Assets/sounds/Gshsound_g.mp3'
+import Asound_g from '../Assets/sounds/Asound_g.mp3'
+import Ashsound_g from '../Assets/sounds/Ashsound_g.mp3'
+import Bsound_g from '../Assets/sounds/Bsound_g.mp3'
+
+import Bsound_p from '../Assets/sounds/Bsound_p.mp3'
+import Ashsound_p from '../Assets/sounds/Ashsound_p.mp3'
+import Asound_p from '../Assets/sounds/Asound_p.mp3'
+import Gshsound_p from '../Assets/sounds/Gshsound_p.mp3'
+import Gsound_p from '../Assets/sounds/Gsound_p.mp3'
+import Fshsound_p from '../Assets/sounds/Fshsound_p.mp3'
+import Fsound_p from '../Assets/sounds/Fsound_p.mp3'
+import Esound_p from '../Assets/sounds/Esound_p.mp3'
+import Dshsound_p from '../Assets/sounds/Dshsound_p.mp3'
+import Dsound_p from '../Assets/sounds/Dsound_p.mp3'
+import Cshsound_p from '../Assets/sounds/Cshsound_p.mp3'
+import Csound_p from '../Assets/sounds/Csound_p.mp3'
 
 
 export const Chordlist = [
     {
         "name": "F",
         "guitar": Fguitar,
-        "piano": Fpiano
+        "piano": Fpiano,
+        "gsound": Fsound_g,
+        "psound": Fsound_p
     },
     {
         "name": "C",
         "guitar": Cguitar,
-        "piano": Cpiano
+        "piano": Cpiano,
+        "gsound": Csound_g,
+        "psound": Csound_p
     },
     {
         "name": "G",
         "guitar": Gguitar,
-        "piano": Gpiano
+        "piano": Gpiano,
+        "gsound": Gsound_g,
+        "psound": Gsound_p
     },
     {
         "name": "E7",
         "guitar": E7guitar,
-        "piano": E7piano
+        "piano": E7piano,
     },
     {
         "name": "Am",
         "guitar": Aminguitar,
-        "piano": Aminpiano
+        "piano": Aminpiano,
     },
     {
         "name": "E",
         "guitar": Eguitar,
-        "piano": Epiano
+        "piano": Epiano,
+        "gsound": Esound_g,
+        "psound": Esound_p
     },
     {
         "name": "D",
         "guitar": Dguitar,
-        "piano": Dpiano
+        "piano": Dpiano,
+        "gsound": Dsound_g,
+        "psound": Dsound_p
     },
     {
         "name": "Em",
@@ -130,17 +165,23 @@ export const Chordlist = [
     {
         "name": "B",
         "guitar": Bmajguitar,
-        "piano": Bmajpiano
+        "piano": Bmajpiano,
+        "gsound": Bsound_g,
+        "psound": Bsound_p
     },
     {
         "name": "A",
         "guitar": Amajguitar,
-        "piano": Amajpiano
+        "piano": Amajpiano,
+        "gsound": Asound_g,
+        "psound": Asound_p
     },
     {
         "name": "F#",
         "guitar": Fshguitar,
-        "piano": Fshpiano
+        "piano": Fshpiano,
+        "gsound": Fshsound_g,
+        "psound" : Fshsound_p
     },
     {
         "name": "Fm",
@@ -150,22 +191,30 @@ export const Chordlist = [
     {
         "name": "A#",
         "guitar": Ashguitar,
-        "piano": Ashpiano
+        "piano": Ashpiano,
+        "gsound": Ashsound_g,
+        "psound": Ashsound_p
     },
     {
         "name": "C#",
         "guitar": Cshguitar,
-        "piano": Cshpiano
+        "piano": Cshpiano,
+        "gsound": Cshsound_g,
+        "psound": Cshsound_p
     },
     {
         "name": "D#",
         "guitar": Dshguitar,
-        "piano": Dshpiano
+        "piano": Dshpiano,
+        "gsound": Dshsound_g,
+        "psound": Dshsound_p
     },
     {
         "name": "G#",
         "guitar": Gshguitar,
-        "piano": Gshpiano
+        "piano": Gshpiano,
+        "gsound": Gshsound_g,
+        "psound": Gshsound_p
     },
     {
         "name": "Cm",
