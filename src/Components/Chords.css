@@ -135,7 +135,7 @@
     cursor: pointer;
     padding: 2px;
     border: 1px solid black;
-    color: black;
+    color: #11101D;
     font-size: 16px;
 }
 
@@ -144,6 +144,11 @@
     pointer-events: none;
     background: transparent;
     opacity: .4;
+}
+
+.grid-top button.playing{
+    background-color: #11101D;
+    color: white;
 }
 
 .chord-name{

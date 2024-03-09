@@ -299,6 +299,10 @@
     background: transparent;
     opacity: .4;
 }
+.ssvg.playing{
+    background-color: #11101D;
+    color: white;
+}
 
 .schord{
     width: 80%;
@@ -396,4 +400,15 @@
         top: -30px;
     }
 
+}
+
+@media (orientation:landscape) and (max-height:480px) {
+    .singlechordcontainer{
+        position: relative;
+        left: -30px;
+    }
+    .hidesingle{
+        top: 30px;
+        right: 100px;
+    }
 }
