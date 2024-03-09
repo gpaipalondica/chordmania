@@ -100,6 +100,19 @@ import Dsound_p from '../Assets/sounds/Dsound_p.mp3'
 import Cshsound_p from '../Assets/sounds/Cshsound_p.mp3'
 import Csound_p from '../Assets/sounds/Csound_p.mp3'
 
+import Amsound_p from '../Assets/sounds/Amsound_p.mp3'
+import Ashmsound_p from '../Assets/sounds/Ashmsound_p.mp3'
+import Bmsound_p from '../Assets/sounds/Bmsound_p.mp3'
+import Cmsound_p from '../Assets/sounds/Cmsound_p.mp3'
+import Cshmsound_p from '../Assets/sounds/Cshmsound_p.mp3'
+import Dmsound_p from '../Assets/sounds/Dmsound_p.mp3'
+import Dshmsound_p from '../Assets/sounds/Dshmsound_p.mp3'
+import Emsound_p from '../Assets/sounds/Emsound_p.mp3'
+import Fmsound_p from '../Assets/sounds/Fmsound_p.mp3'
+import Fshmsound_p from '../Assets/sounds/Fshmsound_p.mp3'
+import Gmsound_p from '../Assets/sounds/Gmsound_p.mp3'
+import Gshmsound_p from '../Assets/sounds/Gshmsound_p.mp3'
+
 
 export const Chordlist = [
     {
@@ -132,6 +145,7 @@ export const Chordlist = [
         "name": "Am",
         "guitar": Aminguitar,
         "piano": Aminpiano,
+        "psound": Amsound_p,
     },
     {
         "name": "E",
@@ -150,17 +164,20 @@ export const Chordlist = [
     {
         "name": "Em",
         "guitar": Emguitar,
-        "piano": Empiano
+        "piano": Empiano,
+        "psound": Emsound_p,
     },
     {
         "name": "Dm",
         "guitar": Dmguitar,
-        "piano": Dmpiano
+        "piano": Dmpiano,
+        "psound": Dmsound_p,
     },
     {
         "name": "Bm",
         "guitar": Bmguitar,
-        "piano": Bmpiano
+        "piano": Bmpiano,
+        "psound": Bmsound_p,
     },
     {
         "name": "B",
@@ -186,7 +203,8 @@ export const Chordlist = [
     {
         "name": "Fm",
         "guitar": Fminguitar,
-        "piano": Fminpiano
+        "piano": Fminpiano,
+        "psound": Fmsound_p,
     },
     {
         "name": "A#",
@@ -219,37 +237,44 @@ export const Chordlist = [
     {
         "name": "Cm",
         "guitar": Cminguitar,
-        "piano": Cminpiano
+        "piano": Cminpiano,
+        "psound": Cmsound_p,
     },
     {
         "name": "F#m",
         "guitar": Fshminguitar,
-        "piano": Fshminpiano
+        "piano": Fshminpiano,
+        "psound": Fshmsound_p,
     },
     {
         "name": "Gm",
         "guitar": Gminguitar,
-        "piano": Gminpiano
+        "piano": Gminpiano,
+        "psound": Gmsound_p,
     },
     {
         "name": "G#m",
         "guitar": Gshminguitar,
-        "piano": Gshminpiano
+        "piano": Gshminpiano,
+        "psound": Gshmsound_p,
     },
     {
         "name": "A#m",
         "guitar": Ashminguitar,
-        "piano": Ashminpiano
+        "piano": Ashminpiano,
+        "psound": Ashmsound_p,
     },
     {
         "name": "C#m",
         "guitar": Cshminguitar,
-        "piano": Cshminpiano
+        "piano": Cshminpiano,
+        "psound": Cshmsound_p,
     },
     {
         "name": "D#m",
         "guitar": Dshminguitar,
-        "piano": Dshminpiano
+        "piano": Dshminpiano,
+        "psound": Dshmsound_p,
     },
     {
         "name": "A7",
