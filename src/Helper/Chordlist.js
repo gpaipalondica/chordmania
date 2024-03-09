@@ -113,6 +113,45 @@ import Fshmsound_p from '../Assets/sounds/Fshmsound_p.mp3'
 import Gmsound_p from '../Assets/sounds/Gmsound_p.mp3'
 import Gshmsound_p from '../Assets/sounds/Gshmsound_p.mp3'
 
+import Amsound_g from '../Assets/sounds/Amsound_g.mp3'
+import Ashmsound_g from '../Assets/sounds/Ashmsound_g.mp3'
+import Bmsound_g from '../Assets/sounds/Bmsound_g.mp3'
+import Cmsound_g from '../Assets/sounds/Cmsound_g.mp3'
+import Cshmsound_g from '../Assets/sounds/Cshmsound_g.mp3'
+import Dmsound_g from '../Assets/sounds/Dmsound_g.mp3'
+import Dshmsound_g from '../Assets/sounds/Dshmsound_g.mp3'
+import Emsound_g from '../Assets/sounds/Emsound_g.mp3'
+import Fmsound_g from '../Assets/sounds/Fmsound_g.mp3'
+import Fshmsound_g from '../Assets/sounds/Fshmsound_g.mp3'
+import Gmsound_g from '../Assets/sounds/Gmsound_g.mp3'
+import Gshmsound_g from '../Assets/sounds/Gshmsound_g.mp3'
+
+import B7sound_p from '../Assets/sounds/B7sound_p.mp3'
+import Ash7sound_p from '../Assets/sounds/Ash7sound_p.mp3'
+import A7sound_p from '../Assets/sounds/A7sound_p.mp3'
+import Gsh7sound_p from '../Assets/sounds/Gsh7sound_p.mp3'
+import G7sound_p from '../Assets/sounds/G7sound_p.mp3'
+import Fsh7sound_p from '../Assets/sounds/Fsh7sound_p.mp3'
+import F7sound_p from '../Assets/sounds/F7sound_p.mp3'
+import E7sound_p from '../Assets/sounds/E7sound_p.mp3'
+import Dsh7sound_p from '../Assets/sounds/Dsh7sound_p.mp3'
+import D7sound_p from '../Assets/sounds/D7sound_p.mp3'
+import Csh7sound_p from '../Assets/sounds/Csh7sound_p.mp3'
+import C7sound_p from '../Assets/sounds/C7sound_p.mp3'
+
+import B7sound_g from '../Assets/sounds/B7sound_g.mp3'
+import Ash7sound_g from '../Assets/sounds/Ash7sound_g.mp3'
+import A7sound_g from '../Assets/sounds/A7sound_g.mp3'
+import Gsh7sound_g from '../Assets/sounds/Gsh7sound_g.mp3'
+import G7sound_g from '../Assets/sounds/G7sound_g.mp3'
+import Fsh7sound_g from '../Assets/sounds/Fsh7sound_g.mp3'
+import F7sound_g from '../Assets/sounds/F7sound_g.mp3'
+import E7sound_g from '../Assets/sounds/E7sound_g.mp3'
+import Dsh7sound_g from '../Assets/sounds/Dsh7sound_g.mp3'
+import D7sound_g from '../Assets/sounds/D7sound_g.mp3'
+import Csh7sound_g from '../Assets/sounds/Csh7sound_g.mp3'
+import C7sound_g from '../Assets/sounds/C7sound_g.mp3'
+
 
 export const Chordlist = [
     {
@@ -140,11 +179,14 @@ export const Chordlist = [
         "name": "E7",
         "guitar": E7guitar,
         "piano": E7piano,
+        "gsound": E7sound_g,
+        "psound": E7sound_p,
     },
     {
         "name": "Am",
         "guitar": Aminguitar,
         "piano": Aminpiano,
+        "gsound": Amsound_g,
         "psound": Amsound_p,
     },
     {
@@ -165,18 +207,21 @@ export const Chordlist = [
         "name": "Em",
         "guitar": Emguitar,
         "piano": Empiano,
-        "psound": Emsound_p,
+        "gsound": Emsound_g,
+        "psound": Emsound_p
     },
     {
         "name": "Dm",
         "guitar": Dmguitar,
         "piano": Dmpiano,
+        "gsound": Dmsound_g,
         "psound": Dmsound_p,
     },
     {
         "name": "Bm",
         "guitar": Bmguitar,
         "piano": Bmpiano,
+        "gsound": Bmsound_g,
         "psound": Bmsound_p,
     },
     {
@@ -204,6 +249,7 @@ export const Chordlist = [
         "name": "Fm",
         "guitar": Fminguitar,
         "piano": Fminpiano,
+        "gsound": Fmsound_g,
         "psound": Fmsound_p,
     },
     {
@@ -238,98 +284,127 @@ export const Chordlist = [
         "name": "Cm",
         "guitar": Cminguitar,
         "piano": Cminpiano,
+        "gsound": Cmsound_g,
         "psound": Cmsound_p,
     },
     {
         "name": "F#m",
         "guitar": Fshminguitar,
         "piano": Fshminpiano,
+        "gsound": Fshmsound_g,
         "psound": Fshmsound_p,
     },
     {
         "name": "Gm",
         "guitar": Gminguitar,
         "piano": Gminpiano,
+        "gsound": Gmsound_g,
         "psound": Gmsound_p,
     },
     {
         "name": "G#m",
         "guitar": Gshminguitar,
         "piano": Gshminpiano,
+        "gsound": Gshmsound_g,
         "psound": Gshmsound_p,
     },
     {
         "name": "A#m",
         "guitar": Ashminguitar,
         "piano": Ashminpiano,
+        "gsound": Ashmsound_g,
         "psound": Ashmsound_p,
     },
     {
         "name": "C#m",
         "guitar": Cshminguitar,
         "piano": Cshminpiano,
+        "gsound": Cshmsound_g,
         "psound": Cshmsound_p,
     },
     {
         "name": "D#m",
         "guitar": Dshminguitar,
         "piano": Dshminpiano,
+        "gsound": Dshmsound_g,
         "psound": Dshmsound_p,
     },
     {
         "name": "A7",
         "guitar": A7guitar,
-        "piano": A7piano
+        "piano": A7piano,
+        "gsound": A7sound_g,
+        "psound": A7sound_p,
     },
     {
         "name": "A#7",
         "guitar": Ash7guitar,
-        "piano": Ash7piano
+        "piano": Ash7piano,
+        "gsound": Ash7sound_g,
+        "psound": Ash7sound_p,
     },
     {
         "name": "B7",
         "guitar": B7guitar,
-        "piano": B7piano
+        "piano": B7piano,
+        "gsound": B7sound_g,
+        "psound": B7sound_p,
     },
     {
         "name": "C7",
         "guitar": C7guitar,
-        "piano": C7piano
+        "piano": C7piano,
+        "gsound": C7sound_g,
+        "psound": C7sound_p,
     },
     {
         "name": "C#7",
         "guitar": Csh7guitar,
-        "piano": Csh7piano
+        "piano": Csh7piano,
+        "gsound": Csh7sound_g,
+        "psound": Csh7sound_p,
     },
     {
         "name": "D7",
         "guitar": D7guitar,
-        "piano": D7piano
+        "piano": D7piano,
+        "gsound": D7sound_g,
+        "psound": D7sound_p,
     },
     {
         "name": "D#7",
         "guitar": Dsh7guitar,
-        "piano": Dsh7piano
+        "piano": Dsh7piano,
+        "gsound": Dsh7sound_g,
+        "psound": Dsh7sound_p,
     },
     {
         "name": "F7",
         "guitar": F7guitar,
-        "piano": F7piano
+        "piano": F7piano,
+        "gsound": F7sound_g,
+        "psound": F7sound_p,
     },
     {
         "name": "F#7",
         "guitar": Fsh7guitar,
-        "piano": Fsh7piano
+        "piano": Fsh7piano,
+        "gsound": Fsh7sound_g,
+        "psound": Fsh7sound_p,
     },
     {
         "name": "G7",
         "guitar": G7guitar,
-        "piano": G7piano
+        "piano": G7piano,
+        "gsound": G7sound_g,
+        "psound": G7sound_p,
     },
     {
         "name": "G#7",
         "guitar": Gsh7guitar,
-        "piano": Gsh7piano
+        "piano": Gsh7piano,
+        "gsound": Gsh7sound_g,
+        "psound": Gsh7sound_p,
     },
 
 
