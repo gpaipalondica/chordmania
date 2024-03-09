@@ -61,7 +61,7 @@ function Chords() {
       allChordsList.forEach(ch => {
         let chName = ch.querySelector('.chord-name')
         const isVis = chName.textContent.toLowerCase().includes(target)
-        chName.parentNode.classList.toggle('hide',!isVis)
+        chName.parentNode.parentNode.classList.toggle('hide',!isVis)
         
         if(chName.innerHTML === 'NA'){
           ch.style.display = 'none'
