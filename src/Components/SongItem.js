@@ -234,8 +234,8 @@ function SongItem({list}) {
     function scrollMe(){
       let speed = document.querySelector('.speed').value
       // console.log(speed);
-      // if((window.innerWidth<480)){
-      if((window.innerWidth<480 && window.innerHeight > window.innerWidth) || (window.innerHeight<480 && window.innerWidth > window.innerHeight)){
+      if((window.innerWidth<480)){
+      // if((window.innerWidth<480 && window.innerHeight > window.innerWidth) || (window.innerHeight<480 && window.innerWidth > window.innerHeight)){
         window.scrollBy({
           top: 5*speed,
           behavior: 'smooth',
