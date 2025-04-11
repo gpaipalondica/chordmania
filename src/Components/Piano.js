@@ -74,24 +74,54 @@ function Piano() {
   }, [octaveCount]);
 
 
+  const audioMap = {};
+
+  const loadSounds = () => {
+    const notes = ['C1', 'Csh1', 'D1', 'Dsh1', 'E1', 'F1', 'Fsh1', 'G1', 'Gsh1', 'A1', 'Ash1', 'B1', 'C2', 'Csh2', 'D2', 'Dsh2', 'E2', 'F2', 'Fsh2', 'G2', 'Gsh2', 'A2', 'Ash2', 'B2', 'C3', 'Csh3', 'D3', 'Dsh3', 'E3', 'F3', 'Fsh3', 'G3', 'Gsh3', 'A3', 'Ash3', 'B3', 'C4', 'Csh4', 'D4', 'Dsh4', 'E4', 'F4', 'Fsh4', 'G4', 'Gsh4', 'A4', 'Ash4', 'B4', 'C5', 'Csh5', 'D5', 'Dsh5', 'E5', 'F5', 'Fsh5', 'G5', 'Gsh5', 'A5', 'Ash5', 'B5', 'C6'] 
+    notes.forEach(note => {
+      const audio = new Audio(require('../Assets/pianonotes/'+note+'.mp3'));
+      audio.load();
+      audioMap[note] = audio;
+    });
+    // console.log(audioMap);
+  };
+
+  useEffect(() => {
+    loadSounds();
+  }, [octaveCount]);
+
+
 
   function playSound(x){
     // console.log(x);
-    if(x=== 'Cnext'){
-      let whichNote = require('../Assets/pianonotes/C'+(octaveCount+1)+'.mp3')
-  
-      let aud = new Audio(whichNote)
-      aud.play()
+    let note
+    if(x === 'Cnext'){
+      note = `C${parseInt(octaveCount)+1}`
     }
-    else {
-      let whichNote = require('../Assets/pianonotes/'+x+octaveCount+'.mp3')
-  
-      let aud = new Audio(whichNote)
-      aud.play()
+    else{
+      note = x+octaveCount
+    }
 
-    }
+    // if(x=== 'Cnext'){
+    //   let whichNote = require('../Assets/pianonotes/C'+(octaveCount+1)+'.mp3')
+  
+    //   let aud = new Audio(whichNote)
+    //   aud.play()
+    // }
+    // else {
+    //   let whichNote = require('../Assets/pianonotes/'+x+octaveCount+'.mp3')
+  
+    //   let aud = new Audio(whichNote)
+    //   aud.play()
+
+    // }
+
+    audioMap[note].currentTime = 0;
+    audioMap[note].play();
     
   }
+
+  console.log(audioMap);
 
   
 
