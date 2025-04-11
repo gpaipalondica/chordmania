@@ -14,6 +14,7 @@ import Login from './Components/Login';
 import Mysongs from './Components/Mysongs';
 import EditSong from './Components/EditSong';
 import Songby from './Components/Songby';
+import Piano from './Components/Piano';
 
 function App() {
 
@@ -103,6 +104,7 @@ function App() {
     setAuthToken(token)
     
     const data = sessionStorage.getItem('data')
+    console.log(data);
     if (data){
       setUserData({...JSON.parse(data)})
       }
@@ -151,6 +153,7 @@ function App() {
         <Route path='/editSong' element={<EditSong allSongs={songListing} chosenSong={editSong} newList={updateList}/>}></Route>
         <Route path='/songs/:songtitle' element={<SongItem list={songListing}/>}></Route>
         <Route path='/chords' Component={Chords}></Route>
+        <Route path='/piano' Component={Piano}></Route>
         <Route path='/mysongs' element={<Mysongs list={songListing} newList={updateList} editDetails={goToEdit}/>}></Route>
         <Route path='/login' element={<Login setAuthToken={setAuthToken} setUserData={setUserData} />}></Route>
         <Route path='/songslist/:user' element={<Songby allSongs={songListing} />}></Route>

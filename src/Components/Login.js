@@ -234,7 +234,7 @@ const Login = (props) => {
         return response.json();
       })
       .then(data => {
-        // console.log(data); 
+        console.log(data); 
         sessionStorage.setItem('user', JSON.stringify(userDetails))
         sessionStorage.setItem('token', token)
 

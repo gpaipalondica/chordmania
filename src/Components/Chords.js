@@ -85,6 +85,7 @@ function Chords() {
     setLoading(true)
 
     let whichChord = Chordlist.find(item => item.name === x)
+    console.log("WC", whichChord.gsound);
     if(whichChord){
       let aud
       if(y==='guitar'){
