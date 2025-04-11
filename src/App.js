@@ -84,7 +84,7 @@ function App() {
   }
 
   function goPage(x){
-    console.log("GP", x);
+    // console.log("GP", x);
     document.querySelectorAll('.nav-group').forEach((x)=>{
       x.classList.remove('active')
     })
@@ -92,7 +92,7 @@ function App() {
   }
 
   function updateList(){
-    console.log("UPDATING");
+    // console.log("UPDATING");
     refreshDb()
   }
 
@@ -104,7 +104,7 @@ function App() {
     setAuthToken(token)
     
     const data = sessionStorage.getItem('data')
-    console.log(data);
+    // console.log(data);
     if (data){
       setUserData({...JSON.parse(data)})
       }

@@ -18,7 +18,7 @@ function EditSong({allSongs, chosenSong, newList}) {
 
   useEffect(() => {
     setSongToEdit(chosenSong)
-    console.log('HAHA',chosenSong);
+    // console.log('HAHA',chosenSong);
     if(chosenSong){
       setFormProps({"songname":chosenSong.songname,
       "artistname":chosenSong.artistname,
@@ -56,9 +56,9 @@ function EditSong({allSongs, chosenSong, newList}) {
     let formData = new FormData(form)
     let formDetails = Object.fromEntries(formData);
 
-    console.log("FDT",formDetails.songName);
+    // console.log("FDT",formDetails.songName);
 
-    console.log("ASL",allSongsList);
+    // console.log("ASL",allSongsList);
 
     let titlesong = allSongsList.some(x => x.songname.toLowerCase() === formDetails.songName.toLowerCase() && x.songname !== formDetails.songName);
 
@@ -121,8 +121,8 @@ function EditSong({allSongs, chosenSong, newList}) {
 
     let idsong = songToEdit._id
     let chords2 = chordArray
-    console.log(idsong);
-    console.log(chords2);
+    // console.log(idsong);
+    // console.log(chords2);
 
     let data = {
       "songname": `${formProps.songname}`,
@@ -132,7 +132,7 @@ function EditSong({allSongs, chosenSong, newList}) {
       "chords": chords2
     }
 
-    console.log("DATA",data);
+    // console.log("DATA",data);
     // setLoading(true)
     document.querySelector('.edit-songadded').style.backgroundColor = '#0d7dc2'
       document.querySelector('.edit-songadded').innerHTML = 'Updating..'
@@ -149,7 +149,7 @@ function EditSong({allSongs, chosenSong, newList}) {
       })
       .then(response => response.json())
       .then(data =>{
-          console.log("UPDATED", data);
+          // console.log("UPDATED", data);
           newList('update')
           nav('/mysongs')
           sessionStorage.setItem('currentPage','mysongs')
@@ -180,7 +180,7 @@ function EditSong({allSongs, chosenSong, newList}) {
   
   function deleteNode(e){
     let pos = e.currentTarget.parentNode
-    console.log("del", pos);
+    // console.log("del", pos);
     let targ = pos.id.split('_')[1]
     document.getElementById(targ).classList.remove('active')
     document.getElementById(targ).classList.remove('selected')
@@ -189,7 +189,7 @@ function EditSong({allSongs, chosenSong, newList}) {
     let chordArray2 = chordArray.filter(chordObj => chordObj.pos !== targ);
     setChordArray(chordArray2)
   }
-  console.log("CA", chordArray);
+  // console.log("CA", chordArray);
 
 
   function setChord(e){
@@ -216,8 +216,8 @@ function EditSong({allSongs, chosenSong, newList}) {
     enter.setAttribute('class', 'chordBtn')
     enter.addEventListener('click', (() => {
       let chordMod = smInput.value.charAt(0).toUpperCase()+smInput.value.slice(1).toLowerCase()
-      console.log("CM",chordMod);
-      console.log("pos",post);
+      // console.log("CM",chordMod);
+      // console.log("pos",post);
       chordArrItem(post, chordMod, smDiv)
     }) )
     enter.innerHTML='Set'
@@ -254,7 +254,7 @@ function EditSong({allSongs, chosenSong, newList}) {
     // document.getElementById(`${position}`).style.backgroundColor = '#58fc58'
     document.getElementById(`${position}`).classList.add('selected')
 
-    console.log("Hi",position,chord,z);
+    // console.log("Hi",position,chord,z);
 
     let existingChord = chordArray.find(item => item.pos === position);
 
@@ -268,7 +268,7 @@ function EditSong({allSongs, chosenSong, newList}) {
         alert("Enter Chord Value")
     }
 
-    console.log("ChArr",chordArray);
+    // console.log("ChArr",chordArray);
 
     chordArray.forEach(item => {
         let chordItem = document.createElement('div')
