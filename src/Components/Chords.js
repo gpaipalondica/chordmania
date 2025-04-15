@@ -160,7 +160,7 @@ function Chords() {
               <button disabled><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="#000" strokeWidth="2" d="M1,8 L1,16 L6.09901951,16 L12,21 L12,3 L6,8 L1,8 Z M15,9 L21,15 M21,9 L15,15"></path></svg></button>
             }
             </div>
-            <img className='chord-image' src={x[cat]} alt="" />
+            <img className='chord-image' src={x[cat]}  alt="" />
           </div>
           )
         })
