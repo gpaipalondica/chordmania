@@ -152,6 +152,13 @@ import D7sound_g from '../Assets/sounds/D7sound_g.mp3'
 import Csh7sound_g from '../Assets/sounds/Csh7sound_g.mp3'
 import C7sound_g from '../Assets/sounds/C7sound_g.mp3'
 
+import Csus4_g from '../Assets/Csus4_g.png'
+import Csus4_p from '../Assets/Csus4_p.png'
+import Fsus2_g from '../Assets/Fsus2_g.png'
+import Fsus2_p from '../Assets/Fsus2_p.png'
+import Gsus4_g from '../Assets/Gsus4_g.png'
+import Gsus4_p from '../Assets/Gsus4_p.png'
+
 
 export const Chordlist = [
     {
@@ -412,6 +419,30 @@ export const Chordlist = [
         "name": "NA",
         "guitar": NAguitar,
         "piano": NApiano
+    }
+    ,
+    {
+        "name": "Csus4",
+        "guitar": Csus4_g,
+        "piano": Csus4_p,
+        // "gsound": Gsh7sound_g,
+        // "psound": Gsh7sound_p,
+    }
+    ,
+    {
+        "name": "Fsus2",
+        "guitar": Fsus2_g,
+        "piano": Fsus2_p,
+        // "gsound": Gsh7sound_g,
+        // "psound": Gsh7sound_p,
+    }
+    ,
+    {
+        "name": "Gsus4",
+        "guitar": Gsus4_g,
+        "piano": Gsus4_p,
+        // "gsound": Gsh7sound_g,
+        // "psound": Gsh7sound_p,
     }
     
 ]

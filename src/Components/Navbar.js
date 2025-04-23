@@ -65,7 +65,13 @@ function Navbar({userData, authToken, setAuthToken, setUserData}) {
         x.classList.remove('active')
       })
 
-      document.getElementById(x).classList.add('active')
+      if(x==='piano'){
+        document.getElementById('piano2').classList.add('active')
+      }
+      else {
+        document.getElementById(x).classList.add('active')
+      }
+
       sessionStorage.setItem("currentPage",x)
 
       if(x === 'home'){
@@ -146,7 +152,7 @@ function Navbar({userData, authToken, setAuthToken, setUserData}) {
                 <p className='nav-text'>Chords</p>
             </div>
             {showPiano && 
-              <div id='piano' className={isActive === 'piano'?'nav-group active':'nav-group'}onClick={() => takeMeHere('piano')}>
+              <div id='piano2' className={isActive === 'piano2'?'nav-group active':'nav-group'}onClick={() => takeMeHere('piano')}>
                 {/* <svg className='nav-icon' stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M12 13c0 1.105-1.12 2-2.5 2S7 14.105 7 13s1.12-2 2.5-2 2.5.895 2.5 2z"></path><path fillRule="evenodd" d="M12 3v10h-1V3h1z" clipRule="evenodd"></path><path d="M11 2.82a1 1 0 01.804-.98l3-.6A1 1 0 0116 2.22V4l-5 1V2.82z"></path><path fillRule="evenodd" d="M0 11.5a.5.5 0 01.5-.5H4a.5.5 0 010 1H.5a.5.5 0 01-.5-.5zm0-4A.5.5 0 01.5 7H8a.5.5 0 010 1H.5a.5.5 0 01-.5-.5zm0-4A.5.5 0 01.5 3H8a.5.5 0 010 1H.5a.5.5 0 01-.5-.5z" clipRule="evenodd"></path></svg> */}
                 <svg className='nav-icon' stroke="currentColor" fill="none" strokeWidth="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M22 21C23.1046 21 24 20.1046 24 19V5C24 3.89543 23.1046 3 22 3H3C1.89543 3 1 3.89543 1 5V19C1 20.1046 1.89543 21 3 21H22ZM11 5H8.98486V13H7.98511V19H12V13H11V5ZM18.0151 19H22V5H19.0151V13H18.0151V19ZM17.0151 13H16.0151V5H14V13H13V19H17.0151V13ZM6.98511 19V13H5.98486V5H3L3 19H6.98511Z" fill="currentColor"></path></svg>
                   <p className='nav-text'>Play Piano</p>
