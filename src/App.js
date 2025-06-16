@@ -15,6 +15,7 @@ import Mysongs from './Components/Mysongs';
 import EditSong from './Components/EditSong';
 import Songby from './Components/Songby';
 import Piano from './Components/Piano';
+import Metronome from './Components/Metronome';
 
 function App() {
 
@@ -154,6 +155,7 @@ function App() {
         <Route path='/songs/:songtitle' element={<SongItem list={songListing}/>}></Route>
         <Route path='/chords' Component={Chords}></Route>
         <Route path='/piano' Component={Piano}></Route>
+        <Route path='/metronome' Component={Metronome}></Route>
         <Route path='/mysongs' element={<Mysongs list={songListing} newList={updateList} editDetails={goToEdit}/>}></Route>
         <Route path='/login' element={<Login setAuthToken={setAuthToken} setUserData={setUserData} />}></Route>
         <Route path='/songslist/:user' element={<Songby allSongs={songListing} />}></Route>
