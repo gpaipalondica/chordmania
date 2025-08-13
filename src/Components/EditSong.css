@@ -248,6 +248,43 @@ input[type=number]::-webkit-inner-spin-button{
 }
 
 
+.crStBtn {
+    width:150px; 
+    padding:5px; 
+    color:white;
+    border-radius:10px;
+    cursor: pointer
+}
+
+.setListGrid {
+    background-color:white; 
+    border:'1px solid black';
+    border-radius:10px;
+    height:200px; 
+    overflow-y: auto;
+}
+
+.editSetlist {
+    padding:10px; 
+    width: 100%;
+    border-bottom: 1px solid black; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap:20px;
+}
+
+.setBtn {
+    border: none;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 4px;
+}
+
+
 @media (max-width: 1024px){
     .edit-song{
         margin-left: 270px;
@@ -350,4 +387,16 @@ input[type=number]::-webkit-inner-spin-button{
     .edit-part2btn{
         flex-direction: column;
     }
+
+    .crStBtn {
+        width:80px; 
+    }
+
+    .setListGrid {
+        height: 270px;
+    }
+
+    /* .editSetlist {
+        flex-direction: column;
+    } */
 }

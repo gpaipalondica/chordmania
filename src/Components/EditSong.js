@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../Helper/Loader';
 import './EditSong.css'
+import { url } from './variables';
 
 function EditSong({allSongs, chosenSong, newList}) {
 
@@ -135,10 +136,9 @@ function EditSong({allSongs, chosenSong, newList}) {
     // console.log("DATA",data);
     // setLoading(true)
     document.querySelector('.edit-songadded').style.backgroundColor = '#0d7dc2'
-      document.querySelector('.edit-songadded').innerHTML = 'Updating..'
+    document.querySelector('.edit-songadded').innerHTML = 'Updating..'
 
-    // let url = 'http://localhost:8080'
-    let url = 'https://firstnodejstest.azurewebsites.net'
+
 
     fetch(url+'/song/'+idsong,{
       method: "PUT",
