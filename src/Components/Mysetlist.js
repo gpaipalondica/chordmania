@@ -5,49 +5,59 @@ import Loader from '../Helper/Loader'
 import './Mysongs.css'
 import { url } from './variables'
 
-function Mysongs({list, newList, editDetails}) {
+function Mysetlist({}) {
 
   const [loading, setLoading] = useState(false)
 
   const [myList, setMyList] = useState(null)
   
   const [user, setUser] = useState(null)  
-  
-  useEffect(()=>{
-    setTimeout(() => {
-      setMyList(list)
-    },500)
-    setLoading(false)
-  },[list])
 
   useEffect(()=>{
-    let user2 = JSON.parse(sessionStorage.getItem('user')).username
+    let user2 = JSON.parse(sessionStorage.getItem('user')).userId
     if(user2){
+      // console.log(user2);
       setUser(user2)
+      getSetlists(user2)
+    }
+
+    if(sessionStorage.getItem('setlistObj2')){
+      sessionStorage.removeItem('setlistObj2')
     }
   },[])
 
 
-  // function fetchData(z){
-  //   let x2 = z
-  //   fetch(url+'/list/'+x2, 
-  //     {method:'GET'
-  //     })
-  //       .then(response => response.json())
-  //       .then(data => {
-  //         //console.log(data);
-  //           setMyList(data)
-  //           setLoading(false)
-  //       })
-  //       .catch(error => {
-  //         console.log('Error in GET function', error);
-  //         return error
-  //       });
-  // }
+  function getSetlists(x){
+    console.log(x);
+    setLoading(true)
+    if(x !== undefined){
+      try {
+        fetch(`${url}/allSetlistByUser/${x}`,{
+          method:'GET'
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+          setMyList(data)
+          setLoading(false)
+        })
+        .catch(err => {
+          console.log(err);
+        })
+        
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+
+
 
   let nav = useNavigate()
-  function addSongPage(){
-    nav('/addSong')
+
+  function addSetlistPage(){
+    nav('/editsetlist')
+
   }
 
 
@@ -80,32 +90,20 @@ function Mysongs({list, newList, editDetails}) {
     tar.parentNode.querySelector('.showOptions').style.display='flex'
     }
     
-    // if(isact.className === 'showOptions'){
-    //   isact.classList.add('active')
-    //   isact.style.display = 'flex'
-    //   tar.parentNode.querySelector('.changesvg').innerHTML = `<svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path></svg>`
-    // }
-    // else if(isact.className === 'showOptions active'){
-    //   isact.classList.remove('active')
-    //   isact.style.display = 'none'
-    //   tar.parentNode.querySelector('.changesvg').innerHTML = `<svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 9.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" clipRule="evenodd"></path></svg>`
-    // }
-
   }
 
 
-  function viewSong(e){
-    e.stopPropagation()
-    let songName = e.currentTarget.querySelector('.mysong-title').innerText
-
-    nav(`/songs/${songName}`)
+  function viewSetlistSongs(x2){
+    console.log(x2);
+    sessionStorage.setItem('passSetlist', JSON.stringify(x2))
+    nav(`/mysetlist/${x2.setlistId}`)
   }
 
 
-  function deleteSong(x){
+  function deleteSetlist(x){
     // console.log(x);
 
-    let conf = window.confirm( "Are you sure to delete this song?")
+    let conf = window.confirm( "Are you sure to delete this setlist? id="+x)
     
     if (conf === true) {
       setLoading(true)
@@ -114,49 +112,44 @@ function Mysongs({list, newList, editDetails}) {
         y.style.display='none'
       })
 
-      fetch(url+'/song/'+x, 
-      {method:'DELETE'
-      })
-        .then(response => response.json())
-        .then(data => {
-          // console.log(data);
-            // setMyList(data)
-            document.querySelectorAll('.changesvg').forEach(z=>{
-              z.innerHTML = `<svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 9.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" clipRule="evenodd"></path></svg>`
+      fetch(url+'/deleteSetlist/'+x, 
+          {method:'DELETE'
+          })
+            .then(response => response.json())
+            .then(data => {
+              // console.log(data);
+              getSetlists(user);
             })
-            newList('refresh')
-        })
-        .catch(error => {
-          console.log('Error in DELETE function', error);
-          return error
-        });
+            .catch(error => {
+              console.log('Error in DELETE function', error);
+            });
     }
   }
 
 
-  function editSong(x){
-    let songObj = x
+  function editMySetlist(x){
+    let setlistObj = x
     // console.log(songObj);
-    editDetails(songObj)
-
-    nav('/editSong')
+    sessionStorage.setItem('setlistObj', JSON.stringify(setlistObj))
+    // editSet(setlistObj)
+    nav('/editsetlist')
   }
 
   return (
     <div className='mysongs'>
       {loading && <Loader/>}
 
-        <button onClick={addSongPage} className='addSong'><span>+</span><p>Add Song</p></button>
+        <button onClick={addSetlistPage} className='addSong'><span>+</span><p>Add Setlist</p></button>
     
-        <h3>My songs</h3>
+        <h3>My Setlists</h3>
 
         <div className="mysongs-list">
-        {myList ? myList.slice().filter(item => item.ownername===user).sort((a, b) => a.songname.localeCompare(b.songname)).map((sl,i) =>{
+        {myList && myList.length > 0 ? 
+        myList.map((sl,i) =>{
           return( 
           <div key={i} id={sl._id} className="mysong-tab" >
-            <div className='mysong-details' onClick={viewSong}>
-              <h4 className="mysong-title">{sl.songname.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}</h4>
-              <p className="myartist-name">{sl.artistname.toUpperCase()}</p>
+            <div className='mysong-details' onClick={() => viewSetlistSongs(sl)}>
+              <h4 className="mysong-title">{sl.setlistName}</h4>
             </div>
             
             <div className='mysong-options'>
@@ -165,8 +158,12 @@ function Mysongs({list, newList, editDetails}) {
               </div>
               
               <div className='showOptions'>
-                <button className='editSong' onClick={() => editSong(sl)}>Edit Song</button>
-                <button className='deleteSong' onClick={() => deleteSong(sl._id)}>Delete Song</button>
+                <button className='editSong' 
+                onClick={() => editMySetlist(sl)}
+                >Edit Setlist</button>
+                <button className='deleteSong' 
+                onClick={() => deleteSetlist(sl.setlistId)}
+                >Delete Setlist</button>
               </div>
             </div>
           </div>
@@ -178,4 +175,4 @@ function Mysongs({list, newList, editDetails}) {
   )
 }
 
-export default Mysongs
+export default Mysetlist

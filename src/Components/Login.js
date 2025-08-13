@@ -4,11 +4,10 @@ import { useEffect } from 'react';
 import './Login.css'
 import Loader from '../Helper/Loader';
 import { useNavigate } from 'react-router-dom';
+import { url } from './variables';
 
 const Login = (props) => {
     const [loading, setLoading] = useState(false)
-
-    const url = 'https://firstnodejstest.azurewebsites.net'
 
     useEffect(() => {
         document.getElementById('btn_login').classList.add('active')
@@ -211,7 +210,8 @@ const Login = (props) => {
         let userDetails = {
         //   "user_id":x2._id,
           "username": x2.username,
-          "email": x2.email
+          "email": x2.email,
+          "userId": x2.userId
         }
 
         // console.log(userDetails);
