@@ -148,7 +148,7 @@ function Mysongs({list, newList, editDetails}) {
 
         <button onClick={addSongPage} className='addSong'><span>+</span><p>Add Song</p></button>
     
-        <h3>My songs</h3>
+        <h3>My Songs</h3>
 
         <div className="mysongs-list">
         {myList ? myList.slice().filter(item => item.ownername===user).sort((a, b) => a.songname.localeCompare(b.songname)).map((sl,i) =>{

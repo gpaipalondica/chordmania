@@ -60,6 +60,7 @@
 .edit-lineDisp{
     display: flex;
     gap: 10px;
+    width: max-content;
 }
 
 .edit-wordDisp{

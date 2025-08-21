@@ -120,7 +120,7 @@ function EditSong({allSongs, chosenSong, newList}) {
 
   function showJsonData(){
 
-    let idsong = songToEdit._id
+    let idsong = songToEdit.songId
     let chords2 = chordArray
     // console.log(idsong);
     // console.log(chords2);
@@ -133,7 +133,7 @@ function EditSong({allSongs, chosenSong, newList}) {
       "chords": chords2
     }
 
-    // console.log("DATA",data);
+    console.log("DATA",data);
     // setLoading(true)
     document.querySelector('.edit-songadded').style.backgroundColor = '#0d7dc2'
     document.querySelector('.edit-songadded').innerHTML = 'Updating..'
@@ -149,7 +149,7 @@ function EditSong({allSongs, chosenSong, newList}) {
       })
       .then(response => response.json())
       .then(data =>{
-          // console.log("UPDATED", data);
+          console.log("UPDATED", data);
           newList('update')
           nav('/mysongs')
           sessionStorage.setItem('currentPage','mysongs')
@@ -293,6 +293,24 @@ function EditSong({allSongs, chosenSong, newList}) {
 }
 
 
+// function addSpace(pIndex, lIndex){
+
+//   let prevLyrics = songToEdit.lyrics
+//   // console.log(prevLyrics);
+
+//   const paragraphs = prevLyrics.split("\n\n");
+//   const lines = paragraphs[pIndex].split("\n");
+//   lines[lIndex] = lines[lIndex] + " ";
+//   paragraphs[pIndex] = lines.join("\n");
+
+//   let l2 = paragraphs.join("\n\n");
+
+//   console.log(l2);
+//   setSongToEdit({...songToEdit, lyrics: l2})
+// }
+
+
+
   return (
     <div className='edit-song'>
       {loading && <Loader/>}
@@ -319,6 +337,9 @@ function EditSong({allSongs, chosenSong, newList}) {
                               <button onClick={setChord} className='edit-wordDisp' id={`p${i}-l${j}-w${k}`} key={k}>{z}</button>
                             )
                           })}
+                          {/* <svg 
+                          style={{width:20, height:20, cursor:'pointer'}} 
+                          onClick={() => addSpace(i,j)}  stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zM704 536c0 4.4-3.6 8-8 8H544v152c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V544H328c-4.4 0-8-3.6-8-8v-48c0-4.4 3.6-8 8-8h152V328c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v152h152c4.4 0 8 3.6 8 8v48z"></path></svg> */}
                         </div>
                       )
                     })}
