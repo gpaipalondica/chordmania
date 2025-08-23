@@ -71,7 +71,15 @@ function AddSong({allSongs, newList}) {
                 button.innerHTML = z
                 // console.log(z);
                 lineDiv.appendChild(button)
-            })
+              })
+              let extraDiv = document.createElement('div')
+              extraDiv.setAttribute('class', 'addIcon')
+              extraDiv.setAttribute('id', `p${i}-l${j}-w${y.length - 1}E`)
+              extraDiv.addEventListener('click', (e) => {
+                  addSpace(i,j, y.length - 1)
+              })
+              lineDiv.appendChild(extraDiv)
+
         })
         disp.appendChild(paraDiv)
     })
@@ -81,10 +89,14 @@ if(document.querySelector('.wordDisp')){
   document.querySelectorAll('.wordDisp').forEach(x => {
     
     x.addEventListener('click', (e) => {
-  
       document.querySelectorAll('.wordDisp').forEach(x => {
         x.classList.remove('active')
       })
+      document.querySelectorAll('.addIcon').forEach(x => {
+        x.classList.remove('active')
+      })
+
+      // console.log(chordsArray);
 
         // console.log(e.currentTarget);
         let targ = e.currentTarget
@@ -110,10 +122,19 @@ if(document.querySelector('.wordDisp')){
           // console.log("CM",chordMod);
           chordArrItem(pos, chordMod, smDiv)
         }) )
-        enter.innerHTML='Enter'
+        enter.innerHTML='Set'
+
+        let cancelBtn = document.createElement('button')
+        cancelBtn.setAttribute('class', 'chordBtn')
+        cancelBtn.addEventListener('click', (() => {
+          cancelBtnFunc()
+        }) )
+        cancelBtn.style.width = '30px'
+        cancelBtn.innerHTML='X'
   
         smDiv.appendChild(smInput)
         smDiv.appendChild(enter)
+        smDiv.appendChild(cancelBtn)
   
         document.querySelector('.chordSetter').appendChild(smDiv)
 
@@ -130,7 +151,7 @@ if(document.querySelector('.wordDisp')){
   })
 }
 
-  let chordsArray = []
+  let [chordsArray, setChordsArray] = useState([])
 
   function chordArrItem(x,y,z) {
 
@@ -140,7 +161,7 @@ if(document.querySelector('.wordDisp')){
         x.style.display='none'
       })
 
-      document.querySelector('.chordList').innerHTML = ''
+      // document.querySelector('.chordList').innerHTML = ''
 
       let position = x;
       let chord = y
@@ -154,8 +175,9 @@ if(document.querySelector('.wordDisp')){
 
       if(chord !== ''){
           if (!existingChord) {
-              chordsArray.push({ "pos": position, "chord": chord });
-          } else {
+              // chordsArray.push({ "pos": position, "chord": chord });
+              setChordsArray(prev => [...prev, { "pos": position, "chord": chord }])
+            } else {
               existingChord.chord = chord;
           }
       }else{
@@ -164,27 +186,54 @@ if(document.querySelector('.wordDisp')){
 
       // console.log("ChArr",chordsArray);
 
-      chordsArray.forEach(item => {
-          let chordItem = document.createElement('div')
-          chordItem.setAttribute('class','cItem')
-          chordItem.setAttribute('id','pos_'+item.pos)
-          let para = parseInt(item.pos.split('-')[0].split('p')[1])+1
-          let line = parseInt(item.pos.split('-')[1].split('l')[1])+1
-          let word = parseInt(item.pos.split('-')[2].split('w')[1])+1
-          chordItem.innerHTML = 'Para '+para+', Line '+line+', Word '+word +':  '+item.chord;
-          let delbtn = document.createElement('button')
-          delbtn.addEventListener('click', ((e) => {
-            deleteNode(e.currentTarget.parentNode)
-          }))
-          delbtn.innerHTML = 'X'
-          // delbtn.style.cssText=""
+      // chordsArray.forEach(item => {
+      //     let chordItem = document.createElement('div')
+      //     chordItem.setAttribute('class','cItem')
+      //     chordItem.setAttribute('id','pos_'+item.pos)
+      //     let para = parseInt(item.pos.split('-')[0].split('p')[1])+1
+      //     let line = parseInt(item.pos.split('-')[1].split('l')[1])+1
+      //     let word = parseInt(item.pos.split('-')[2].split('w')[1])+1
+      //     chordItem.innerHTML = 'Para '+para+', Line '+line+', Word '+word +':  '+item.chord;
+      //     let delbtn = document.createElement('button')
+      //     delbtn.addEventListener('click', ((e) => {
+      //       deleteNode(e.currentTarget.parentNode)
+      //     }))
+      //     delbtn.innerHTML = 'X'
+      //     // delbtn.style.cssText=""
 
-          chordItem.appendChild(delbtn)
+      //     chordItem.appendChild(delbtn)
           
-          document.querySelector('.chordList').appendChild(chordItem)
-      })
+      //     document.querySelector('.chordList').appendChild(chordItem)
+      // })
 
   }
+
+
+  useEffect(() => {
+
+    document.querySelector('.chordList').innerHTML = ''
+
+    chordsArray.forEach(item => {
+      let chordItem = document.createElement('div')
+      chordItem.setAttribute('class','cItem')
+      chordItem.setAttribute('id','pos_'+item.pos)
+      let para = parseInt(item.pos.split('-')[0].split('p')[1])+1
+      let line = parseInt(item.pos.split('-')[1].split('l')[1])+1
+      let word = parseInt(item.pos.split('-')[2].split('w')[1])+1
+      // chordItem.innerHTML = 'Para '+para+', Line '+line+', Word '+word +':  '+item.chord;
+      chordItem.innerHTML = item.pos[item.pos.length - 1] === 'E'? `Para ${para}, Line ${line} (end):  ${item.chord}`:`Para ${para}, Line ${line}, Word ${word}:  ${item.chord}`
+      let delbtn = document.createElement('button')
+      delbtn.addEventListener('click', ((e) => {
+        deleteNode(e.currentTarget.parentNode)
+      }))
+      delbtn.innerHTML = 'X'
+      // delbtn.style.cssText=""
+
+      chordItem.appendChild(delbtn)
+      
+      document.querySelector('.chordList').appendChild(chordItem)
+  })
+  }, [chordsArray])
 
   function deleteNode(x){
     // console.log(x);
@@ -194,7 +243,9 @@ if(document.querySelector('.wordDisp')){
     document.getElementById(pos).classList.remove('selected')
 
     x.remove()
-    chordsArray = chordsArray.filter(chordObj => chordObj.pos !== pos);
+    let f2 = chordsArray.filter(chordObj => chordObj.pos !== pos);
+    // console.log(f2);
+    setChordsArray(f2)
   }
 
 
@@ -279,6 +330,131 @@ if(document.querySelector('.wordDisp')){
       }
     }
   },[])
+
+
+  function addSpace(pIndex, lIndex, wIndex){
+    // console.log(pIndex, lIndex, wIndex);
+    
+    document.querySelectorAll('.addIcon').forEach(x => {
+      x.classList.remove('active')
+    })
+    document.querySelectorAll('.wordDisp').forEach(x => {
+      x.classList.remove('active')
+    })
+    
+    let post2 = `p${pIndex}-l${lIndex}-w${wIndex}E`
+
+    document.getElementById(post2).classList.add('active')
+
+    let smDiv = document.createElement('div')
+    smDiv.setAttribute('class','smDiv')
+
+    let smInput = document.createElement('input')
+    smInput.setAttribute('class', 'chordName')
+    smInput.setAttribute('name', 'chordName')
+    smInput.setAttribute('placeholder', 'Enter Chord')
+    smInput.setAttribute('type','text')
+
+    
+    let enter = document.createElement('button')
+    enter.setAttribute('class', 'chordBtn')
+    enter.addEventListener('click', (() => {
+      let chordMod = smInput.value.charAt(0).toUpperCase()+smInput.value.slice(1).toLowerCase()
+      // console.log("pos",post2);
+      // console.log("CM",chordMod);
+      endOfLineChord(post2, chordMod)
+    }) )
+    enter.innerHTML='Set'
+
+    let cancelBtn = document.createElement('button')
+    cancelBtn.setAttribute('class', 'chordBtn')
+    cancelBtn.addEventListener('click', (() => {
+      cancelBtnFunc()
+    }) )
+    cancelBtn.style.width = '30px'
+    cancelBtn.innerHTML='X'
+
+    smDiv.appendChild(smInput)
+    smDiv.appendChild(enter)
+    smDiv.appendChild(cancelBtn)
+
+    document.querySelector('.chordSetter').appendChild(smDiv)
+
+    smInput.focus()
+        smDiv.addEventListener('keydown', ((event) => {
+          if (event.key === "Enter"){
+            let chordMod = smInput.value.charAt(0).toUpperCase()+smInput.value.slice(1).toLowerCase()
+            // console.log("CM",chordMod);
+            endOfLineChord(post2, chordMod)
+            // chordArrItem(post2, chordMod, smDiv)
+          }
+        }))
+
+  }
+
+
+  function cancelBtnFunc(){
+    document.querySelectorAll('.smDiv').forEach(x=>{
+      x.style.display='none'
+    })
+    document.querySelectorAll('.addIcon').forEach(x => {
+      x.classList.remove('active')
+    })
+    document.querySelectorAll('.wordDisp').forEach(x => {
+      x.classList.remove('active')
+    })
+  }
+
+  function endOfLineChord(x,y){
+
+    document.querySelectorAll('.smDiv').forEach(x=>{
+      x.style.display='none'
+    })
+  
+    // document.querySelector('.chordList').innerHTML = ''
+  
+    let position = x;
+    let chord = y
+  
+    document.getElementById(`${position}`).classList.add('selected')
+  
+    // console.log("Hi",position,chord);
+
+    let existingChord = chordsArray.find(item => item.pos === position);
+
+    if(chord !== ''){
+        if (!existingChord) {
+            // chordsArray.push({ "pos": position, "chord": chord });
+            setChordsArray(prev => [...prev, { "pos": position, "chord": chord }])
+        } else {
+            existingChord.chord = chord;
+        }
+    }else{
+        alert("Enter Chord Value")
+    }
+  
+    // console.log("ChArr",chordsArray);
+  
+    // chordsArray.forEach(item => {
+    //     let chordItem = document.createElement('div')
+    //     chordItem.setAttribute('class','cItem')
+    //     chordItem.setAttribute('id','pos_'+item.pos)
+    //     let para = parseInt(item.pos.split('-')[0].split('p')[1])+1
+    //     let line = parseInt(item.pos.split('-')[1].split('l')[1])+1
+    //     let word = parseInt(item.pos.split('-')[2].split('w')[1])+1
+    //     chordItem.innerHTML = item.pos[item.pos.length - 1] === 'E'? `Para ${para}, Line ${line}, Word ${word}E:  ${item.chord}`:`Para ${para}, Line ${line}, Word ${word}:  ${item.chord}`
+    //     let delbtn = document.createElement('button')
+    //     delbtn.addEventListener('click', ((e) => {
+    //       deleteNode(e)
+    //     }))
+    //     delbtn.innerHTML = 'X'
+  
+    //     chordItem.appendChild(delbtn)
+        
+    //     document.querySelector('.chordList').appendChild(chordItem)
+    // })
+  }
+
  
   return (
     <div className='create-song'>

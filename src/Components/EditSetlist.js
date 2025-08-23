@@ -47,7 +47,7 @@ function EditSetlist({list}) {
   
   useEffect(()=>{
       let user2 = JSON.parse(sessionStorage.getItem('user'))
-      console.log(user2);
+      // console.log(user2);
       if(user2){
         setUser(user2)
       }
@@ -86,18 +86,18 @@ function EditSetlist({list}) {
   }
 
   function addSongToList(id) {
-    console.log(id);
+    // console.log(id);
   
     // // Ensure it's always an array
     let newArr = Array.isArray(duplicate) 
       ? [...duplicate]   // copy so we don't mutate directly
       : [];
   
-    console.log(newArr, Array.isArray(newArr) ? 'array' : typeof newArr);
+    // console.log(newArr, Array.isArray(newArr) ? 'array' : typeof newArr);
   
     newArr.push(id);
   
-    console.log(newArr);
+    // console.log(newArr);
 
     setDuplicate(newArr)
 
@@ -109,14 +109,14 @@ function EditSetlist({list}) {
   }
 
   function removeSongFromList(id) {
-    console.log(id);
+    // console.log(id);
   
     // Ensure it's always an array
     let newArr = Array.isArray(duplicate) 
       ? duplicate.filter(songId => songId !== id) // remove matches
       : [];
   
-    console.log(newArr, Array.isArray(newArr) ? 'array' : typeof newArr);
+    // console.log(newArr, Array.isArray(newArr) ? 'array' : typeof newArr);
   
     setDuplicate(newArr);
   
@@ -216,7 +216,7 @@ function EditSetlist({list}) {
           })
           .then(res => res.json())
           .then(data => {
-            console.log(data);  
+            // console.log(data);  
             if(data.modifiedCount === 1){
               // alert("Success")
               nav('/mysetlist')

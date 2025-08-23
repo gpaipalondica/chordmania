@@ -28,7 +28,7 @@ function Mysetlist({}) {
 
 
   function getSetlists(x){
-    console.log(x);
+    // console.log(x);
     setLoading(true)
     if(x !== undefined){
       try {
@@ -37,7 +37,7 @@ function Mysetlist({}) {
         })
         .then(res => res.json())
         .then(data => {
-          console.log(data);
+          // console.log(data);
           setMyList(data)
           setLoading(false)
         })
@@ -94,7 +94,7 @@ function Mysetlist({}) {
 
 
   function viewSetlistSongs(x2){
-    console.log(x2);
+    // console.log(x2);
     sessionStorage.setItem('passSetlist', JSON.stringify(x2))
     nav(`/mysetlist/${x2.setlistId}`)
   }
