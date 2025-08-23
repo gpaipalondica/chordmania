@@ -165,7 +165,8 @@
 
 .chordClickEnd{
     position: absolute;
-    right: -35px;
+    /* right: -35px; */
+    right: -60px;
     z-index: 2;
     border: none;
     bottom: 25px;

@@ -133,7 +133,7 @@ function EditSong({allSongs, chosenSong, newList}) {
       "chords": chords2
     }
 
-    console.log("DATA",data);
+    // console.log("DATA",data);
     // setLoading(true)
     document.querySelector('.edit-songadded').style.backgroundColor = '#0d7dc2'
     document.querySelector('.edit-songadded').innerHTML = 'Updating..'
@@ -149,7 +149,7 @@ function EditSong({allSongs, chosenSong, newList}) {
       })
       .then(response => response.json())
       .then(data =>{
-          console.log("UPDATED", data);
+          // console.log("UPDATED", data);
           newList('update')
           nav('/mysongs')
           sessionStorage.setItem('currentPage','mysongs')
@@ -164,8 +164,16 @@ function EditSong({allSongs, chosenSong, newList}) {
     document.querySelectorAll('.edit-cItem').forEach(item => {
       const pos = item.id.split('_')[1];
       const chordObject = songToEdit.chords.find(x => x.pos === pos);
-  
-      if (chordObject) {
+      
+      if(pos[pos.length - 1] !== 'E'){
+        if (chordObject) {
+          document.getElementById(pos).classList.add('selected');
+          setChordArray(prevChordArray => [
+            ...prevChordArray,
+            { pos: pos, chord: chordObject.chord }
+          ]);
+        }
+      } else {
         document.getElementById(pos).classList.add('selected');
         setChordArray(prevChordArray => [
           ...prevChordArray,
@@ -199,6 +207,9 @@ function EditSong({allSongs, chosenSong, newList}) {
     document.querySelectorAll('.edit-wordDisp').forEach(x => {
       x.classList.remove('active')
     })
+    document.querySelectorAll('.addIcon').forEach(x => {
+      x.classList.remove('active')
+    })
 
     document.getElementById(post).classList.add('active')
 
@@ -222,8 +233,17 @@ function EditSong({allSongs, chosenSong, newList}) {
     }) )
     enter.innerHTML='Set'
 
+    let cancelBtn = document.createElement('button')
+    cancelBtn.setAttribute('class', 'chordBtn')
+    cancelBtn.addEventListener('click', (() => {
+      cancelBtnFunc()
+    }) )
+    cancelBtn.style.width = '30px'
+    cancelBtn.innerHTML='X'
+
     smDiv.appendChild(smInput)
     smDiv.appendChild(enter)
+    smDiv.appendChild(cancelBtn)
 
     document.querySelector('.edit-chordSetter').appendChild(smDiv)
 
@@ -237,6 +257,19 @@ function EditSong({allSongs, chosenSong, newList}) {
         }))
 
   }
+
+  function cancelBtnFunc(){
+    document.querySelectorAll('.smDiv').forEach(x=>{
+      x.style.display='none'
+    })
+    document.querySelectorAll('.addIcon').forEach(x => {
+      x.classList.remove('active')
+    })
+    document.querySelectorAll('.edit-wordDisp').forEach(x => {
+      x.classList.remove('active')
+    })
+  }
+
 
   function chordArrItem(x,y,z) {
 
@@ -293,22 +326,122 @@ function EditSong({allSongs, chosenSong, newList}) {
 }
 
 
-// function addSpace(pIndex, lIndex){
+function addSpace(pIndex, lIndex){
 
-//   let prevLyrics = songToEdit.lyrics
-//   // console.log(prevLyrics);
+  document.querySelectorAll('.addIcon').forEach(x => {
+    x.classList.remove('active')
+  })
+  document.querySelectorAll('.edit-wordDisp').forEach(x => {
+    x.classList.remove('active')
+  })
 
-//   const paragraphs = prevLyrics.split("\n\n");
-//   const lines = paragraphs[pIndex].split("\n");
-//   lines[lIndex] = lines[lIndex] + " ";
-//   paragraphs[pIndex] = lines.join("\n");
+  let prevLyrics = songToEdit.lyrics
 
-//   let l2 = paragraphs.join("\n\n");
+  const paragraphs = prevLyrics.split("\n\n");
+  const lines = paragraphs[pIndex].split("\n");
+  const wordIndex = lines[lIndex].split(' ').length - 1
 
-//   console.log(l2);
-//   setSongToEdit({...songToEdit, lyrics: l2})
-// }
+  // console.log(`p${pIndex}-l${lIndex}-w${wordIndex}E`);
 
+  let post2 = `p${pIndex}-l${lIndex}-w${wordIndex}E`
+
+  document.getElementById(post2).classList.add('active')
+
+  let smDiv = document.createElement('div')
+    smDiv.setAttribute('class','smDiv')
+
+    let smInput = document.createElement('input')
+    smInput.setAttribute('class', 'chordName')
+    smInput.setAttribute('name', 'chordName')
+    smInput.setAttribute('placeholder', 'Enter Chord')
+    smInput.setAttribute('type','text')
+
+    
+    let enter = document.createElement('button')
+    enter.setAttribute('class', 'chordBtn')
+    enter.addEventListener('click', (() => {
+      let chordMod = smInput.value.charAt(0).toUpperCase()+smInput.value.slice(1).toLowerCase()
+      // console.log("pos",post2);
+      // console.log("CM",chordMod);
+      endOfLineChord(post2, chordMod)
+    }) )
+    enter.innerHTML='Set'
+
+    let cancelBtn = document.createElement('button')
+    cancelBtn.setAttribute('class', 'chordBtn')
+    cancelBtn.addEventListener('click', (() => {
+      cancelBtnFunc()
+    }) )
+    cancelBtn.style.width = '30px'
+    cancelBtn.innerHTML='X'
+
+    smDiv.appendChild(smInput)
+    smDiv.appendChild(enter)
+    smDiv.appendChild(cancelBtn)
+
+    document.querySelector('.edit-chordSetter').appendChild(smDiv)
+
+    smInput.focus()
+        smDiv.addEventListener('keydown', ((event) => {
+          if (event.key === "Enter"){
+            let chordMod = smInput.value.charAt(0).toUpperCase()+smInput.value.slice(1).toLowerCase()
+            // console.log("CM",chordMod);
+            endOfLineChord(post2, chordMod)
+          }
+        }))
+}
+
+function endOfLineChord(x,y){
+
+  document.querySelectorAll('.smDiv').forEach(x=>{
+    x.style.display='none'
+  })
+
+  document.querySelector('.edit-chordList').innerHTML = ''
+
+  let position = x;
+  let chord = y
+
+
+  document.getElementById(`${position}`).classList.add('selected')
+
+  // console.log("Hi",position,chord);
+
+  let existingChord = chordArray.find(item => item.pos === position);
+
+  if(chord !== ''){
+      if (!existingChord) {
+          chordArray.push({ "pos": position, "chord": chord });
+      } else {
+          existingChord.chord = chord;
+      }
+  }else{
+      alert("Enter Chord Value")
+  }
+
+  // console.log("ChArr",chordArray);
+
+  chordArray.forEach(item => {
+      let chordItem = document.createElement('div')
+      chordItem.setAttribute('class','edit-cItem')
+      chordItem.setAttribute('id','pos_'+item.pos)
+      let para = parseInt(item.pos.split('-')[0].split('p')[1])+1
+      let line = parseInt(item.pos.split('-')[1].split('l')[1])+1
+      let word = parseInt(item.pos.split('-')[2].split('w')[1])+1
+      // chordItem.innerHTML = 'Para '+para+', Line '+line+', Word '+word +':  '+item.chord;
+      chordItem.innerHTML = item.pos[item.pos.length - 1] === 'E'? `Para ${para}, Line ${line} (end):  ${item.chord}`:`Para ${para}, Line ${line}, Word ${word}:  ${item.chord}`
+      let delbtn = document.createElement('button')
+      delbtn.addEventListener('click', ((e) => {
+        deleteNode(e)
+      }))
+      delbtn.innerHTML = 'X'
+      // delbtn.style.cssText=""
+
+      chordItem.appendChild(delbtn)
+      
+      document.querySelector('.edit-chordList').appendChild(chordItem)
+  })
+}
 
 
   return (
@@ -337,9 +470,14 @@ function EditSong({allSongs, chosenSong, newList}) {
                               <button onClick={setChord} className='edit-wordDisp' id={`p${i}-l${j}-w${k}`} key={k}>{z}</button>
                             )
                           })}
-                          {/* <svg 
-                          style={{width:20, height:20, cursor:'pointer'}} 
-                          onClick={() => addSpace(i,j)}  stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zM704 536c0 4.4-3.6 8-8 8H544v152c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V544H328c-4.4 0-8-3.6-8-8v-48c0-4.4 3.6-8 8-8h152V328c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v152h152c4.4 0 8 3.6 8 8v48z"></path></svg> */}
+                          <div
+                          id={`p${i}-l${j}-w${y.split(' ').length - 1}E`}
+                          className='addIcon'  
+                          onClick={() => addSpace(i,j)}></div>
+                          {/* <svg
+                          id={`p${i}-l${j}-w${y.split(' ').length - 1}E`}
+                          className='addIcon'  
+                          onClick={() => addSpace(i,j)} strokeWidth="0" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zM704 536c0 4.4-3.6 8-8 8H544v152c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V544H328c-4.4 0-8-3.6-8-8v-48c0-4.4 3.6-8 8-8h152V328c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v152h152c4.4 0 8 3.6 8 8v48z"></path></svg> */}
                         </div>
                       )
                     })}
@@ -355,7 +493,11 @@ function EditSong({allSongs, chosenSong, newList}) {
             {songToEdit.chords && songToEdit.chords.map((chord, index) => (
                 <div className={'edit-cItem'} 
                 id={`pos_${chord.pos}`} key={index}>
-                  {`Para ${parseInt((chord.pos).split('-')[0].split('p')[1])+1}, Line ${parseInt((chord.pos).split('-')[1].split('l')[1])+1}, Word ${parseInt((chord.pos).split('-')[2].split('w')[1])+1}: ${chord.chord}`}
+                  {chord.pos[chord.pos.length - 1] === 'E' ?
+                  `Para ${parseInt((chord.pos).split('-')[0].split('p')[1])+1}, Line ${parseInt((chord.pos).split('-')[1].split('l')[1])+1}, Word ${parseInt((chord.pos).split('-')[2].split('w')[1])+1}E: ${chord.chord}`
+                  :
+                  `Para ${parseInt((chord.pos).split('-')[0].split('p')[1])+1}, Line ${parseInt((chord.pos).split('-')[1].split('l')[1])+1}, Word ${parseInt((chord.pos).split('-')[2].split('w')[1])+1}: ${chord.chord}`
+                  }
                   <button onClick={deleteNode}>X</button>
                 </div>
             ))}
