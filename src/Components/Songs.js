@@ -90,7 +90,8 @@ function Songs({list}) {
         }
 
 
-      <h3>All songs</h3>
+      {/* <h3>All songs</h3> */}
+      <h2 className="title">Songs</h2>
 
       <div className="songs-search-bar">
           <input className='searchSong' type="text" placeholder='Search by Song or Artist' onChange={searchInput}/>

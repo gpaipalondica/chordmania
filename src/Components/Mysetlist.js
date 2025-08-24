@@ -141,7 +141,7 @@ function Mysetlist({}) {
 
         <button onClick={addSetlistPage} className='addSong'><span>+</span><p>Add Setlist</p></button>
     
-        <h3>My Setlists</h3>
+        <h2>My Setlists</h2>
 
         <div className="mysongs-list">
         {myList && myList.length > 0 ? 

@@ -100,7 +100,7 @@ function SetlistView({list}) {
     <div className="songs">
         {/* {loading && <Loader/>} */}
 
-      <h3>{passedSl.setlistName}</h3>
+      <h2>{passedSl.setlistName}</h2>
 
       <div className="songs-search-bar">
           <input className='searchSong' type="text" placeholder='Search by Song or Artist' onChange={searchInput}/>

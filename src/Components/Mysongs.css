@@ -177,12 +177,31 @@
     .mysongs{
         padding: 20px 0;
         margin-left: 100px;
+        height: 100dvh;
+        overflow-y: scroll;
+        -ms-overflow-style: none;
+        margin-top: 0;
     }
+    
+    .mysongs::-webkit-scrollbar {
+        display: none;  /* Chrome, Safari */
+      }
+
+    .mysong-tab{
+        padding: 20px;
+    }
+
+    .mysong-details{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }  
     .mysong-title{
         white-space: unset;
     }
 
-    .mysongs h3{
+    .mysongs h2{
+        margin-top: 20px;
         text-align: center;
     }
     .mysongs-search-bar{
