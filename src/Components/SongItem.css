@@ -345,7 +345,15 @@
         margin-left: 100px;
         padding: 0;
         gap: 30px;
+        height: 100dvh;
+        overflow-y: scroll;
+        -ms-overflow-style: none;
+        margin-top: 0;
     }  
+
+    .song-item::-webkit-scrollbar {
+        display: none;  /* Chrome, Safari */
+      }
 
     .autoScroll{
         right: 20px;

@@ -115,7 +115,13 @@
         margin-left: 100px;
         margin-top: 0;
         gap: 10px;
+        height: 100dvh;
+        overflow-y: scroll;
+        -ms-overflow-style: none;
     }
+    .home::-webkit-scrollbar {
+        display: none;  /* Chrome, Safari */
+      }
     .about{
         font-size: 15px;
         margin-top: 0;

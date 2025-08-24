@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { useRef } from 'react'
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import {Chordlist} from '../Helper/Chordlist'
@@ -231,12 +232,14 @@ function SongItem({list}) {
         clearInterval(playBtn);
     }
 
+    let scrollDiv = useRef(null)
+
     function scrollMe(){
       let speed = document.querySelector('.speed').value
       // console.log(speed);
       if((window.innerWidth<480)){
       // if((window.innerWidth<480 && window.innerHeight > window.innerWidth) || (window.innerHeight<480 && window.innerWidth > window.innerHeight)){
-        window.scrollBy({
+        scrollDiv.current.scrollBy({
           top: 5*speed,
           behavior: 'smooth',
         });
@@ -444,7 +447,7 @@ function SongItem({list}) {
       {listing ? <>
        {selectedSong ? 
        <>
-        <div className="song-item">
+        <div ref={scrollDiv} className="song-item">
       
       <div className="autoScroll" onClick={autoScroll}>
         Start Autoscroll
@@ -568,7 +571,6 @@ function SongItem({list}) {
                       return(
                         <span id={`p${i}-l${j}-w${k}`} className='word' key={k}>
                           {z}
-                        
                           </span>
                       )
                     })}
