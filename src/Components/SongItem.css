@@ -342,18 +342,20 @@
 
 @media (max-width:480px) {
     .song-item{
-        margin-left: 100px;
-        padding: 0;
+        margin-left: 80px;
+        padding: 20px;
         gap: 30px;
         height: 100dvh;
         overflow-y: scroll;
-        -ms-overflow-style: none;
         margin-top: 0;
+        margin-right: 0;
+        /* -ms-overflow-style: none; */
+        /* background-color: red; */
     }  
 
-    .song-item::-webkit-scrollbar {
-        display: none;  /* Chrome, Safari */
-      }
+    /* .song-item::-webkit-scrollbar {
+        display: none; 
+      } */
 
     .autoScroll{
         right: 20px;

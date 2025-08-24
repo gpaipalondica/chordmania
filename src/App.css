@@ -13,6 +13,7 @@ body{
   background-size:cover ;
 } 
 
+
 .loader{
   position: fixed;
   left: 0;
@@ -59,5 +60,12 @@ transform: translate(-50%, -50%);
   }
   100%{
     top: 0;
+  }
+}
+
+@media (max-width:480px) {
+  .App {
+        height: 100dvh;
+        overflow-y: hidden;
   }
 }
