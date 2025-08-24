@@ -443,6 +443,7 @@ function endOfLineChord(x,y){
   })
 }
 
+let goTo = useNavigate()
 
   return (
     <div className='edit-song'>
@@ -452,9 +453,13 @@ function endOfLineChord(x,y){
       {songToEdit ?
       <>
 
+      <button style={{position:'fixed', cursor:'pointer', top:10, right:20, width:45, height:45, zIndex:10, backgroundColor:'black', borderRadius:'50%'}}>
+        <p onClick={() => goTo('/mysongs')} style={{color:'white', fontSize:24}}>X</p>
+      </button>
+
       <div className="part1">
               
-      <p>Click on a word to assign/replace chord. Scroll down to apply changes</p>
+      <p>Click to assign/replace chord. Scroll down to apply changes</p>
 
       <div className="edit-lyrics-container">
         <div className="edit-displayLyrics">

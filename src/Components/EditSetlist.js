@@ -284,9 +284,17 @@ function EditSetlist({list}) {
         otherSongs.sort((a, b) => a.songname.localeCompare(b.songname)).map((item, index) => (
           <div key={index} style={{padding:10, borderBottom:'1px solid black', display:'flex', alignItems:'center', justifyContent:'space-between'}}>
             <p style={{textTransform:'capitalize'}}>{item.songname}</p>
-            <button 
+            <button className='setBtn' 
             onClick={() => addSongToList(item.songId)}
-            style={{backgroundColor: 'green', color:'white', fontWeight: 500, padding:'0px 8px', cursor:'pointer'}}>Add</button>
+            style={{backgroundColor:'green'}}
+            >
+              <svg stroke="white" fill="white" stroke-width="0" t="1551322312294" viewBox="0 0 1024 1024" version="1.1" pId="10297" height="1.3em" width="1.3em" xmlns="http://www.w3.org/2000/svg"><defs></defs><path d="M474 152m8 0l60 0q8 0 8 8l0 704q0 8-8 8l-60 0q-8 0-8-8l0-704q0-8 8-8Z" pId="10298"></path><path d="M168 474m8 0l672 0q8 0 8 8l0 60q0 8-8 8l-672 0q-8 0-8-8l0-60q0-8 8-8Z" pId="10299"></path></svg>
+            </button>
+            {/* <button 
+            onClick={() => addSongToList(item.songId)}
+            style={{backgroundColor: 'green', cursor:'pointer'}}>
+              <svg stroke="currentColor" fill="currentColor" stroke-width="0" t="1551322312294" viewBox="0 0 1024 1024" version="1.1" pId="10297" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><defs></defs><path d="M474 152m8 0l60 0q8 0 8 8l0 704q0 8-8 8l-60 0q-8 0-8-8l0-704q0-8 8-8Z" pId="10298"></path><path d="M168 474m8 0l672 0q8 0 8 8l0 60q0 8-8 8l-672 0q-8 0-8-8l0-60q0-8 8-8Z" pId="10299"></path></svg>
+            </button> */}
           </div>
         ))
         
