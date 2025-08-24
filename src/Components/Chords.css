@@ -189,16 +189,18 @@
 
 @media (max-width:480px) {
     .chords{
-        margin-left: 100px;
-        padding: 20px 0;
+        margin-left: 80px;
+        padding: 20px;
         height: 100dvh;
         overflow-y: scroll;
-        -ms-overflow-style: none;
         margin-top: 0;
+        margin-right: 0;
+        /* -ms-overflow-style: none; */
+        /* background-color: red; */
     }
-    .chords::-webkit-scrollbar {
-        display: none;  /* Chrome, Safari */
-      }
+    /* .chords::-webkit-scrollbar {
+        display: none;  
+      } */
 
     .title{
         text-align: center;

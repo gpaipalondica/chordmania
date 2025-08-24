@@ -142,6 +142,44 @@ function Mysongs({list, newList, editDetails}) {
     nav('/editSong')
   }
 
+  function searchInput(e){
+
+    let target = e.target.value.toLowerCase();
+    // console.log(target);
+
+    if(target === ''){
+      document.querySelector('.songSearchResult').style.display = 'none'
+      document.querySelector('.songSearchResult').innerHTML = '';
+    }else{
+      document.querySelector('.songSearchResult').style.display = 'flex'
+      document.querySelector('.songSearchResult').innerHTML = `Search result for `+e.target.value;
+    }
+
+    let mySongsList = document.querySelectorAll('.mysong-tab')
+    mySongsList.forEach(sn => {
+        let snName = sn.querySelector('.mysong-title')
+        let arName = sn.querySelector('.myartist-name')
+        // console.log(snName, arName);
+        const isVis = snName.textContent.toLowerCase().includes(target) || arName.textContent.toLowerCase().includes(target)
+        snName.parentNode.parentNode.classList.toggle('hide',!isVis)
+        
+        if(snName.innerHTML === 'NA'){
+          sn.style.display = 'none'
+        }
+      })
+  }
+
+  function clearInput(){
+    document.querySelector('.searchSong').value = ''
+
+    document.querySelectorAll('.mysong-tab').forEach(x => {
+      x.classList.remove('hide')
+    })
+
+    document.querySelector('.songSearchResult').style.display = 'none'
+      document.querySelector('.songSearchResult').innerHTML = '';
+  }
+
   return (
     <div className='mysongs'>
       {loading && <Loader/>}
@@ -149,6 +187,13 @@ function Mysongs({list, newList, editDetails}) {
         <button onClick={addSongPage} className='addSong'><span>+</span><p>Add Song</p></button>
     
         <h2>My Songs</h2>
+
+        <div className="songs-search-bar">
+          <input className='searchSong' type="text" placeholder='Search by Song or Artist' onChange={searchInput}/>
+          <button onClick={clearInput}>Clear</button>
+        </div>
+
+        <p className="songSearchResult"></p>
 
         <div className="mysongs-list">
         {myList ? myList.slice().filter(item => item.ownername===user).sort((a, b) => a.songname.localeCompare(b.songname)).map((sl,i) =>{

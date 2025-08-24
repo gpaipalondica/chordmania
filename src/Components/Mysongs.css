@@ -73,6 +73,10 @@
     position: relative;
 }
 
+.hide{
+    display: none;
+}
+
 .mysong-details{
     display: flex;
     gap: 0 20px;
@@ -175,17 +179,19 @@
 
 @media (max-width:480px) {
     .mysongs{
-        padding: 20px 0;
-        margin-left: 100px;
+        padding: 20px;
+        margin-left: 80px;
         height: 100dvh;
         overflow-y: scroll;
-        -ms-overflow-style: none;
         margin-top: 0;
+        margin-right: 0;
+        /* -ms-overflow-style: none; */
+        /* background-color: red; */
     }
     
-    .mysongs::-webkit-scrollbar {
-        display: none;  /* Chrome, Safari */
-      }
+    /* .mysongs::-webkit-scrollbar {
+        display: none;  
+      } */
 
     .mysong-tab{
         padding: 20px;

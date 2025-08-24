@@ -111,17 +111,20 @@
 
 @media (max-width:480px) {
     .home{
-        padding: 20px 0;
-        margin-left: 100px;
+        padding: 20px;
+        margin-left: 80px;
         margin-top: 0;
+        margin-right: 0;
         gap: 10px;
         height: 100dvh;
         overflow-y: scroll;
-        -ms-overflow-style: none;
+        /* -ms-overflow-style: none; */
+        /* background-color: red; */
     }
-    .home::-webkit-scrollbar {
-        display: none;  /* Chrome, Safari */
-      }
+    /* .home::-webkit-scrollbar {
+        display: none; 
+      } */
+
     .about{
         font-size: 15px;
         margin-top: 0;
